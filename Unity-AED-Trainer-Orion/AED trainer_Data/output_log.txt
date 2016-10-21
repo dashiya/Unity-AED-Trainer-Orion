@@ -1,0 +1,165 @@
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x412)
+    Vendor:   Intel
+    VRAM:     896 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\LeapCSharp.NET3.5.dll (this message is harmless)
+Loading C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\LeapCSharp.NET3.5.dll into Unity Child Domain
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.126 seconds
+desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\tae\OneDrive\Unity\AED Trainer\AED trainer_Data\Managed\System.dll (this message is harmless)
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Ignore collision failed. Both colliders need to be activated when calling IgnoreCollision
+ 
+(Filename:  Line: 1997)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1a58 -> priority: 1 
+  Thread -> id: 1220 -> priority: 1 

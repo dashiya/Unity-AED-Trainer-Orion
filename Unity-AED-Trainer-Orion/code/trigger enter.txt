@@ -1,0 +1,2 @@
+void OnTriggerEnter(Collider coll) {
+ if (coll.gameObject.tag == "PlayerBullet") {
