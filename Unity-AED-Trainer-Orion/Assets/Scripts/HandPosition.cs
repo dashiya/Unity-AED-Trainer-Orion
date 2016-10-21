@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Leap;
+using Leap.Unity;
 
-//Leapmotionで取得した手の位置をUnityの座標に変換する
-//→ 手が触れたら子オブジェクトにする
+//Leap.PalmPositionをパッドに代入してパッドを動かす
 public class HandPosition : MonoBehaviour
 {
 
@@ -38,7 +38,7 @@ public class HandPosition : MonoBehaviour
         if (FlagManager.Instance.flags[1] == true)
         {
 
-            ConvertPosition = transform.TransformPoint(hand.PalmPosition.ToUnityScaled());
+            ConvertPosition = hand.PalmPosition.ToVector3();
 
         }
 
