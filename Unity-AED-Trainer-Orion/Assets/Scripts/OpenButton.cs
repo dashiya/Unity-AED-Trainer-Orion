@@ -67,12 +67,14 @@ public class OpenButton : MonoBehaviour
                 // Spin the object around the Cube at 180 degrees
                 obj.gameObject.transform.RotateAround(targetPos, axis, angle);
 
+
+            //Show the name of other object
+            Debug.Log(other.name);
+
                 //ふたが開いている状態のフラグを立てる
                 FlagManager.Instance.flags[0] = true;
 
                 //audiosource再生
-
-
                 AudioSource1.Play(12800);
                 AudioSource2.Play(138400);
                 AudioSource3.Play(12800 + 138400 * 2);
