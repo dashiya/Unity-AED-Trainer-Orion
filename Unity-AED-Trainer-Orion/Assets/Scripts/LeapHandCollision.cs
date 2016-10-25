@@ -4,6 +4,8 @@ using Leap.Unity;
 
 public class LeapHandCollision  {
 
+    public GameObject HandModel;
+
     public bool IsHand(Collider handcol)
     {
         if (handcol.transform.parent && handcol.transform.parent.parent && handcol.transform.parent.parent.GetComponent<HandModel>())
