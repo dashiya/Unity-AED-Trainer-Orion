@@ -17,10 +17,7 @@ public class HandPosition : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       GameObject controller = GameObject.Find("HandController");
-
-
-
+       
     }
 
 

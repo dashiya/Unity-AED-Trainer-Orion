@@ -7,7 +7,7 @@ public class Pad1Position : MonoBehaviour
 
     public bool pad1col = false;
     //private float sizef = 5.669878f;
-    private float sizef = 5.0f;
+    //private float sizef = 5.0f;
 
 
     private Vector3 pos;
