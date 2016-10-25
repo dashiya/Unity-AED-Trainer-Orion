@@ -34,12 +34,12 @@ public class HandPosition : MonoBehaviour
     // Get Habd objects from a Frame
     void Update()
     {
-        //Hand hand = GetComponent<HandModel>().GetLeapHand();
+        Hand hand = GetComponent<HandModel>().GetLeapHand();
 
         if (FlagManager.Instance.flags[1] == true)
         {
 
-            ConvertPosition = controller.Frame().Hand(20).PalmPosition;
+            ConvertPosition = hand.PalmPosition.ToVector3();
 
         }
 
