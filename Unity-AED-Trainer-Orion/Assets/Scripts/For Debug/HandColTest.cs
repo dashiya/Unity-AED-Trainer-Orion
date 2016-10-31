@@ -16,8 +16,7 @@ public class HandColTest : MonoBehaviour
     void OnTriggerEnter(Collider other)
 
     {
-        Debug.Log(other.name);
-
+       
         if (hc.IsHand(other))
         {
             Debug.Log("Yay! A hand collided!");
