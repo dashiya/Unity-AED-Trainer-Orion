@@ -1,15 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-//HandPosition.csで取得した手の座標をパッド1に入れる
+
+
+//HandPosition.csで取得した手のひらの座標をパッドに代入して動かす
 public class Pad1Position : MonoBehaviour
 {
 
     public bool pad1col = false;
-    //private float sizef = 5.669878f;
-    //private float sizef = 5.0f;
-
-
+ 
     private Vector3 pos;
 
     public AudioSource AudioSource5;
@@ -60,7 +59,7 @@ public class Pad1Position : MonoBehaviour
             HandPosition HAND = GetComponent<HandPosition>();
 
 
-            //パッド位置に手の位置を入れる
+            //posはパッド位置
 
            pos = this.transform.position;
 
@@ -79,10 +78,5 @@ public class Pad1Position : MonoBehaviour
             
         }
     }
-
-    void OnGUI()
-    {
-        string padlabel = "現在のパッドの座標は" + pos;
-        GUI.Label(new Rect(0, 100, 200, 50), padlabel);  //Rect(x , y , Width , Height)
-    }
+    
 }

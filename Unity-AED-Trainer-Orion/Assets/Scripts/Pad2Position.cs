@@ -2,10 +2,8 @@
 using System.Collections;
 
 public class Pad2Position : MonoBehaviour
-{    
+{
     public bool pad2col = false;
-
-    private float sizef = 5.669878f;
 
     LeapHandCollision hc = new LeapHandCollision();
 
@@ -21,7 +19,7 @@ public class Pad2Position : MonoBehaviour
     void OnTriggerEnter(Collider pad2col)
     {
         //if(手がふれていてかつパッド1が貼付け済みなら)
-        if ( hc.IsHand(pad2col) && FlagManager.Instance.flags[2] == true)
+        if (hc.IsHand(pad2col) && FlagManager.Instance.flags[2] == true)
             FlagManager.Instance.flags[3] = true;
 
     }
@@ -43,11 +41,10 @@ public class Pad2Position : MonoBehaviour
             Vector3 pos = this.transform.position;
 
 
-            //係数はLeap(mm)からUnity(m)への変換
-            //研究室PC用の数値
-            pos.x = 1 - (sizef * HAND.ConvertPosition.x);
-            pos.y = 0.001f  - (sizef * HAND.ConvertPosition.y);
-            pos.z = 3.05f + (sizef * HAND.ConvertPosition.z);
+
+            pos.x = HAND.ConvertPosition.x;
+            pos.y = HAND.ConvertPosition.y;
+            pos.z = HAND.ConvertPosition.z;
 
 
             this.transform.position = pos;

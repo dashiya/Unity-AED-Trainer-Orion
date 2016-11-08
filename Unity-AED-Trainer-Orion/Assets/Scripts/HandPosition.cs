@@ -2,55 +2,53 @@
 using System.Collections;
 using Leap;
 using Leap.Unity;
+using System.Collections.Generic;
+
 
 //Leap.PalmPositionをパッドに代入してパッドを動かす
 public class HandPosition : MonoBehaviour
 {
 
-    public Vector3 handPosition;
+
     public Vector3 ConvertPosition;
-    public object controller;
 
+    LeapProvider provider;
 
-
-
-    // Use this for initialization
     void Start()
     {
-       
+        provider = FindObjectOfType<LeapProvider>() as LeapProvider;
     }
-
-
-    // LeapのVectorからUnityのVector3に変換
-    Vector3 ToUnity(Vector v)
-    {
-        return new Vector3(v.x, v.y, v.z);
-    }
-
 
     // Get Habd objects from a Frame
     void Update()
     {
-        Hand hand = GetComponent<HandModel>().GetLeapHand();
 
         if (FlagManager.Instance.flags[1] == true)
         {
+            Frame frame = provider.CurrentFrame;
+            List<Hand> hands = frame.Hands;
+            for (int h = 0; h < hands.Count; h++)
 
-            ConvertPosition = hand.PalmPosition.ToVector3();
+
+            {
+                Hand hand = hands[h];
+                if (hand.IsLeft | hand.IsRight)
+                {
+                    ConvertPosition = hand.PalmPosition.ToVector3() +
+                                         hand.PalmNormal.ToVector3() *
+                                        (transform.localScale.y * .5f + .02f);
+
+                }
+
+            }
 
         }
 
 
     }
-
-
-    void OnGUI()
-    {
-        string label = "現在の手のひらの座標は" + ConvertPosition;
-        GUI.Label(new Rect(0, 0, 200, 50), label);
-    }
-
-
 }
+
+
+
 
 
