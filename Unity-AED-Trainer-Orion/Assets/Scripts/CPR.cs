@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+// for chest complession and announcemennt
 public class CPR : MonoBehaviour
 {
 
