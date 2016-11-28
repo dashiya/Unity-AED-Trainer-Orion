@@ -5,7 +5,8 @@ using Leap.Unity;
 using System.Collections.Generic;
 
 
-//Leap.PalmPositionをパッドに代入してパッドを動かす
+//Leap.PalmPositionを取得するクラス
+//
 public class HandPosition : MonoBehaviour
 {
 
