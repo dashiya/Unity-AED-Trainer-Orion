@@ -12,6 +12,7 @@ public class HandPosition : MonoBehaviour
 
 
     public Vector3 ConvertPosition;
+    public Vector OriginalPosition;
 
     LeapProvider provider;
 
@@ -35,6 +36,8 @@ public class HandPosition : MonoBehaviour
                 Hand hand = hands[h];
                 if (hand.IsLeft | hand.IsRight)
                 {
+                    OriginalPosition = hand.PalmPosition;
+
                     ConvertPosition = hand.PalmPosition.ToVector3() +
                                          hand.PalmNormal.ToVector3() *
                                         (transform.localScale.y * .5f + .02f);
