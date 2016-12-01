@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class ChestCompression : MonoBehaviour {
 
     HandPosition hp = new HandPosition ();
-    Vector StartPosition;
+    Vector3 StartPosition;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +23,7 @@ public class ChestCompression : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        StartPosition = hp.OriginalPosition;
+        StartPosition = hp.ConvertPosition;
         Debug.Log(StartPosition);
         Debug.Log("CPRスタート");
     }
