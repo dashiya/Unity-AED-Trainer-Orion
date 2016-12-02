@@ -11,7 +11,6 @@ public class Pad2Position : MonoBehaviour
     void Start()
 
     {
-
     }
 
 
@@ -32,9 +31,10 @@ public class Pad2Position : MonoBehaviour
         if (FlagManager.Instance.flags[3] == true && FlagManager.Instance.flags[4] == false)
         {
 
+
+
             //HandPosition.cs取得
             HandPosition HAND = GetComponent<HandPosition>();
-
 
             //パッド位置に手の位置を入れる
 
