@@ -10,13 +10,17 @@ using System.Collections.Generic;
 public class ChestCompression : MonoBehaviour
 {
 
+    public Vector3 StartPosition;
+
+    private bool isTouch = false;
+    private int aIndex;
+
     HandPosition hp = new HandPosition();
 
     LeapHandCollision hc = new LeapHandCollision();
 
 
-    Vector3 StartPosition;
-    private int aIndex;
+
 
     // Use this for initialization
     void Start()
@@ -25,7 +29,7 @@ public class ChestCompression : MonoBehaviour
 
     }
 
-    //BoxColliderにふれたときの座標を取得
+
 
 
 
@@ -35,29 +39,43 @@ public class ChestCompression : MonoBehaviour
     void Update()
     {
 
+
+
         HandPosition hp = GetComponent<HandPosition>();
 
+        if (isTouch == true)
+        {
+            Debug.Log("Convertposition" + hp.ConvertPosition);
+            isTouch = false;
+        }
 
-        Debug.Log(hp.ConvertPosition);
-
+        Debug.Log(isTouch);
 
 
     }
 
 
-    void OnCollisionEnter(Collision collision)
+
+
+    //otherは衝突相手（この場合は手）のデータが入る
+    void OnTriggerEnter(Collider other)
     {
-        if (hc.IsHand(collision))
+
+        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
         {
-            for (int aIndex = 0; aIndex < collision.contacts.Length; ++aIndex)
+
+
+            if (hc.IsHand(other))
             {
-                Debug.Log(collision.contacts[aIndex].point);
+                isTouch = true;
+
             }
 
             Debug.Log("CPRスタート");
         }
+
+
     }
-
-
 }
+
 
