@@ -11,48 +11,18 @@ public class ChestCompression : MonoBehaviour
 {
 
     public Vector3 StartPosition;
+    public int PushCount = 0;
 
     private bool isTouch = false;
+    private bool isPush = false;
+
+
     private int aIndex;
 
     HandPosition hp = new HandPosition();
 
     LeapHandCollision hc = new LeapHandCollision();
 
-
-
-
-    // Use this for initialization
-    void Start()
-    {
-
-
-    }
-
-
-
-
-
-
-    // Update is called once per frame
-    //StartPosition - 5cmになったらフラグをたてる
-    void Update()
-    {
-
-
-
-        HandPosition hp = GetComponent<HandPosition>();
-
-        if (isTouch == true)
-        {
-            Debug.Log("Convertposition" + hp.ConvertPosition);
-            isTouch = false;
-        }
-
-        Debug.Log(isTouch);
-
-
-    }
 
 
 
@@ -69,13 +39,51 @@ public class ChestCompression : MonoBehaviour
             {
                 isTouch = true;
 
+                Debug.Log("1つめ");
+
+            }
+        }
+    }
+
+
+
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+
+
+    // Update is called once per frame
+    //StartPosition - 5cmになったらフラグをたてる
+    void Update()
+    {
+        
+        HandPosition hp = GetComponent<HandPosition>();
+
+        if (isTouch == true && isPush == false)
+        {
+            StartPosition = hp.ConvertPosition;
+            Debug.Log("2つめ");
+
+            if (hp.ConvertPosition.y <= StartPosition.y - 0.05)//ここの条件を見直す
+            {
+                isPush = true;
+                Debug.Log("3つめ");
+
+                if (isTouch == true && isPush == true)
+                {
+                    PushCount++;
+                    isTouch = false;
+                    isPush = false;
+                  Debug.Log("4つめ");
+                }
+
             }
 
-            Debug.Log("CPRスタート");
         }
 
+        Debug.Log(PushCount);
 
     }
 }
-
-
