@@ -15,7 +15,7 @@ public class ChestCompression : MonoBehaviour
 
     private bool isTouch = false;
     private bool isPush = false;
-
+    private bool isStart = false;
 
     private int aIndex;
 
@@ -49,41 +49,39 @@ public class ChestCompression : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
-    }
-
-
+    { }
 
     // Update is called once per frame
     //StartPosition - 5cmになったらフラグをたてる
     void Update()
     {
-        
+
         HandPosition hp = GetComponent<HandPosition>();
 
-        if (isTouch == true && isPush == false)
+        if (isTouch == true && isPush == false && isStart == false)
         {
             StartPosition = hp.ConvertPosition;
             Debug.Log("2つめ");
-
-            if (hp.ConvertPosition.y <= StartPosition.y - 0.05)//ここの条件を見直す
-            {
-                isPush = true;
-                Debug.Log("3つめ");
-
-                if (isTouch == true && isPush == true)
-                {
-                    PushCount++;
-                    isTouch = false;
-                    isPush = false;
-                  Debug.Log("4つめ");
-                }
-
-            }
-
+            Debug.Log((StartPosition.y - 0.05) + "触れたときの座標-5cm" + (hp.ConvertPosition.y) + "今の座標");
+            isStart = true;
         }
 
-        Debug.Log(PushCount);
+        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//ここの条件を見直す→それぞれの座標を表示してみる
+        {
+            isPush = true;
+            Debug.Log("3つめ");
+        }
+
+        if (isTouch == true && isPush == true)
+        {
+            PushCount++;
+            isTouch = false;
+            isPush = false;
+            Debug.Log("4つめ");
+            Debug.Log(PushCount + "pushcount");
+        }
 
     }
+    
 }
+
