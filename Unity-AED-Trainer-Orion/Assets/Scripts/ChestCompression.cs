@@ -58,7 +58,7 @@ public class ChestCompression : MonoBehaviour
 
         HandPosition hp = GetComponent<HandPosition>();
 
-        if (isTouch == true && isPush == false && isStart == false)
+        if (isTouch == true && isPush == false && isStart == false) //これがループしてない→isStart = trueのままになっている
         {
             StartPosition = hp.ConvertPosition;
             Debug.Log("2つめ");
@@ -66,17 +66,18 @@ public class ChestCompression : MonoBehaviour
             isStart = true;
         }
 
-        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//ここの条件を見直す→それぞれの座標を表示してみる
+        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだら
         {
             isPush = true;
             Debug.Log("3つめ");
         }
 
-        if (isTouch == true && isPush == true)
+        if (isTouch == true && isPush == true )  //スタート位置のCollisionにふれていて、5cm押し込んでいる
         {
             PushCount++;
             isTouch = false;
             isPush = false;
+            isStart = false;
             Debug.Log("4つめ");
             Debug.Log(PushCount + "pushcount");
         }
