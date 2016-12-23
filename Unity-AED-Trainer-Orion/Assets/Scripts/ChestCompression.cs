@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 
 //for chest compression
-//手がBox Colliderに触れる→手のy座標をとる→-5cm沈んだらフラグを立てる→フラグが立った状態でBox Colliderにふれたら圧迫回数+1にする
+//手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
+//isTouch=true から isCount=true になるまでの時間を取れれば、テンポのカウントができる？
 public class ChestCompression : MonoBehaviour
 {
 
@@ -16,6 +17,7 @@ public class ChestCompression : MonoBehaviour
     private bool isTouch = false;
     private bool isPush = false;
     private bool isStart = false;
+    private bool isCount = false;
 
     private int aIndex;
 
@@ -31,7 +33,7 @@ public class ChestCompression : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
+        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other)) //ここの条件は必要？
         {
 
 
@@ -64,6 +66,7 @@ public class ChestCompression : MonoBehaviour
             Debug.Log("2つめ");
             Debug.Log((StartPosition.y - 0.05) + "触れたときの座標-5cm" + (hp.ConvertPosition.y) + "今の座標");
             isStart = true;
+            isCount = false;
         }
 
         if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだら
@@ -72,7 +75,7 @@ public class ChestCompression : MonoBehaviour
             Debug.Log("3つめ");
         }
 
-        if (isTouch == true && isPush == true )  //スタート位置のCollisionにふれていて、5cm押し込んでいる
+        if (isTouch == true && isPush == true && isCount == false)  //スタート位置のCollisionにふれていて、5cm押し込んでいる
         {
             PushCount++;
             isTouch = false;
@@ -80,6 +83,7 @@ public class ChestCompression : MonoBehaviour
             isStart = false;
             Debug.Log("4つめ");
             Debug.Log(PushCount + "pushcount");
+            isCount = true;
         }
 
     }
