@@ -17,7 +17,7 @@ public class ChestCompression : MonoBehaviour
     private bool isTouch = false;
     private bool isPush = false;
     private bool isStart = false;
-    private bool isCount = false;
+    public bool isCount = false;
 
     private int aIndex;
 
