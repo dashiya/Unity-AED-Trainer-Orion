@@ -7,12 +7,13 @@ using System.Collections.Generic;
 
 //for chest compression
 //手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
-//isTouch=true から isCount=true になるまでの時間を取れれば、テンポのカウントができる？
+//ToDo:PushCount = nから、PushCount = n + 1になるまでの時間が0.5-0.6秒(100-120BPM)であれば、PushGoodを返す
 public class ChestCompression : MonoBehaviour
 {
 
     public Vector3 StartPosition;
     public int PushCount = 0;
+    private int CurrentCount = 0;
 
     private bool isTouch = false;
     private bool isPush = false;
@@ -20,6 +21,10 @@ public class ChestCompression : MonoBehaviour
     public bool isCount = false;
 
     private int aIndex;
+
+    public float PushTime;
+    public float CurrentTime;
+   
 
     HandPosition hp = new HandPosition();
 
@@ -60,16 +65,20 @@ public class ChestCompression : MonoBehaviour
 
         HandPosition hp = GetComponent<HandPosition>();
 
-        if (isTouch == true && isPush == false && isStart == false) //これがループしてない→isStart = trueのままになっている
+        if (isTouch == true && isPush == false && isStart == false) 
         {
+            CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
+            CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
+            Debug.Log("CurrentTime" + CurrentTime);
             Debug.Log("2つめ");
-            Debug.Log((StartPosition.y - 0.05) + "触れたときの座標-5cm" + (hp.ConvertPosition.y) + "今の座標");
+            //Debug.Log((StartPosition.y - 0.05) + "触れたときの座標-5cm" + (hp.ConvertPosition.y) + "今の座標");
             isStart = true;
             isCount = false;
+            
         }
 
-        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだら
+        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
         {
             isPush = true;
             Debug.Log("3つめ");
@@ -78,15 +87,34 @@ public class ChestCompression : MonoBehaviour
         if (isTouch == true && isPush == true && isCount == false)  //スタート位置のCollisionにふれていて、5cm押し込んでいる
         {
             PushCount++;
+            PushTime = Time.time;
             isTouch = false;
             isPush = false;
             isStart = false;
             Debug.Log("4つめ");
+            Debug.Log("PushTime" + PushTime);
             Debug.Log(PushCount + "pushcount");
             isCount = true;
         }
 
+        TimeJudge();
     }
+
+    void TimeJudge()
+    {
+        //if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 )  本来の条件100-120BPM
+        if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
+        {
+            Debug.Log("Good!");
+        }
+
+
+        Debug.Log("OnTimeJudge");
+              
+
+    }
+
+
     
 }
 
