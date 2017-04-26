@@ -3,6 +3,7 @@ using System.Collections;
 using Leap;
 using Leap.Unity;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 //for chest compression
@@ -24,7 +25,9 @@ public class ChestCompression : MonoBehaviour
 
     public float PushTime;
     public float CurrentTime;
-   
+
+    GameObject tTex;
+    Text TempoText;
 
     HandPosition hp = new HandPosition();
 
@@ -46,8 +49,7 @@ public class ChestCompression : MonoBehaviour
             {
                 isTouch = true;
 
-                Debug.Log("1つめ");
-
+              
             }
         }
     }
@@ -56,7 +58,13 @@ public class ChestCompression : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    { }
+    {
+        tTex = GameObject.Find("TempoText");
+
+        TempoText = tTex.GetComponent<Text>();
+
+            
+    }
 
     // Update is called once per frame
     //StartPosition - 5cmになったらフラグをたてる
@@ -65,23 +73,22 @@ public class ChestCompression : MonoBehaviour
 
         HandPosition hp = GetComponent<HandPosition>();
 
-        if (isTouch == true && isPush == false && isStart == false) 
+        if (isTouch == true && isPush == false && isStart == false)
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
             Debug.Log("CurrentTime" + CurrentTime);
-            Debug.Log("2つめ");
-            //Debug.Log((StartPosition.y - 0.05) + "触れたときの座標-5cm" + (hp.ConvertPosition.y) + "今の座標");
+          
             isStart = true;
             isCount = false;
-            
+
         }
 
         if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
         {
             isPush = true;
-            Debug.Log("3つめ");
+         
         }
 
         if (isTouch == true && isPush == true && isCount == false)  //スタート位置のCollisionにふれていて、5cm押し込んでいる
@@ -91,7 +98,7 @@ public class ChestCompression : MonoBehaviour
             isTouch = false;
             isPush = false;
             isStart = false;
-            Debug.Log("4つめ");
+          
             Debug.Log("PushTime" + PushTime);
             Debug.Log(PushCount + "pushcount");
             isCount = true;
@@ -102,19 +109,20 @@ public class ChestCompression : MonoBehaviour
 
     void TimeJudge()
     {
-        //if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 )  本来の条件100-120BPM
-        if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
+        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6)  //本来の条件100-120BPM
+        //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
         {
             Debug.Log("Good!");
+
+
+            TempoText.text = "Good";
+
         }
 
-
-        Debug.Log("OnTimeJudge");
-              
 
     }
 
 
-    
+
 }
 
