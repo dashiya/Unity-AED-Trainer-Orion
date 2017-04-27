@@ -20,6 +20,7 @@ public class ChestCompression : MonoBehaviour
     private bool isPush = false;
     private bool isStart = false;
     public bool isCount = false;
+    private bool isJudge = false;
 
     private int aIndex;
 
@@ -28,6 +29,7 @@ public class ChestCompression : MonoBehaviour
 
     GameObject tTex;
     Text TempoText;
+    MeshRenderer tTexMesh;
 
     HandPosition hp = new HandPosition();
 
@@ -49,7 +51,7 @@ public class ChestCompression : MonoBehaviour
             {
                 isTouch = true;
 
-              
+
             }
         }
     }
@@ -62,8 +64,9 @@ public class ChestCompression : MonoBehaviour
         tTex = GameObject.Find("TempoText");
 
         TempoText = tTex.GetComponent<Text>();
+        tTexMesh = tTex.GetComponent<MeshRenderer>();
 
-            
+
     }
 
     // Update is called once per frame
@@ -79,7 +82,8 @@ public class ChestCompression : MonoBehaviour
             CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
             Debug.Log("CurrentTime" + CurrentTime);
-          
+
+
             isStart = true;
             isCount = false;
 
@@ -88,20 +92,22 @@ public class ChestCompression : MonoBehaviour
         if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
         {
             isPush = true;
-         
+
         }
 
-        if (isTouch == true && isPush == true && isCount == false)  //スタート位置のCollisionにふれていて、5cm押し込んでいる
+        if (isTouch == true && isPush == true && isCount == false)  //5cm押し込んでいる、かつスタート位置のCollisionに再び触れたら
         {
             PushCount++;
             PushTime = Time.time;
             isTouch = false;
             isPush = false;
             isStart = false;
-          
+            isJudge = false;
+
             Debug.Log("PushTime" + PushTime);
             Debug.Log(PushCount + "pushcount");
             isCount = true;
+
         }
 
         TimeJudge();
@@ -109,16 +115,23 @@ public class ChestCompression : MonoBehaviour
 
     void TimeJudge()
     {
-        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6)  //本来の条件100-120BPM
+        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 && isJudge == false)  //本来の条件100-120BPM
         //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
         {
             Debug.Log("Good!");
 
+            tTex.SetActive(true);
 
             TempoText.text = "Good";
 
+            isJudge = true;
         }
+        if(isJudge == false)
+        {
 
+           TempoText.material.color = Color.clear;//テキストの色を透明に
+        }
+    
 
     }
 
