@@ -620,6 +620,7 @@ MonoBehaviour:
   isCount: 0
   isGood: 0
   isLate: 0
+  isFast: 0
   PushTime: 0
   CurrentTime: 0
 --- !u!114 &108414622
@@ -15579,7 +15580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Good
+  m_Text: Text
 --- !u!222 &2074462269
 CanvasRenderer:
   m_ObjectHideFlags: 0
