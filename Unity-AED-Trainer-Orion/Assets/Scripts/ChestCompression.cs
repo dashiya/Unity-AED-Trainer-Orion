@@ -21,14 +21,15 @@ public class ChestCompression : MonoBehaviour
     private bool isStart = false;
     public bool isCount = false;
     private bool isJudge = false;
+    public bool isLeave = false;
 
     private int aIndex;
 
     public float PushTime;
     public float CurrentTime;
 
-    GameObject tTex;
-    Text TempoText;
+   
+    Text tTex;
     MeshRenderer tTexMesh;
 
     HandPosition hp = new HandPosition();
@@ -55,16 +56,27 @@ public class ChestCompression : MonoBehaviour
             }
         }
     }
+    
+    void OnTriggerExit(Collider other)
+    {
+        if( hc.IsHand(other))
+        {
+            if (hc.IsHand(other))
+            {
+                isLeave = true;
+            }
+
+        }
+    }
 
 
 
     // Use this for initialization
     void Start()
     {
-        tTex = GameObject.Find("TempoText");
+        tTex = GameObject.Find("TempoText").GetComponent<Text>();
 
-        TempoText = tTex.GetComponent<Text>();
-        tTexMesh = tTex.GetComponent<MeshRenderer>();
+             
 
 
     }
@@ -115,23 +127,23 @@ public class ChestCompression : MonoBehaviour
 
     void TimeJudge()
     {
-        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 && isJudge == false)  //本来の条件100-120BPM
+        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 )  //本来の条件100-120BPM
         //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
         {
             Debug.Log("Good!");
 
-            tTex.SetActive(true);
+            tTex.color = new Color(255, 255, 255, 1);
 
-            TempoText.text = "Good";
+            tTex.text = "Good";
 
-            isJudge = true;
+           
+
         }
-        if(isJudge == false)
+
+        if(isLeave == false)
         {
-
-           TempoText.material.color = Color.clear;//テキストの色を透明に
+            tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
-    
 
     }
 
