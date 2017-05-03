@@ -20,15 +20,15 @@ public class ChestCompression : MonoBehaviour
     private bool isPush = false;
     private bool isStart = false;
     public bool isCount = false;
-    private bool isJudge = false;
-    public bool isLeave = false;
+    public bool isGood = false;
+    public bool isLate = false;
 
     private int aIndex;
 
     public float PushTime;
     public float CurrentTime;
 
-   
+
     Text tTex;
     MeshRenderer tTexMesh;
 
@@ -56,18 +56,6 @@ public class ChestCompression : MonoBehaviour
             }
         }
     }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if( hc.IsHand(other))
-        {
-            if (hc.IsHand(other))
-            {
-                isLeave = true;
-            }
-
-        }
-    }
 
 
 
@@ -76,7 +64,7 @@ public class ChestCompression : MonoBehaviour
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
 
-             
+
 
 
     }
@@ -95,7 +83,8 @@ public class ChestCompression : MonoBehaviour
             StartPosition = hp.ConvertPosition;
             Debug.Log("CurrentTime" + CurrentTime);
 
-
+            isGood = false;
+            isLate = false;
             isStart = true;
             isCount = false;
 
@@ -114,10 +103,10 @@ public class ChestCompression : MonoBehaviour
             isTouch = false;
             isPush = false;
             isStart = false;
-            isJudge = false;
+          
 
-            Debug.Log("PushTime" + PushTime);
-            Debug.Log(PushCount + "pushcount");
+            Debug.Log(PushTime - CurrentTime);
+          
             isCount = true;
 
         }
@@ -127,20 +116,44 @@ public class ChestCompression : MonoBehaviour
 
     void TimeJudge()
     {
-        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) >= 0.6 )  //本来の条件100-120BPM
+        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  //本来の条件100-120BPM
         //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
         {
-            Debug.Log("Good!");
-
-            tTex.color = new Color(255, 255, 255, 1);
-
-            tTex.text = "Good";
-
-           
+            isGood = true;
 
         }
 
-        if(isLeave == false)
+        if ((PushTime - CurrentTime) > 0.6)
+        {
+            isLate = true;
+        }
+
+
+        if (isCount == true)
+        {
+            if (isGood == true)
+            {
+                Debug.Log("Good!");
+
+                tTex.color = new Color(255, 255, 255, 1);
+
+                tTex.text = "Good";
+            }
+            if (isLate == true)
+            {
+
+                Debug.Log("Late");
+
+                tTex.color = new Color(255, 255, 255, 1);
+
+                tTex.text = "Late";
+            }
+        }
+
+  
+
+
+        if (isGood == false || isLate == false)
         {
             tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }

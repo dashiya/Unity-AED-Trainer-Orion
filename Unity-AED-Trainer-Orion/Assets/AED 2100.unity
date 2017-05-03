@@ -618,6 +618,8 @@ MonoBehaviour:
   StartPosition: {x: 0, y: 0, z: 0}
   PushCount: 0
   isCount: 0
+  isGood: 0
+  isLate: 0
   PushTime: 0
   CurrentTime: 0
 --- !u!114 &108414622
