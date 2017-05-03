@@ -22,6 +22,7 @@ public class ChestCompression : MonoBehaviour
     public bool isCount = false;
     public bool isGood = false;
     public bool isLate = false;
+    public bool isFast = false;
 
     private int aIndex;
 
@@ -63,10 +64,6 @@ public class ChestCompression : MonoBehaviour
     void Start()
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
-
-
-
-
     }
 
     // Update is called once per frame
@@ -81,10 +78,10 @@ public class ChestCompression : MonoBehaviour
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
-            Debug.Log("CurrentTime" + CurrentTime);
 
             isGood = false;
             isLate = false;
+            isFast = false;
             isStart = true;
             isCount = false;
 
@@ -103,10 +100,10 @@ public class ChestCompression : MonoBehaviour
             isTouch = false;
             isPush = false;
             isStart = false;
-          
+
 
             Debug.Log(PushTime - CurrentTime);
-          
+
             isCount = true;
 
         }
@@ -121,11 +118,15 @@ public class ChestCompression : MonoBehaviour
         {
             isGood = true;
 
-        }
-
-        if ((PushTime - CurrentTime) > 0.6)
+        } else if (0.6 < (PushTime - CurrentTime))
         {
+
             isLate = true;
+
+        } else if ((PushTime - CurrentTime) < 0.5)
+        {
+
+            isFast = true;
         }
 
 
@@ -138,8 +139,7 @@ public class ChestCompression : MonoBehaviour
                 tTex.color = new Color(255, 255, 255, 1);
 
                 tTex.text = "Good";
-            }
-            if (isLate == true)
+            } else if (isLate == true)
             {
 
                 Debug.Log("Late");
@@ -147,13 +147,18 @@ public class ChestCompression : MonoBehaviour
                 tTex.color = new Color(255, 255, 255, 1);
 
                 tTex.text = "Late";
+            } else if (isFast == true)
+            {
+
+                Debug.Log("Fast");
+
+                tTex.color = new Color(255, 255, 255, 1);
+
+                tTex.text = "Fast";
             }
         }
-
-  
-
-
-        if (isGood == false || isLate == false)
+        
+        if (isCount == false)
         {
             tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
