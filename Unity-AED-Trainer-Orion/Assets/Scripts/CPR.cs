@@ -18,17 +18,17 @@ public class CPR : MonoBehaviour
 
     private bool isplayed = false;
 
-    public float timeOut = 500.0f; //0.5秒
+    public float timeOut = 0.5f;
     private float timeProgress;
 
     // Use this for initialization
     void Start()
     {
-
+        StartCoroutine(FuncCoroutine());
 
         //音声とりこみ
         AudioSource[] audioSources = this.GetComponents<AudioSource>();
-       
+
 
         AudioSource12 = audioSources[0];
         AudioSource13 = audioSources[1];
@@ -41,27 +41,34 @@ public class CPR : MonoBehaviour
         AudioSource20 = audioSources[8];
     }
 
+
+    IEnumerator FuncCoroutine()
+    {
+        while (true)
+        {
+            // Do anything
+            AudioSource20.Play();
+
+            yield return new WaitForSeconds(timeOut);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        timeProgress += Time.deltaTime;
-     
+
+
 
         ulong time = 128 * 100 * 22;
         ulong delaytime = 128 * 100 * 30;
 
-       // if (FlagManager.Instance.flags[7] == true && isplayed == false)
+        // if (FlagManager.Instance.flags[7] == true && isplayed == false) デバック用にコメントアウト
+
+        if (isplayed == false)
         {
-           if(timeProgress >= timeOut)
-            {
-                AudioSource20.Play();
-                timeProgress = 0.0f;
-            }
-            
             AudioSource12.Play(delaytime);
 
 
-        
+
             AudioSource13.Play(delaytime + time * 2);
             AudioSource13.Play(delaytime + time * 3);
             AudioSource13.Play(delaytime + time * 4);
@@ -89,11 +96,11 @@ public class CPR : MonoBehaviour
             isplayed = true;
 
 
-
-
         }
 
     }
+
 }
+
 
 
