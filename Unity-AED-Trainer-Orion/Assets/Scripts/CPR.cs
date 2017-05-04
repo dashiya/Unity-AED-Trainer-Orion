@@ -14,8 +14,12 @@ public class CPR : MonoBehaviour
     public AudioSource AudioSource17;
     public AudioSource AudioSource18;
     public AudioSource AudioSource19;
+    public AudioSource AudioSource20;
 
     private bool isplayed = false;
+
+    public float timeOut = 500.0f; //0.5秒
+    private float timeProgress;
 
     // Use this for initialization
     void Start()
@@ -34,19 +38,26 @@ public class CPR : MonoBehaviour
         AudioSource17 = audioSources[5];
         AudioSource18 = audioSources[6];
         AudioSource19 = audioSources[7];
+        AudioSource20 = audioSources[8];
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeProgress += Time.deltaTime;
+     
 
-        if (FlagManager.Instance.flags[7] == true && isplayed == false)
+        ulong time = 128 * 100 * 22;
+        ulong delaytime = 128 * 100 * 30;
+
+       // if (FlagManager.Instance.flags[7] == true && isplayed == false)
         {
-           
-
-
-            ulong time = 128 * 100 * 22;
-            ulong delaytime =  128 * 100 * 30;
+           if(timeProgress >= timeOut)
+            {
+                AudioSource20.Play();
+                timeProgress = 0.0f;
+            }
+            
             AudioSource12.Play(delaytime);
 
 
@@ -76,6 +87,9 @@ public class CPR : MonoBehaviour
 
 
             isplayed = true;
+
+
+
 
         }
 

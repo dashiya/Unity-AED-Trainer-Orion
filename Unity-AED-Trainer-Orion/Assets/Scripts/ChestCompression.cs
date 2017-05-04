@@ -47,13 +47,11 @@ public class ChestCompression : MonoBehaviour
 
         if (FlagManager.Instance.flags[0] == false && hc.IsHand(other)) //ここの条件は必要？
         {
-
-
+            
             if (hc.IsHand(other))
             {
                 isTouch = true;
-
-
+                
             }
         }
     }
@@ -73,7 +71,9 @@ public class ChestCompression : MonoBehaviour
 
         HandPosition hp = GetComponent<HandPosition>();
 
-        if (isTouch == true && isPush == false && isStart == false)
+
+        //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
@@ -110,7 +110,8 @@ public class ChestCompression : MonoBehaviour
 
         TimeJudge();
     }
-
+    
+    //圧迫するタイミングの判断
     void TimeJudge()
     {
         if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  //本来の条件100-120BPM
@@ -128,8 +129,8 @@ public class ChestCompression : MonoBehaviour
 
             isFast = true;
         }
-
-
+        
+        //圧迫のタイミングの表示
         if (isCount == true)
         {
             if (isGood == true)
