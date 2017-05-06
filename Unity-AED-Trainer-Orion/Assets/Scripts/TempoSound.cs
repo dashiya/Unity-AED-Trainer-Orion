@@ -7,8 +7,8 @@ public class TempoSound : MonoBehaviour
     public AudioSource AudioSource20;
     
 
-    public bool isPlayforDebug;
-    private bool isLoop = false;
+    public bool isTempoPlay;
+
     // Use this for initialization
 
     void Start()
@@ -28,12 +28,12 @@ public class TempoSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPlayforDebug == false)
+        if(isTempoPlay == false)
         {
             double looptime = 0.5;
             AudioSource20.loop = true;
             AudioSource20.PlayScheduled(looptime);
-            isPlayforDebug = true;
+            isTempoPlay = true;
         }
     }
 }
