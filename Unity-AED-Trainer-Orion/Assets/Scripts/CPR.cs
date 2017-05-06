@@ -14,10 +14,10 @@ public class CPR : MonoBehaviour
     public AudioSource AudioSource17;
     public AudioSource AudioSource18;
     public AudioSource AudioSource19;
-    public AudioSource AudioSource20;
+
 
     private bool isplayed = false;
-    private bool isTempoPlay = false;
+
 
     public float timeOut = 0.5f;
     private float timeProgress;
@@ -38,7 +38,7 @@ public class CPR : MonoBehaviour
         AudioSource17 = audioSources[5];
         AudioSource18 = audioSources[6];
         AudioSource19 = audioSources[7];
-        AudioSource20 = audioSources[8];
+   
     }
 
     
@@ -88,8 +88,6 @@ public class CPR : MonoBehaviour
 
         }
 
-        //for debug
-        Debug.Log(AudioSource20.isPlaying);
 
 
     }
