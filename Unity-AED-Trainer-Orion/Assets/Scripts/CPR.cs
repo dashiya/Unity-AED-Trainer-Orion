@@ -17,6 +17,7 @@ public class CPR : MonoBehaviour
     public AudioSource AudioSource20;
 
     private bool isplayed = false;
+    private bool isTempoPlay = false;
 
     public float timeOut = 0.5f;
     private float timeProgress;
@@ -24,8 +25,7 @@ public class CPR : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(FuncCoroutine());
-
+       
         //音声とりこみ
         AudioSource[] audioSources = this.GetComponents<AudioSource>();
 
@@ -41,17 +41,7 @@ public class CPR : MonoBehaviour
         AudioSource20 = audioSources[8];
     }
 
-
-    IEnumerator FuncCoroutine()
-    {
-        while (true)
-        {
-            // Do anything
-            AudioSource20.Play();
-
-            yield return new WaitForSeconds(timeOut);
-        }
-    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -97,6 +87,10 @@ public class CPR : MonoBehaviour
 
 
         }
+
+        //for debug
+        Debug.Log(AudioSource20.isPlaying);
+
 
     }
 
