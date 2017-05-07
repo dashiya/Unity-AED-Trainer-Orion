@@ -51,9 +51,9 @@ public class CPR : MonoBehaviour
         ulong time = 128 * 100 * 22;
         ulong delaytime = 128 * 100 * 30;
 
-        // if (FlagManager.Instance.flags[7] == true && isplayed == false) デバック用にコメントアウト
+      if (FlagManager.Instance.flags[7] == true && isplayed == false) 
 
-        if (isplayed == false)
+        //if (isplayed == false)
         {
             AudioSource12.Play(delaytime);
 
