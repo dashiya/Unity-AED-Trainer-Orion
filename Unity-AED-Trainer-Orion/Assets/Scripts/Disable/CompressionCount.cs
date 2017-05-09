@@ -41,12 +41,12 @@ public class CompressionCount : MonoBehaviour
         return Time.time ;
     
 
-        if (currentTime < 0.10 && cs.isCount == true)
-        { //判定範囲　
-            Debug.Log("COOL!");// OK
-        }
-        else {
-            Debug.Log("Bad...");//NG
-        }
+      //  if (currentTime < 0.10 && cs.isCount == true)
+       // { //判定範囲　
+     //       Debug.Log("COOL!");// OK
+      //  }
+       // else {
+           // Debug.Log("Bad...");//NG
+       // }
     }
 }

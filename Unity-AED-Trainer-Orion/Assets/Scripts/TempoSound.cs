@@ -28,7 +28,7 @@ public class TempoSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( isTempoPlay == false)
+        if(FlagManager.Instance.flags[7] == true && isTempoPlay == false)
         {
             double looptime = 0.5;
             AudioSource20.loop = true;

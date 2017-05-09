@@ -45,15 +45,17 @@ public class ChestCompression : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other)) //ここの条件は必要？ flags[7]が正しいはず
+        if (FlagManager.Instance.flags[7] == true && hc.IsHand(other)) //ここの条件は必要？ flags[7]が正しいはず
         {
-            
+
             if (hc.IsHand(other))
             {
                 isTouch = true;
-                
+
             }
         }
+
+        Debug.Log(other.name);
     }
 
 
@@ -73,9 +75,9 @@ public class ChestCompression : MonoBehaviour
 
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
-      // if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
-            if ( isTouch == true && isPush == false && isStart == false)
-            {
+        // if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+        if (isTouch == true && isPush == false && isStart == false)
+        {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
@@ -111,55 +113,40 @@ public class ChestCompression : MonoBehaviour
 
         TimeJudge();
     }
-    
+
     //圧迫するタイミングの判断
     void TimeJudge()
     {
         if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  //本来の条件100-120BPM
         //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
         {
-            isGood = true;
+            
+            Debug.Log("Good!");
+
+            tTex.color = new Color(255, 255, 255, 1);
+
+            tTex.text = "Good";
 
         } else if (0.6 < (PushTime - CurrentTime))
         {
 
-            isLate = true;
+            Debug.Log("Late");
+
+            tTex.color = new Color(255, 255, 255, 1);
+
+            tTex.text = "Late";
 
         } else if ((PushTime - CurrentTime) < 0.5)
         {
 
-            isFast = true;
+            Debug.Log("Fast");
+
+            tTex.color = new Color(255, 255, 255, 1);
+
+            tTex.text = "Fast";
         }
         
-        //圧迫のタイミングの表示
-        if (isCount == true)
-        {
-            if (isGood == true)
-            {
-                Debug.Log("Good!");
 
-                tTex.color = new Color(255, 255, 255, 1);
-
-                tTex.text = "Good";
-            } else if (isLate == true)
-            {
-
-                Debug.Log("Late");
-
-                tTex.color = new Color(255, 255, 255, 1);
-
-                tTex.text = "Late";
-            } else if (isFast == true)
-            {
-
-                Debug.Log("Fast");
-
-                tTex.color = new Color(255, 255, 255, 1);
-
-                tTex.text = "Fast";
-            }
-        }
-        
         if (isCount == false)
         {
             tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
