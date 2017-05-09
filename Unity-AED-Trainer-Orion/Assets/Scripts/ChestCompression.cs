@@ -45,7 +45,7 @@ public class ChestCompression : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other)) //ここの条件は必要？
+        if (FlagManager.Instance.flags[0] == false && hc.IsHand(other)) //ここの条件は必要？ flags[7]が正しいはず
         {
             
             if (hc.IsHand(other))
@@ -73,8 +73,8 @@ public class ChestCompression : MonoBehaviour
 
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
-       if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
-      //      if ( isTouch == true && isPush == false && isStart == false)
+      // if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+            if ( isTouch == true && isPush == false && isStart == false)
             {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
