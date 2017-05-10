@@ -45,7 +45,7 @@ public class ChestCompression : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (FlagManager.Instance.flags[7] == true && hc.IsHand(other)) //ここの条件は必要？ flags[7]が正しいはず
+        if (FlagManager.Instance.flags[7] == true && hc.IsHand(other)) 
         {
 
             if (hc.IsHand(other))
