@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 //for chest compression
 //手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
-//ToDo:PushCount = nから、PushCount = n + 1になるまでの時間が0.5-0.6秒(100-120BPM)であれば、PushGoodを返す
+
 public class ChestCompression : MonoBehaviour
 {
 
@@ -31,12 +31,15 @@ public class ChestCompression : MonoBehaviour
 
 
     Text tTex;
+    Text hpTex;
+
     MeshRenderer tTexMesh;
 
-    HandPosition hp = new HandPosition();
+  
 
     LeapHandCollision hc = new LeapHandCollision();
-
+    HandPosition hp = new HandPosition();
+    
 
 
 
@@ -64,6 +67,8 @@ public class ChestCompression : MonoBehaviour
     void Start()
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
+       hpTex = GameObject.Find("ChestComplession").GetComponent<Text>();
+  
     }
 
     // Update is called once per frame
@@ -117,8 +122,7 @@ public class ChestCompression : MonoBehaviour
     //圧迫するタイミングの判断
     void TimeJudge()
     {
-        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  //本来の条件100-120BPM
-        //if ((0.5 <= (PushTime - CurrentTime)) && ( (PushTime - CurrentTime) <= 2.0)) //デバッグ用
+        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  
         {
             
             Debug.Log("Good!");

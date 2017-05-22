@@ -3,7 +3,8 @@ using System.Collections;
 using Leap.Unity;
 using System;
 
-public class LeapHandCollision  {
+public class LeapHandCollision 
+{
 
     public GameObject HandModel;
 
