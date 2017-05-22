@@ -26,8 +26,8 @@ public class ChestCompression : MonoBehaviour
 
     private int aIndex;
 
-    public float PushTime;
-    public float CurrentTime;
+    public float PushTime = 0f;
+    public float CurrentTime = 0f;
 
 
     Text tTex;
@@ -80,22 +80,25 @@ public class ChestCompression : MonoBehaviour
 
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
-        // if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
-        if (isTouch == true && isPush == false && isStart == false)
+         if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+       // if (isTouch == true && isPush == false && isStart == false)
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
             StartPosition = hp.ConvertPosition;
 
-            isGood = false;
-            isLate = false;
-            isFast = false;
             isStart = true;
             isCount = false;
 
+
+            isGood = false;
+            isLate = false;
+            isFast = false;
+
+
         }
 
-        if (isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
+        if (isTouch == true && isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
         {
             isPush = true;
 
