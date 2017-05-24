@@ -115,6 +115,7 @@ public class ChestCompression : MonoBehaviour
 
             Debug.Log(PushTime - CurrentTime);
 
+       
             isCount = true;
 
         }
@@ -125,10 +126,12 @@ public class ChestCompression : MonoBehaviour
     //圧迫するタイミングの判断
     void TimeJudge()
     {
+       
+            Debug.Log(PushCount + "回");
+        
         if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)  
         {
-            
-            Debug.Log("Good!");
+
 
             tTex.color = new Color(255, 255, 255, 1);
 
@@ -137,16 +140,12 @@ public class ChestCompression : MonoBehaviour
         } else if (0.6 < (PushTime - CurrentTime))
         {
 
-            Debug.Log("Late");
-
             tTex.color = new Color(255, 255, 255, 1);
 
             tTex.text = "Late";
 
         } else if ((PushTime - CurrentTime) < 0.5)
         {
-
-            Debug.Log("Fast");
 
             tTex.color = new Color(255, 255, 255, 1);
 
