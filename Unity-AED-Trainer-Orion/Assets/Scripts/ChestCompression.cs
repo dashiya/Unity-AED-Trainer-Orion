@@ -131,7 +131,7 @@ public class ChestCompression : MonoBehaviour
             tTex.color = new Color(255, 255, 255, 1);
             tTex.text = "Late";
 
-        } else if ((PushTime - CurrentTime) < 0.5)
+        } else if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
         {
             tTex.color = new Color(255, 255, 255, 1);
             tTex.text = "Fast";
@@ -145,6 +145,13 @@ public class ChestCompression : MonoBehaviour
 
     }
 
+
+    void PushDepth()
+    {
+
+    }
+
+    
 
 
 }

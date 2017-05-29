@@ -34,7 +34,11 @@ public class TempoSound : MonoBehaviour
             AudioSource20.loop = true;
             AudioSource20.PlayScheduled(looptime);
             isTempoPlay = true;
+
+            
         }
+
+        Debug.Log(AudioSource20.time);
     }
 }
     

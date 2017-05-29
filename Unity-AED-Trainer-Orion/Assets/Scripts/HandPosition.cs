@@ -10,7 +10,6 @@ using System.Collections.Generic;
 public class HandPosition : MonoBehaviour
 {
 
-
     public Vector3 ConvertPosition;
     public Vector OriginalPosition;
 
@@ -25,12 +24,11 @@ public class HandPosition : MonoBehaviour
     void Update()
     {
 
-      //  if (FlagManager.Instance.flags[1] == true)
+        //  if (FlagManager.Instance.flags[1] == true)
         {
             Frame frame = provider.CurrentFrame;
             List<Hand> hands = frame.Hands;
             for (int h = 0; h < hands.Count; h++)
-
 
             {
                 Hand hand = hands[h];
@@ -43,12 +41,8 @@ public class HandPosition : MonoBehaviour
                                         (transform.localScale.y * .5f + .02f);
 
                 }
-
             }
-
         }
-
-
     }
 }
 
