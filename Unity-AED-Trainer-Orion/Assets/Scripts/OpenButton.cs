@@ -20,26 +20,23 @@ public class OpenButton : MonoBehaviour
     public AudioSource AudioSource4;
     public AudioSource AudioSource5;
 
-     LeapHandCollision hc = new LeapHandCollision();
+    public bool isWearSound = false;
+    public bool isWearDestoroy = false;
+
+    LeapHandCollision hc = new LeapHandCollision();
 
 
 
     void Start()
 
     {
-
         //flagmanager初期化
         FlagManager.Instance.ResetFlags();
 
 
-        //ふた探す
         obj = GameObject.Find("ふた");
-
-        //targetに"Cube"という名前がついているオブジェクトを指定する
-        Transform target = GameObject.Find("Cube").transform;
-
-        //targetにCubeの位置情報をおくる
-        targetPos = target.position;
+        Transform target = GameObject.Find("RotationTarget").transform;     //targetに"RotationTarget"という名前がついているオブジェクトを指定する
+        targetPos = target.position;          //targetにCubeの位置情報をおくる
 
 
         //音声とり込み
@@ -50,38 +47,40 @@ public class OpenButton : MonoBehaviour
         AudioSource3 = audioSources[2];
         AudioSource4 = audioSources[3];
         AudioSource5 = audioSources[4];
-
-       
     }
+
+
 
 
     //otherは衝突相手（この場合は手）のデータが入る
     void OnTriggerEnter(Collider other)
     {
- 
+
         if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
         {
-            
-                //axisの場所情報
-                Vector3 axis = transform.TransformDirection(Vector3.left);
-                // Spin the object around the Cube at 180 degrees
-                obj.gameObject.transform.RotateAround(targetPos, axis, angle);
 
+            //axisの場所情報
+            Vector3 axis = transform.TransformDirection(Vector3.left);
+            // Spin the object around the Cube at 180 degrees
+            obj.gameObject.transform.RotateAround(targetPos, axis, angle);
 
-            //Show the name of other object
-            Debug.Log(other.name);
-
-                //ふたが開いている状態のフラグを立てる
-                FlagManager.Instance.flags[0] = true;
-
-                //audiosource再生
-                AudioSource1.Play(12800);
-                AudioSource2.Play(138400);
+            //audiosource再生
+            AudioSource1.Play(12800);
+            AudioSource2.Play(138400);
+            if (isWearSound == false)
+            {
                 AudioSource3.Play(12800 + 138400 * 2);
+                isWearSound = true;
+            }
+            if (isWearDestoroy == true)
+            {
                 AudioSource4.Play(12800 + 138400 * 4);
                 AudioSource5.Play(12800 + 138400 * 6);
+            }
 
-            
+            //ふたが開いている状態のフラグを立てる
+            FlagManager.Instance.flags[0] = true;
+
         }
     }
 
