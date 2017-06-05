@@ -8,6 +8,7 @@ public class OpenButton : MonoBehaviour
 {
     //変数
     public GameObject obj;
+    public GameObject wearObj;
 
     //回転角度
     private float angle = 180f;
@@ -21,23 +22,17 @@ public class OpenButton : MonoBehaviour
     public AudioSource AudioSource5;
 
     public bool isWearSound = false;
-    public bool isWearDestoroy = false;
+    private bool isPlay = false;
+    private bool isPlayFlag = false;
 
     LeapHandCollision hc = new LeapHandCollision();
 
 
 
     void Start()
-
     {
         //flagmanager初期化
         FlagManager.Instance.ResetFlags();
-
-
-        obj = GameObject.Find("ふた");
-        Transform target = GameObject.Find("RotationTarget").transform;     //targetに"RotationTarget"という名前がついているオブジェクトを指定する
-        targetPos = target.position;          //targetにCubeの位置情報をおくる
-
 
         //音声とり込み
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -47,10 +42,15 @@ public class OpenButton : MonoBehaviour
         AudioSource3 = audioSources[2];
         AudioSource4 = audioSources[3];
         AudioSource5 = audioSources[4];
+
+
+        obj = GameObject.Find("ふた");
+        wearObj = GameObject.Find("Wear");
+        Transform target = GameObject.Find("RotationTarget").transform;
+        targetPos = target.position;
+
+
     }
-
-
-
 
     //otherは衝突相手（この場合は手）のデータが入る
     void OnTriggerEnter(Collider other)
@@ -64,30 +64,47 @@ public class OpenButton : MonoBehaviour
             // Spin the object around the Cube at 180 degrees
             obj.gameObject.transform.RotateAround(targetPos, axis, angle);
 
-            //audiosource再生
-            AudioSource1.Play(12800);
-            AudioSource2.Play(138400);
-            if (isWearSound == false)
-            {
-                AudioSource3.Play(12800 + 138400 * 2);
-                isWearSound = true;
-            }
-            if (isWearDestoroy == true)
-            {
-                AudioSource4.Play(12800 + 138400 * 4);
-                AudioSource5.Play(12800 + 138400 * 6);
-            }
+
 
             //ふたが開いている状態のフラグを立てる
             FlagManager.Instance.flags[0] = true;
+
+            isPlayFlag = true;
 
         }
     }
 
 
+
+
+
+
     void Update()
     {
+        DestroyWear wb = wearObj.GetComponent<DestroyWear>();
 
+        if (isPlayFlag == true | isPlay == true)
+        {
+            //audiosource再生
+            AudioSource1.Play(12800);
+            AudioSource2.Play(138400);
+            AudioSource3.Play(12800 + 138400 * 2);
+            isWearSound = true;
+            if (wb.isWearDestoroy == true)  //このじょうけんがみたされない
+            {
+                AudioSource4.Play(12800 + 138400 * 4);
+                AudioSource5.Play(12800 + 138400 * 6);
+                Debug.Log("isWearDestroy = true");
+
+                isPlay = false;
+            } else if (wb.isWearDestoroy == false)
+            {
+                Debug.Log("isWearDestroy = false");
+            }
+
+            //isPlayFlag = false;
+
+        }
     }
 
 }

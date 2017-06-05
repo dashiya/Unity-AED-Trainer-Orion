@@ -6,9 +6,9 @@ public class DestroyWear : MonoBehaviour
 
     LeapHandCollision hc = new LeapHandCollision();
 
-    bool isTouchWear = false;
-    
+  public  bool isWearDestoroy = false;
 
+    GameObject wearChild;
     GameObject openButton;
 
 
@@ -18,7 +18,7 @@ public class DestroyWear : MonoBehaviour
     {
 
         openButton = GameObject.Find("開閉ボタン");
-
+      wearChild =  GameObject.Find("Wear Object");
 
     }
 
@@ -27,8 +27,9 @@ public class DestroyWear : MonoBehaviour
         OpenButton ob = openButton.GetComponent<OpenButton>();
         if (ob.isWearSound == true && hc.IsHand(obj))
         {
-            isTouchWear = true;
-
+            isWearDestoroy = true;
+            Destroy(wearChild);
+     
            
         }
     }
@@ -36,14 +37,7 @@ public class DestroyWear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        OpenButton ob = openButton.GetComponent<OpenButton>();
-        if (ob.isWearSound == true && isTouchWear == true)
-        {
-            Destroy(gameObject);
-
-            ob.isWearDestoroy = true;
-        }
-
-
+        Debug.Log(isWearDestoroy);
+     
     }
 }

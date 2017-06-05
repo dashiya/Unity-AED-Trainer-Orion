@@ -31,7 +31,6 @@ public class ChestCompression : MonoBehaviour
 
 
     Text tTex;
-    Text hpTex;
 
     MeshRenderer tTexMesh;
 
@@ -59,7 +58,7 @@ public class ChestCompression : MonoBehaviour
     void Start()
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
-        hpTex = GameObject.Find("ChestComplession").GetComponent<Text>();
+       
 
 
     }
