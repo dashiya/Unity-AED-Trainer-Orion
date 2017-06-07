@@ -29,7 +29,7 @@ public class DestroyWear : MonoBehaviour
         {
             isWearDestoroy = true;
             Destroy(wearChild);
-     
+            wearChild = null;
            
         }
     }
@@ -37,7 +37,6 @@ public class DestroyWear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isWearDestoroy);
-     
+       
     }
 }

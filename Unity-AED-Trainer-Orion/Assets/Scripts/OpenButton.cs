@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 
 
+
 public class OpenButton : MonoBehaviour
 {
     //変数
@@ -24,6 +25,8 @@ public class OpenButton : MonoBehaviour
     public bool isWearSound = false;
     private bool isPlay = false;
     private bool isPlayFlag = false;
+    private bool isPlayFirst = false;
+    private bool isPlayAnnounce_3 = false;
 
     LeapHandCollision hc = new LeapHandCollision();
 
@@ -52,7 +55,21 @@ public class OpenButton : MonoBehaviour
 
     }
 
-    //otherは衝突相手（この場合は手）のデータが入る
+
+
+    IEnumerator AudioPlay()
+    {
+
+        AudioSource4.Play(12800 + 138400 * 4);
+        AudioSource5.Play(12800 + 138400 * 6);
+
+        Debug.Log("isWearDestroy = true");
+        yield return new WaitForSeconds(5.0f);
+        isPlay = false;
+    }
+
+
+    //OpenButtonに手が触れた時の動作
     void OnTriggerEnter(Collider other)
     {
 
@@ -76,38 +93,48 @@ public class OpenButton : MonoBehaviour
 
 
 
-
-
-
     void Update()
     {
         DestroyWear wb = wearObj.GetComponent<DestroyWear>();
 
-        if (isPlayFlag == true | isPlay == true)
+        if (isPlayFlag == true)
         {
             //audiosource再生
             AudioSource1.Play(12800);
             AudioSource2.Play(138400);
             AudioSource3.Play(12800 + 138400 * 2);
-            isWearSound = true;
-            if (wb.isWearDestoroy == true)  //このじょうけんがみたされない
-            {
-                AudioSource4.Play(12800 + 138400 * 4);
-                AudioSource5.Play(12800 + 138400 * 6);
-                Debug.Log("isWearDestroy = true");
 
-                isPlay = false;
-            } else if (wb.isWearDestoroy == false)
-            {
-                Debug.Log("isWearDestroy = false");
-            }
-
-            //isPlayFlag = false;
-
+            isPlayFlag = false; 
         }
-    }
 
+        //AudioSource3の再生→再生終了　を調べる
+        if (AudioSource3.isPlaying == true)
+        {
+            isPlayAnnounce_3 = true;
+        }
+        if (isPlayAnnounce_3 == true && AudioSource3.isPlaying == false)
+        {
+            isWearSound = true;
+        }
+
+        //WearがDestroyされて、AudioSource3が再生→再生終了されているなら
+        if (wb.isWearDestoroy == true && isWearSound == true)  //ここから
+        {
+            StartCoroutine("AudioPlay");
+
+        } else {
+            Debug.Log("isWearDestroy = false"); //ここまでがupdate内で複数回判定されないので修正、おそらくフラグ周り
+        }
+
+
+        Debug.Log(AudioSource4.isPlaying + "AudioSource4");
+        Debug.Log(AudioSource5.isPlaying + "AudioSource5");
+        Debug.Log(wb.isWearDestoroy + "wb.isWearDestoroy");
+
+    }
 }
+
+
 
 
 
