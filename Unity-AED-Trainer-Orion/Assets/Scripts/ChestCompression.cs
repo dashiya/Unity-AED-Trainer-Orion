@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 
 //for chest compression
-//手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
+//手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→
+//フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
 
 public class ChestCompression : MonoBehaviour
 {
@@ -35,12 +36,9 @@ public class ChestCompression : MonoBehaviour
     MeshRenderer tTexMesh;
 
     LeapHandCollision hc = new LeapHandCollision();
-    //  HandPosition hp = new HandPosition();
+    //  HandPosition hp = new HandPosition(); 現状不必要なのでコメントアウト
 
 
-
-
-    //otherは衝突相手（この場合は手）のデータが入る
     void OnTriggerEnter(Collider other)
     {
         if (FlagManager.Instance.flags[7] == true && hc.IsHand(other))
@@ -52,15 +50,10 @@ public class ChestCompression : MonoBehaviour
         }
     }
 
-
-
     // Use this for initialization
     void Start()
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
-       
-
-
     }
 
     // Update is called once per frame
@@ -71,7 +64,7 @@ public class ChestCompression : MonoBehaviour
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
         if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
-        // if (isTouch == true && isPush == false && isStart == false)
+        // if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
@@ -84,7 +77,6 @@ public class ChestCompression : MonoBehaviour
             isFast = false;
 
             isStart = true;
-
         }
 
         if (isTouch == true && isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
@@ -105,43 +97,40 @@ public class ChestCompression : MonoBehaviour
             Debug.Log(PushTime - CurrentTime);
 
             isCount = true;
-
-            Debug.Log(PushTime + "     " + CurrentTime);
-
         }
 
         TimeJudge();
- 
+        Debug.Log(PushCount + "回");
+
     }
 
     //圧迫するタイミングの判断
     void TimeJudge()
     {
-
-        Debug.Log(PushCount + "回");
-
+        
         if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)
         {
             tTex.color = new Color(255, 255, 255, 1);
             tTex.text = "Good";
 
-        } else if (0.6 < (PushTime - CurrentTime))
+        }
+        if (0.6 < (PushTime - CurrentTime))
         {
             tTex.color = new Color(255, 255, 255, 1);
             tTex.text = "Late";
 
-        } else if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
+        }
+        if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
         {
             tTex.color = new Color(255, 255, 255, 1);
             tTex.text = "Fast";
         }
 
-
+        //テキストの色を透明化、ObjectをDestroyせずに見えないようにするため
         if (isCount == false)
         {
             tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
-
     }
 
 
@@ -149,9 +138,5 @@ public class ChestCompression : MonoBehaviour
     {
 
     }
-
-    
-
-
 }
 

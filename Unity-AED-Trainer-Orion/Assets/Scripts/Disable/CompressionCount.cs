@@ -3,14 +3,13 @@ using System.Collections;
 
 
 //100-120BPMのノーツの判定を返すクラス
-//Todo: 100-120BPMで刻む, 23行目が仕事してないのでデバッグ
 public class CompressionCount : MonoBehaviour
 {
 
 
     ChestCompression cs = new ChestCompression();
 
-  public  float currentTime; //Unityで時間のカウントをとる変数？
+  public  float currentTime; 
 
     void Start()
     {

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 
 //Leap.PalmPositionを取得するクラス
-//
 public class HandPosition : MonoBehaviour
 {
 

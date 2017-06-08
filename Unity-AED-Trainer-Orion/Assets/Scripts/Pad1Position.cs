@@ -1,19 +1,15 @@
 using UnityEngine;
-using System.Collections;
-
 
 
 //HandPosition.csで取得した手のひらの座標をパッドに代入して動かす
 public class Pad1Position : MonoBehaviour
 {
-
-    public bool pad1col = false;
- 
-    private Vector3 pos;
-
     public AudioSource AudioSource5;
     public AudioSource AudioSource6;
 
+    private Vector3 pad1Pos;
+
+    public bool pad1col = false;
 
     LeapHandCollision hc = new LeapHandCollision();
 
@@ -24,59 +20,44 @@ public class Pad1Position : MonoBehaviour
         //if(ふたがあいていて、二枚のパッドが両方とも貼り付けられていなければ)
         if (FlagManager.Instance.flags[0] == true && FlagManager.Instance.flags[4] == false)
         {
-            for (int i = 1; i <= 3; i++)
-            {
-                AudioSource[] audioSources = GetComponents<AudioSource>();
+            AudioSource[] audioSources = GetComponents<AudioSource>();
 
-                AudioSource6 = audioSources[5];
-            }
+            AudioSource5 = audioSources[0];
+            //AudioSource6はパッドが貼られているが、パッドのコネクタが接続されていない場合の
+            //音声なので、Attachはするが現状不要なのでコメントアウト
+            // AudioSource6 = audioSources[1];
 
-            AudioSource6.Play(640000 * 3);
+            //(640000 * 3)はおおよそのAudioSorce5の再生時間
+            AudioSource5.Play(640000 * 3);
         }
     }
-
-
-
 
     void OnTriggerEnter(Collider pad1col)
     {
         //if(手がふれていてかつふたが開いているなら)
-        if ( hc.IsHand(pad1col) && FlagManager.Instance.flags[0] == true)
+        if (hc.IsHand(pad1col) && FlagManager.Instance.flags[0] == true)
+        {
             FlagManager.Instance.flags[1] = true;
-
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
         //if(パッド1に手がふれていてかつパッド1が貼り付けられていなければ)
         if (FlagManager.Instance.flags[1] == true && FlagManager.Instance.flags[2] == false)
         {
+            HandPosition handPos = GetComponent<HandPosition>();
 
-            //HandPosition.cs取得
-            HandPosition HAND = GetComponent<HandPosition>();
+            pad1Pos = this.transform.position;
 
+            pad1Pos.x = handPos.ConvertPosition.x;
+            pad1Pos.y = handPos.ConvertPosition.y;
+            pad1Pos.z = handPos.ConvertPosition.z;
 
-            //posはパッド位置
+            this.transform.position = pad1Pos;
 
-           pos = this.transform.position;
-
-
-            //研究室PC用の数値
-            //pos.x = 1 - (sizef * HAND.ConvertPosition.x);
-            //pos.y = 0.001f - (sizef * HAND.ConvertPosition.y);
-            //pos.z = 3.05f + (sizef * HAND.ConvertPosition.z);
-
-            pos.x =   HAND.ConvertPosition.x;
-            pos.y =   HAND.ConvertPosition.y;
-            pos.z =   HAND.ConvertPosition.z;
-
-
-            transform.position = pos;
-            
         }
     }
-    
 }
