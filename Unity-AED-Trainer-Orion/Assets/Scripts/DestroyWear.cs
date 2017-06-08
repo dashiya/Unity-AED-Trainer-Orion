@@ -2,7 +2,6 @@
 using System.Collections;
 
 
-//Todo:AudioSource4,5をWearにアタッチ
 public class DestroyWear : MonoBehaviour
 {
     GameObject openButton;
@@ -14,6 +13,7 @@ public class DestroyWear : MonoBehaviour
     public bool isWearDestoroy = false;
     private bool isPlay = false;
    
+    //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision hc = new LeapHandCollision();
 
     void Start()
@@ -24,7 +24,6 @@ public class DestroyWear : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource4 = audioSources[0];
         AudioSource5 = audioSources[1];
-
     }
 
 
@@ -57,8 +56,5 @@ public class DestroyWear : MonoBehaviour
             //ForDebug
             Debug.Log("isWearDestroy = false");
         }
-        //For Debug
-        Debug.Log(AudioSource4.isPlaying + "AudioSource4");
-        Debug.Log(AudioSource5.isPlaying + "AudioSource5");
     }
 }

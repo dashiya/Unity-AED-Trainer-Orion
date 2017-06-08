@@ -2,12 +2,12 @@
 
 public class OpenButton : MonoBehaviour
 {
-    GameObject coverObj;
 
     //ふたの回転角度
-    private float angle = 180f;
+    private float rotateAngle = 180f;
     //回転の中心
     private Vector3 targetPos;
+    Transform coverTransform;
 
     public AudioSource AudioSource1;
     public AudioSource AudioSource2;
@@ -17,6 +17,7 @@ public class OpenButton : MonoBehaviour
     private bool isPlayFlag = false;
     private bool isPlayAnnounce_3 = false;
 
+    //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision hc = new LeapHandCollision();
 
     void Start()
@@ -29,7 +30,7 @@ public class OpenButton : MonoBehaviour
         AudioSource2 = audioSources[1];
         AudioSource3 = audioSources[2];
 
-        coverObj = GameObject.Find("ふた");
+        coverTransform = GameObject.Find("ふた").transform;
         targetPos = GameObject.Find("RotationTarget").transform.position;
     }
 
@@ -37,11 +38,10 @@ public class OpenButton : MonoBehaviour
     //OpenButtonに手が触れた時の動作
     void OnTriggerEnter(Collider other)
     {
-
+        Vector3 rotateAxis = transform.TransformDirection(Vector3.left);
         if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
-        {
-            Vector3 axis = transform.TransformDirection(Vector3.left);
-            coverObj.gameObject.transform.RotateAround(targetPos, axis, angle);
+        {        
+            coverTransform.RotateAround(targetPos, rotateAxis, rotateAngle);
 
             //ふたが開いている状態のフラグを立てる
             FlagManager.Instance.flags[0] = true;
