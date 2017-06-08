@@ -1,44 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//テンポ100で音を鳴らす、0.5秒毎に音がなる　胸骨圧迫のタイミングのガイド音用
 public class TempoSound : MonoBehaviour
 {
-
-    public AudioSource AudioSource20;
+    AudioSource AudioSource20;
     
-
     public bool isTempoPlay;
 
-    // Use this for initialization
-
     void Start()
-    {
-       
-
+    {     
         AudioSource[] audioSources = this.GetComponents<AudioSource>();
         AudioSource20 = audioSources[0];
-
-        
+      
         AudioSource20.playOnAwake = false;
-   
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //電気ショックが終わったら実行される
         if(FlagManager.Instance.flags[7] == true && isTempoPlay == false)
         {
             double looptime = 0.5;
             AudioSource20.loop = true;
             AudioSource20.PlayScheduled(looptime);
-            isTempoPlay = true;
 
-            
+            isTempoPlay = true;            
         }
-
-        Debug.Log(AudioSource20.time);
     }
 }
     

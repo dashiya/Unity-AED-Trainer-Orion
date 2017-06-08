@@ -50,21 +50,19 @@ public class ChestCompression : MonoBehaviour
         }
     }
 
-    // Use this for initialization
     void Start()
     {
         tTex = GameObject.Find("TempoText").GetComponent<Text>();
     }
 
-    // Update is called once per frame
     //StartPosition - 5cmになったらフラグをたてる
     void Update()
     {
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
-        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
         // if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)     
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
@@ -133,7 +131,7 @@ public class ChestCompression : MonoBehaviour
         }
     }
 
-
+    //Todo:手の深さ表示用
     void PushDepth()
     {
 

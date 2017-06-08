@@ -5,7 +5,6 @@ using System.Collections;
 //Todo:AudioSource4,5をWearにアタッチ
 public class DestroyWear : MonoBehaviour
 {
-    GameObject wearChild;
     GameObject openButton;
     public GameObject wearObj;
 
@@ -14,13 +13,13 @@ public class DestroyWear : MonoBehaviour
 
     public bool isWearDestoroy = false;
     private bool isPlay = false;
-
+   
     LeapHandCollision hc = new LeapHandCollision();
 
     void Start()
     {
         openButton = GameObject.Find("開閉ボタン");
-        wearChild = GameObject.Find("Wear Object");
+        wearObj = GameObject.Find("Wear Object");
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource4 = audioSources[0];
@@ -29,24 +28,13 @@ public class DestroyWear : MonoBehaviour
     }
 
 
-    IEnumerator AudioPlay()
-    {
-        AudioSource4.Play(12800);
-        AudioSource5.Play(138400);
-
-        yield return new WaitForSeconds(3.0f);
-        isPlay = false;
-    }
-
-
     void OnTriggerEnter(Collider obj)
     {
         OpenButton ob = openButton.GetComponent<OpenButton>();
         if (ob.isWearSound == true && hc.IsHand(obj))
-        {
+        {          
+            Destroy(wearObj);
             isWearDestoroy = true;
-            Destroy(wearChild);
-            wearChild = null;
         }
     }
 
@@ -54,13 +42,19 @@ public class DestroyWear : MonoBehaviour
     void Update()
     {
         OpenButton ob = openButton.GetComponent<OpenButton>();
-        DestroyWear wb = wearObj.GetComponent<DestroyWear>();
+        DestroyWear wb = this.GetComponent<DestroyWear>();
+
         if (wb.isWearDestoroy == true && ob.isWearSound == true)
         {
-            StartCoroutine("AudioPlay");
+            if (isPlay == false)
+            {
+                AudioSource4.Play(12800);
+                AudioSource5.Play(138400);
+                isPlay = true;
+            }
 
         } else {
-
+            //ForDebug
             Debug.Log("isWearDestroy = false");
         }
         //For Debug
