@@ -3,19 +3,18 @@
 public class OpenButton : MonoBehaviour
 {
 
-    //ふたの回転角度
-    private float rotateAngle = 180f;
-    //回転の中心
-    private Vector3 targetPos;
     Transform coverTransform;
+    Vector3 targetPos;
+    Vector3 rotateAxis;
+    float rotateAngle = 180f;
 
     public AudioSource AudioSource1;
     public AudioSource AudioSource2;
     public AudioSource AudioSource3;
 
     public bool isWearSound = false;
-    private bool isPlayFlag = false;
-    private bool isPlayAnnounce_3 = false;
+    bool isPlayFlag = false;
+    bool isPlayAnnounce_3 = false;
 
     //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision hc = new LeapHandCollision();
@@ -38,9 +37,9 @@ public class OpenButton : MonoBehaviour
     //OpenButtonに手が触れた時の動作
     void OnTriggerEnter(Collider other)
     {
-        Vector3 rotateAxis = transform.TransformDirection(Vector3.left);
+        rotateAxis = transform.TransformDirection(Vector3.left);
         if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
-        {        
+        {
             coverTransform.RotateAround(targetPos, rotateAxis, rotateAngle);
 
             //ふたが開いている状態のフラグを立てる
@@ -50,12 +49,12 @@ public class OpenButton : MonoBehaviour
         }
     }
 
-
-
     void Update()
     {
         if (isPlayFlag == true)
         {
+            //Play()の括弧内の時間は一番最初に再生される音声からの経過時間、音声が重複して流れるのを防ぐため
+            //Todo:括弧内を数字記入ではなく、それぞれの再生時間取得とか格好いいやり方に修正
             AudioSource1.Play(12800);
             AudioSource2.Play(138400);
             AudioSource3.Play(12800 + 138400 * 2);

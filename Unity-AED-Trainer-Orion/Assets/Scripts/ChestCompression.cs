@@ -37,11 +37,16 @@ public class ChestCompression : MonoBehaviour
 
     LeapHandCollision hc = new LeapHandCollision();
     //  HandPosition hp = new HandPosition(); 現状不必要なのでコメントアウト
+    void Start()
+    {
+        tTex = GameObject.Find("TempoText").GetComponent<Text>();
+    }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (FlagManager.Instance.flags[7] == true && hc.IsHand(other))
+        if (hc.IsHand(other)) //For debug 
+        //if (FlagManager.Instance.flags[7] == true && hc.IsHand(other))
         {
             if (hc.IsHand(other))
             {
@@ -50,23 +55,21 @@ public class ChestCompression : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        tTex = GameObject.Find("TempoText").GetComponent<Text>();
-    }
+   
 
-    //StartPosition - 5cmになったらフラグをたてる
+    //Todo:胸骨圧迫が行われたかどうかの判断と、適切なタイミングでそれぞれの変数に時間を入れてテンポを判断するところは別の関数でやるべき
+    //ex: 胸骨圧迫が一回終わる→フラグ立てる→そのタイミングの時間を保存→胸骨圧迫二回目が終わる→フラグ立てる→そのタイミングの時間を保存→一回目の時刻と比較、表示
     void Update()
     {
         HandPosition hp = GetComponent<HandPosition>();
 
-        //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時
-        // if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用
-        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)     
+        //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
+         if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用
+        //if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)     
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             CurrentTime = Time.time;
-            StartPosition = hp.ConvertPosition;
+            StartPosition = hp.ConvertPosition; //共に単位はメートル
 
             //各種フラグリセット
             isCount = false;
@@ -77,12 +80,15 @@ public class ChestCompression : MonoBehaviour
             isStart = true;
         }
 
-        if (isTouch == true && isStart == true && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
+        //2つめ
+        if (isTouch == true && isStart == true && isPush == false && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
         {
             isPush = true;
+    
         }
 
-        if (isTouch == true && isPush == true && isCount == false)  //5cm押し込んでいる、かつスタート位置のCollisionに再び触れたら
+        //3つめ
+        if (isTouch == true && isStart == true && isPush == true && isCount == false)  //5cm押し込んでいる、かつスタート位置のCollisionに再び触れたら
         {
             PushCount++;
             PushTime = Time.time;
@@ -97,6 +103,8 @@ public class ChestCompression : MonoBehaviour
             isCount = true;
         }
 
+        //Todo:1-3で一回の胸骨圧迫なので、次のと前のを比べて時間を出したい 
+
         TimeJudge();
         Debug.Log(PushCount + "回");
 
@@ -105,23 +113,26 @@ public class ChestCompression : MonoBehaviour
     //圧迫するタイミングの判断
     void TimeJudge()
     {
-        
-        if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)
+        if (isCount == true)
         {
-            tTex.color = new Color(255, 255, 255, 1);
-            tTex.text = "Good";
 
-        }
-        if (0.6 < (PushTime - CurrentTime))
-        {
-            tTex.color = new Color(255, 255, 255, 1);
-            tTex.text = "Late";
+            if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)
+            {
+                tTex.color = new Color(255, 255, 255, 1);
+                tTex.text = "Good";
 
-        }
-        if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
-        {
-            tTex.color = new Color(255, 255, 255, 1);
-            tTex.text = "Fast";
+            }
+            if (0.6 < (PushTime - CurrentTime))
+            {
+                tTex.color = new Color(255, 255, 255, 1);
+                tTex.text = "Late";
+
+            }
+            if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
+            {
+                tTex.color = new Color(255, 255, 255, 1);
+                tTex.text = "Fast";
+            }
         }
 
         //テキストの色を透明化、ObjectをDestroyせずに見えないようにするため

@@ -11,8 +11,8 @@ public class DestroyWear : MonoBehaviour
     public AudioSource AudioSource5;
 
     public bool isWearDestoroy = false;
-    private bool isPlay = false;
-   
+    bool isPlay = false;
+
     //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision hc = new LeapHandCollision();
 
@@ -31,12 +31,11 @@ public class DestroyWear : MonoBehaviour
     {
         OpenButton ob = openButton.GetComponent<OpenButton>();
         if (ob.isWearSound == true && hc.IsHand(obj))
-        {          
+        {
             Destroy(wearObj);
             isWearDestoroy = true;
         }
     }
-
 
     void Update()
     {
@@ -51,7 +50,6 @@ public class DestroyWear : MonoBehaviour
                 AudioSource5.Play(138400);
                 isPlay = true;
             }
-
         } else {
             //ForDebug
             Debug.Log("isWearDestroy = false");
