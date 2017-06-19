@@ -2,7 +2,6 @@
 
 public class OpenButton : MonoBehaviour
 {
-
     Transform coverTransform;
     Vector3 targetPos;
     Vector3 rotateAxis;
@@ -38,6 +37,7 @@ public class OpenButton : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         rotateAxis = transform.TransformDirection(Vector3.left);
+
         if (FlagManager.Instance.flags[0] == false && hc.IsHand(other))
         {
             coverTransform.RotateAround(targetPos, rotateAxis, rotateAngle);
