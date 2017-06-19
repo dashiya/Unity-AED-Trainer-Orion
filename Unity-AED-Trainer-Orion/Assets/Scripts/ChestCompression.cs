@@ -67,8 +67,8 @@ public class ChestCompression : MonoBehaviour
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-        if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用
-        //if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)     
+        //if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用 for debug
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)     
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             StartPosition = hp.ConvertPosition; //共に単位はメートル
@@ -157,11 +157,5 @@ public class ChestCompression : MonoBehaviour
         {
             tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
-    }
-
-    //Todo:手の深さ表示用
-    void PushDepth()
-    {
-
     }
 }
