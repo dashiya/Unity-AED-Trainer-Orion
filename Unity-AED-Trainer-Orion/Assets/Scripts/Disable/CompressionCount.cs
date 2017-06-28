@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 //100-120BPMのノーツの判定を返すクラス
 public class CompressionCount : MonoBehaviour
 {
-
-
     ChestCompression cs = new ChestCompression();
 
-  public  float currentTime; 
+    public float currentTime;
 
     void Start()
     {
@@ -17,9 +14,8 @@ public class CompressionCount : MonoBehaviour
     }
     void update()
     {
+        currentTime = Time.time; //Time.deltaTimeは一秒　最初にこのUpdateが読み込まれてからスタート
 
-        currentTime =  Time.time; //Time.deltaTimeは一秒　最初にこのUpdateが読み込まれてからスタート
-       
         Debug.Log(currentTime);//時間の加算　0.1fづつ増えてく
         if (currentTime > 1.0)//1.0f毎リセットする→拍子の区切りをつくる
         {
@@ -33,19 +29,19 @@ public class CompressionCount : MonoBehaviour
     void JudgeTiming()
     {
         Debug.Log(GetTiming());
-        }
+    }
 
     float GetTiming()
     {
-        return Time.time ;
-    
+        return Time.time;
 
-      //  if (currentTime < 0.10 && cs.isCount == true)
-       // { //判定範囲　
-     //       Debug.Log("COOL!");// OK
-      //  }
-       // else {
-           // Debug.Log("Bad...");//NG
-       // }
+
+        //  if (currentTime < 0.10 && cs.isCount == true)
+        // { //判定範囲　
+        //       Debug.Log("COOL!");// OK
+        //  }
+        // else {
+        // Debug.Log("Bad...");//NG
+        // }
     }
 }

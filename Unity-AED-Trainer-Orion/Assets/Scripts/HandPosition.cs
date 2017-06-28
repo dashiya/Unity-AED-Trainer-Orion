@@ -22,8 +22,6 @@ public class HandPosition : MonoBehaviour
     // Get Habd objects from a Frame
     void Update()
     {
-
-        //  if (FlagManager.Instance.flags[1] == true)
         {
             Frame frame = provider.CurrentFrame;
             List<Hand> hands = frame.Hands;
