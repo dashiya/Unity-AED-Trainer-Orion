@@ -7,13 +7,10 @@ using UnityEngine.UI;
 
 
 //for chest compression
-//手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→
-//フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true
-
 public class ChestCompression : MonoBehaviour
 {
-
     public Vector3 StartPosition;
+
     public int PushCount = 0;
     private int CurrentCount = 0;
 
@@ -26,7 +23,7 @@ public class ChestCompression : MonoBehaviour
     public bool isFast = false;
 
     bool isCheckTime = false;
-    bool isCheckCompereTime = false;
+    bool isCheckCompareTime = false;
     bool isChangePushCount = false;
 
     private int aIndex;
@@ -34,42 +31,39 @@ public class ChestCompression : MonoBehaviour
     public float PushTime = 0f;
     public float CurrentTime = 0f;
 
-    Text tTex;
+    Text _tTex;
+    MeshRenderer _tTexMesh;
 
-    MeshRenderer tTexMesh;
-
-    LeapHandCollision hc = new LeapHandCollision();
+    LeapHandCollision _hc = new LeapHandCollision();
     //  HandPosition hp = new HandPosition(); 現状不必要なのでコメントアウト
     void Start()
     {
-        tTex = GameObject.Find("TempoText").GetComponent<Text>();
+        _tTex = GameObject.Find("TempoText").GetComponent<Text>();
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (hc.IsHand(other)) //For debug 
+        if (_hc.IsHand(other)) //For debug 
         //if (FlagManager.Instance.flags[7] == true && hc.IsHand(other))
         {
-            if (hc.IsHand(other))
+            if (_hc.IsHand(other))
             {
                 isTouch = true;
             }
         }
     }
 
-
-
-    //Todo:胸骨圧迫が行われたかどうかの判断と、適切なタイミングでそれぞれの変数に時間を入れてテンポを判断するところは別の関数でやるべき
-    //ex: 胸骨圧迫が一回終わる→フラグ立てる→そのタイミングの時間を保存→胸骨圧迫二回目が終わる→フラグ立てる→そのタイミングの時間を保存→一回目の時刻と比較、表示
+    //手がBox Colliderに触れるisTouch=true→手のy座標をとる→-5cm沈んだらフラグを立てる→
+    //フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true　が一連の流れ
     void Update()
     {
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-       // if (isTouch == true && isPush == false && isStart == false) //falg[7] = trueにするのが面倒くさいとき用 for debug
-            if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
-            {
+        // if (isTouch == true && isPush == false && isStart == false) // for debug
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+        {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             StartPosition = hp.ConvertPosition; //共に単位はメートル
 
@@ -102,15 +96,14 @@ public class ChestCompression : MonoBehaviour
             isCount = true;
         }
 
-        TimeCompere();
+        TimeCompare();
         TimeJudge();
 
-        
         Debug.Log(PushCount + "回");
     }
 
     //胸骨圧迫→胸骨圧迫の間隔の時間を取得するクラス
-    void TimeCompere()
+    void TimeCompare()
     {
         if (isCount == true && isCheckTime == false)
         {
@@ -140,27 +133,25 @@ public class ChestCompression : MonoBehaviour
         {
             if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)
             {
-                tTex.color = new Color(255, 255, 255, 1);
-                tTex.text = "Good";
+                _tTex.color = new Color(255, 255, 255, 1);
+                _tTex.text = "Good";
             }
             if (0.6 < (PushTime - CurrentTime))
             {
-                tTex.color = new Color(255, 255, 255, 1);
-                tTex.text = "Late";
+                _tTex.color = new Color(255, 255, 255, 1);
+                _tTex.text = "Late";
             }
             if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
             {
-                tTex.color = new Color(255, 255, 255, 1);
-                tTex.text = "Fast";
+                _tTex.color = new Color(255, 255, 255, 1);
+                _tTex.text = "Fast";
             }
         }
 
         //テキストの色を透明化、ObjectをDestroyせずに見えないようにするため
         if (isCount == false)
         {
-            tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
+            _tTex.GetComponent<Text>().color = new Color(0, 0, 0, 0);
         }
     }
-
-    
 }

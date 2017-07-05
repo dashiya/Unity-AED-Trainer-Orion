@@ -5,7 +5,6 @@ using System;
 
 public class LeapHandCollision 
 {
-
     public GameObject HandModel;
 
     public bool IsHand(Collider handcol)
@@ -15,17 +14,6 @@ public class LeapHandCollision
         else
             return false;
     }
-
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     internal bool IsHand(Collision other)
     {
