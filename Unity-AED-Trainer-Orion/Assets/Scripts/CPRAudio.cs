@@ -16,7 +16,7 @@ public class CPRAudio : MonoBehaviour
     AudioSource AudioSource18;
     AudioSource AudioSource19;
 
-    float timeProgress;
+    int _pushCount;
     bool isFirstPlayed = false;
     bool isSecondPlayed = false;
 
@@ -33,12 +33,13 @@ public class CPRAudio : MonoBehaviour
         AudioSource12 = audioSources[0];
         AudioSource13 = audioSources[1];
         AudioSource14_1 = audioSources[2];
+        AudioSource14_2 = audioSources[8];
         AudioSource15 = audioSources[3];
         AudioSource16 = audioSources[4];
         AudioSource17 = audioSources[5];
         AudioSource18 = audioSources[6];
         AudioSource19 = audioSources[7];
-        AudioSource14_2 = audioSources[8];
+        
     }
 
 
@@ -52,30 +53,34 @@ public class CPRAudio : MonoBehaviour
         {
             if (isFirstPlayed == false)
             {
-                AudioSource12.Play(delaytime);
+                AudioSource12.Play();
 
                 AudioSource13.Play(delaytime + time * 2);
                 AudioSource13.Play(delaytime + time * 3);
                 AudioSource13.Play(delaytime + time * 4);
                 AudioSource14_1.Play(delaytime + time * 5);
+
+                _pushCount = _chestCompression.PushCount;
+
                 isFirstPlayed = true;
             }
 
-            if (/*PushCountが5つ増えたら*/)
+            if ((_chestCompression.PushCount == _pushCount +5) && isSecondPlayed == false)
             {
-                AudioSource14_2.Play(delaytime + time * 6);
+                //Todo:AudioSource14_2が再生されるタイミングが遅いので修正
+                AudioSource14_2.Play();
 
-                AudioSource15.Play(delaytime + time * 7);
-                AudioSource15.Play(delaytime + time * 8);
+                AudioSource15.Play(delaytime + time * 2);
+                AudioSource15.Play(delaytime + time * 3);
 
-                AudioSource16.Play(delaytime + time * 9);
+                AudioSource16.Play(delaytime + time * 4);
 
-                AudioSource17.Play(delaytime + time * 10);
+                AudioSource17.Play(delaytime + time * 5);
 
-                AudioSource18.Play(delaytime + time * 11);
-                AudioSource18.Play(delaytime + time * 12);
+                AudioSource18.Play(delaytime + time * 6);
+                AudioSource18.Play(delaytime + time * 7);
 
-                AudioSource19.Play(delaytime + time * 13);
+                AudioSource19.Play(delaytime + time * 8);
 
                 isSecondPlayed = true;
             }

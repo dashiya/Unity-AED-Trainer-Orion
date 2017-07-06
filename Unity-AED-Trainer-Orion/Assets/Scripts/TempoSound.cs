@@ -2,6 +2,7 @@
 using System.Collections;
 
 //テンポ100で音を鳴らす、0.5秒毎に音がなる　胸骨圧迫のタイミングのガイド音用
+//ToDo:ChestCompressionで胸骨圧迫が終わったら音を止めるように変更
 public class TempoSound : MonoBehaviour
 {
     AudioSource AudioSource20;
