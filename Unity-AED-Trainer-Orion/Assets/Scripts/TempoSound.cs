@@ -20,7 +20,7 @@ public class TempoSound : MonoBehaviour
     void Update()
     {
         //電気ショックが終わったら実行される
-        //Todo: この文章だとAudioSource20.loop = true になることでループ再生しているので、他の動作(もう一回電気ショックとか)を行う場合、loop = falseにしなければならない
+        //Todo: AudioSource20.loop = true になることでループ再生しているので、他の動作(もう一回電気ショックとか)を行う場合、loop = falseにしなければならない
         if(FlagManager.Instance.flags[7] == true && isTempoPlay == false)
         //if (isTempoPlay == false) // for debug
         {

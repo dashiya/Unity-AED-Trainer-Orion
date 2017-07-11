@@ -1,0 +1,7 @@
+この中のAudioSourceと名前がついたやつらは
+"AudioClip"です
+呼び出すときに気をつけてくだし
+
+ややっこしいですが、
+AudioSource.PlayDelayed(float delay)で再生ですが、
+AudioSource1.lengthはAudioClip.length　です
