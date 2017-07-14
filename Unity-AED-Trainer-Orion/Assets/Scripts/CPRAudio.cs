@@ -95,7 +95,7 @@ public class CPRAudio : MonoBehaviour
 
         //fordebug
         Debug.Log(AudioSource12.isPlaying + "AudioSource12.isPlaying");
-        Debug.Log(AudioSource13.isPlaying + "AudioSource12.isPlaying");
+
 
         double announceTime = 0.0;
         if (isFirstPlayed == false)
@@ -108,15 +108,8 @@ public class CPRAudio : MonoBehaviour
         //タイマー設置、カウントして動かす
         if (isAnnounceLoop == false && isFirstPlayed == true && AudioSource12.isPlaying == false)
         {
-            AudioSource13.PlayDelayed(0.0f);
-            //AudioSource13.PlayDelayed(10.0f);
-            //AudioSource13.PlayDelayed(20.0f);
-            //AudioSource13.PlayDelayed(30.0f);
-           
-
-
-             countAnnounceTime = Time.time; 
-            //isAnnounceLoop = true;//これが↑みっつの再生をまたずにtrueになるので、二回目と三回目と四回目が再生されない、playscheduledつかったときも同じ原因かと
+            AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
+         
 
         }
         if (isAnnounceLoop == true && countAnnounceTime <=120.0 )
