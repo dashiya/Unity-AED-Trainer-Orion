@@ -23,7 +23,6 @@ public class ChestCompression : MonoBehaviour
     public bool isFast = false;
 
     bool isCheckTime = false;
-    bool isCheckCompareTime = false;
     bool isChangePushCount = false;
 
     private int aIndex;

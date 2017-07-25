@@ -12,9 +12,6 @@ public class CPRAudio : MonoBehaviour
     AudioSource AudioSource14_2;
     AudioSource AudioSource15;
     AudioSource AudioSource16;
-    AudioSource AudioSource17;
-    AudioSource AudioSource18;
-    AudioSource AudioSource19;
 
     AudioClip AudioClip12;
     AudioClip AudioClip13;
@@ -22,16 +19,17 @@ public class CPRAudio : MonoBehaviour
     AudioClip AudioClip14_2;
     AudioClip AudioClip15;
     AudioClip AudioClip16;
-    AudioClip AudioClip17;
-    AudioClip AudioClip18;
-    AudioClip AudioClip19;
 
     int _pushCount;
     bool isFirstPlayed = false;
     bool isSecondPlayed = false;
-    bool isAnnounceLoop = false;
-    double countAnnounceTime = 0.0;
+    bool isAudio13Played = false;
+    bool isAudio14Played = false;
+
     ChestCompression _chestCompression;
+
+    //ForDebug
+    AudioSource AudioSource_Debug;
 
     // Use this for initialization
     void Start()
@@ -44,81 +42,83 @@ public class CPRAudio : MonoBehaviour
         AudioSource12 = audioSources[0];
         AudioSource13 = audioSources[1];
         AudioSource14_1 = audioSources[2];
-        AudioSource14_2 = audioSources[8];
-        AudioSource15 = audioSources[3];
-        AudioSource16 = audioSources[4];
-        AudioSource17 = audioSources[5];
-        AudioSource18 = audioSources[6];
-        AudioSource19 = audioSources[7];
-
+        AudioSource14_2 = audioSources[3];
+        AudioSource15 = audioSources[4];
+        AudioSource16 = audioSources[5];
+ 
         AudioClip12 = AudioSource12.clip;
         AudioClip13 = AudioSource13.clip;
         AudioClip14_1 = AudioSource14_1.clip;
         AudioClip14_2 = AudioSource14_2.clip;
         AudioClip15 = AudioSource15.clip;
         AudioClip16 = AudioSource16.clip;
-        AudioClip17 = AudioSource17.clip;
-        AudioClip18 = AudioSource18.clip;
-        AudioClip19 = AudioSource19.clip;
+
+        //ForDebug
+        AudioSource_Debug = audioSources[6];
 
     }
 
-    //Todo:ループ処理、72行目AudioSource13が再生されない
-    // Update is called once per frame
+
+    //Todo:AudioSource14_2,15,16が遅延せずほぼ同時に再生されて重なるのを
     void Update()
     {
-        if (FlagManager.Instance.flags[7] == true )
+        AudioDebug();
+
+        if (FlagManager.Instance.flags[7] == true)
         {
             CPRAnnounceLoop();
 
             if ((_chestCompression.PushCount == _pushCount + 5) && isSecondPlayed == false)
             {
-              
-                AudioSource14_2.PlayDelayed(AudioClip14_2.length); //体から離れてください
+                AudioSource14_2.PlayDelayed(0.0f); //体から離れてください         
+                AudioSource15.PlayDelayed(AudioClip14_2.length + AudioClip15.length);//心電図を調べています、体に触らないでください               
+                AudioSource16.PlayDelayed(AudioClip14_2.length + AudioClip15.length + AudioClip16.length);//電気ショックは必要ありません  
 
-                //Todo:102-114行目、forループはできないはずなので修正
-                for (int i = 0; i <= 1; i++)
-                {
-                    AudioSource15.PlayDelayed(AudioClip15.length);//心電図を調べています、体に触らないでください
-                }
+                isSecondPlayed = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if文の条件を満たして  
 
-                AudioSource16.PlayDelayed(AudioClip16.length);//電気ショックは必要ありません
+                //CPRAnnounceLoopの各種フラグリセット
+                isFirstPlayed = false;
+                isAudio13Played = false;
+                isAudio14Played = false;
+            }
 
-               // CPRAnnounceLoop(); fordebug
+            if(isSecondPlayed == true && AudioSource16.isPlaying == false)
+            {
+                CPRAnnounceLoop();
             }
         }
     }
 
-
-  public void CPRAnnounceLoop()
+    void AudioDebug()
     {
+        Debug.Log(AudioSource_Debug.isPlaying + "AudioSource_Debug.isPlaying");
+        Debug.Log(isAudio13Played + "isAudio13Played");
+    }
 
-        //fordebug
-        Debug.Log(AudioSource12.isPlaying + "AudioSource12.isPlaying");
-
-
+    public void CPRAnnounceLoop()
+    {
         double announceTime = 0.0;
+
         if (isFirstPlayed == false)
         {
             AudioSource12.PlayDelayed(0.0f); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
             isFirstPlayed = true;
         }
-
-        //タイマー設置、カウントして動かす
-        if (isAnnounceLoop == false && isFirstPlayed == true && AudioSource12.isPlaying == false)
+        if (isFirstPlayed == true && AudioSource12.isPlaying == false && isAudio13Played == false)
         {
-            AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
-         
-
-        }
-        if (isAnnounceLoop == true && countAnnounceTime <=120.0 )
-        {
-            AudioSource14_1.PlayDelayed(AudioClip14_1.length);//残り5回です
-
-            _pushCount = _chestCompression.PushCount;
-
+            //AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
+            AudioSource_Debug.PlayDelayed(0.0f);//デバッグ用音声だよ
+            isAudio13Played = true;
         }
 
+        //if (isAudio13Played == true && AudioSource13.isPlaying == false)
+        if (isAudio13Played == true && AudioSource_Debug.isPlaying == false  && isAudio14Played == false)     
+        {
+            AudioSource14_1.PlayDelayed(0.0f);//残り5回です
+
+            _pushCount = _chestCompression.PushCount;//PushCountが5回押されたか判定する用
+            isAudio14Played = true;
+        }
     }
 }
