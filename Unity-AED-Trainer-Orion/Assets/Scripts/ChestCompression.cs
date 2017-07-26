@@ -73,7 +73,6 @@ public class ChestCompression : MonoBehaviour
             isFast = false;
 
             isStart = true;
-            Debug.Log(hp.ConvertPosition.y + "hp.convPos.y");
         }
 
         //2つめ
@@ -117,7 +116,6 @@ public class ChestCompression : MonoBehaviour
         if (isChangePushCount == true && PushCount > CurrentCount)
         {
             PushTime = Time.time;
-            Debug.Log(PushTime - CurrentTime);
 
             //flagリセット
             isCheckTime = false;

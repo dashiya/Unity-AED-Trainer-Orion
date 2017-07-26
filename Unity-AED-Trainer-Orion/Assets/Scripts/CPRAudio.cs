@@ -104,7 +104,7 @@ public class CPRAudio : MonoBehaviour
 
     void AudioDebug()
     {
-        //Debug用コード書く
+        //Debug用コード書くところ
     }
 
     public void CPRAnnounceLoop()
