@@ -7,7 +7,8 @@ public class TempoSound : MonoBehaviour
 {
     AudioSource AudioSource20;
     
-    public bool isTempoPlay;
+    public bool isTempoPlay = false;
+    public bool isTempoSoundFlag = false;
 
     void Start()
     {     

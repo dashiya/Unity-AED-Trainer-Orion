@@ -20,7 +20,7 @@ public class CPRAudio : MonoBehaviour
     AudioClip AudioClip15;
     AudioClip AudioClip16;
 
-    int _pushCount;
+   
     bool isAudio12Played = false;
     bool isAudio13Played = false;
     bool isAudio14_1Played = false;
@@ -29,7 +29,10 @@ public class CPRAudio : MonoBehaviour
     bool isAudio16Played = false;
     bool isAudioAnnouncePlayed = false;
 
+    //他クラスから継承
     ChestCompression _chestCompression;
+    bool _isTempoSoundFlag;
+    int _pushCount;
 
     //ForDebug
     AudioSource AudioSource_Debug;
@@ -38,6 +41,7 @@ public class CPRAudio : MonoBehaviour
     void Start()
     {
         _chestCompression = GameObject.Find("ChestComplession").GetComponent<ChestCompression>();
+        _isTempoSoundFlag = GameObject.Find("TempoSound").GetComponent<TempoSound>().isTempoSoundFlag;
 
         //音声とりこみ
         AudioSource[] audioSources = this.GetComponents<AudioSource>();
@@ -74,7 +78,8 @@ public class CPRAudio : MonoBehaviour
             if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false)
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
-                isAudio14_2Played = true;  
+                isAudio14_2Played = true;
+                _isTempoSoundFlag = false;
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
             {
@@ -115,6 +120,7 @@ public class CPRAudio : MonoBehaviour
         {
             AudioSource12.PlayDelayed(AudioClip16.length); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
+            _isTempoSoundFlag = true;
             isAudio12Played = true;
         }
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
