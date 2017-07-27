@@ -5,32 +5,53 @@ using System.Collections;
 //ToDo:ChestCompressionで胸骨圧迫が終わったら音を止めるように変更
 public class TempoSound : MonoBehaviour
 {
+
     AudioSource AudioSource20;
-    
-    public bool isTempoPlay = false;
-    public bool isTempoSoundFlag = false;
+
+   public bool isTempoPlay = false;
+
+    //他クラスから継承
+    public bool _isTempoSoundLoop;
+    CPRAudio _cprAudio;
+
 
     void Start()
-    {     
-        AudioSource[] audioSources = this.GetComponents<AudioSource>();
+    {
+        _cprAudio = GameObject.Find("CPRAudio").GetComponent<CPRAudio>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource20 = audioSources[0];
-      
-        AudioSource20.playOnAwake = false;
+
     }
 
     void Update()
     {
+        _isTempoSoundLoop = _cprAudio.isTempoSoundLoop;
+
         //電気ショックが終わったら実行される
         //Todo: AudioSource20.loop = true になることでループ再生しているので、他の動作(もう一回電気ショックとか)を行う場合、loop = falseにしなければならない
-        if(FlagManager.Instance.flags[7] == true && isTempoPlay == false)
-        //if (isTempoPlay == false) // for debug
+        if (_isTempoSoundLoop == true && isTempoPlay == false)
         {
             double looptime = 0.5;
-            AudioSource20.loop = true;
+
             AudioSource20.PlayScheduled(looptime);
 
-            isTempoPlay = true;            
+            AudioSource20.loop = true;
+
+            isTempoPlay = true;
+
         }
+        if (_isTempoSoundLoop == false)
+        {
+            AudioSource20.loop = false;
+            isTempoPlay = false;
+        }
+
+        DebugSound();
+    }
+
+    void DebugSound()
+    {
+        Debug.Log(_isTempoSoundLoop == true && isTempoPlay == false);
+        Debug.Log(_isTempoSoundLoop + "_isTempoSoundLoop");
     }
 }
-    

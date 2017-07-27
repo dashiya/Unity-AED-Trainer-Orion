@@ -29,10 +29,12 @@ public class CPRAudio : MonoBehaviour
     bool isAudio16Played = false;
     bool isAudioAnnouncePlayed = false;
 
+    public bool isTempoSoundLoop = true;
+
     //他クラスから継承
     ChestCompression _chestCompression;
-    bool _isTempoSoundFlag;
     int _pushCount;
+    
 
     //ForDebug
     AudioSource AudioSource_Debug;
@@ -41,10 +43,10 @@ public class CPRAudio : MonoBehaviour
     void Start()
     {
         _chestCompression = GameObject.Find("ChestComplession").GetComponent<ChestCompression>();
-        _isTempoSoundFlag = GameObject.Find("TempoSound").GetComponent<TempoSound>().isTempoSoundFlag;
-
+     
+       
         //音声とりこみ
-        AudioSource[] audioSources = this.GetComponents<AudioSource>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
 
         AudioSource12 = audioSources[0];
         AudioSource13 = audioSources[1];
@@ -79,14 +81,15 @@ public class CPRAudio : MonoBehaviour
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
-                _isTempoSoundFlag = false;
+                isTempoSoundLoop = false;
+               
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
             {
                 AudioSource15.PlayDelayed(AudioClip14_2.length);//心電図を調べています、体に触らないでください  
                 isAudio15Played = true;
             }
-            //Todo:AudioSource16が再生されない
+   
             if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio16Played == false)
             {              
                 AudioSource16.PlayDelayed(0.0f);//電気ショックは必要ありません  
@@ -110,6 +113,7 @@ public class CPRAudio : MonoBehaviour
     void AudioDebug()
     {
         //Debug用コード書くところ
+        Debug.Log(isTempoSoundLoop + "isTempoSoundLoop");
     }
 
     public void CPRAnnounceLoop()
@@ -120,8 +124,9 @@ public class CPRAudio : MonoBehaviour
         {
             AudioSource12.PlayDelayed(AudioClip16.length); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
-            _isTempoSoundFlag = true;
+          
             isAudio12Played = true;
+            isTempoSoundLoop = true;
         }
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
         {
