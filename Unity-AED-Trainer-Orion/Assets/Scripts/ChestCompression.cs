@@ -11,8 +11,8 @@ public class ChestCompression : MonoBehaviour
 {
     public Vector3 StartPosition;
 
-    public int PushCount = 0;
-    private int CurrentCount = 0;
+    public uint PushCount = 0;
+    private uint CurrentCount = 0;
 
     private bool isTouch = false;
     private bool isPush = false;

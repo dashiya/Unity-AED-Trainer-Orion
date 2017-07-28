@@ -24,7 +24,7 @@ public class TempoSound : MonoBehaviour
         _isTempoSoundLoop = _cprAudio.isTempoSoundLoop; //_isTempoSoundLoopの中身をCPRAudio.isTempoSoundLoopから参照して更新する用
 
         //電気ショックが終わったら実行される
-        if (_isTempoSoundLoop == true && isTempoPlay == false)
+        if (_isTempoSoundLoop == true && isTempoPlay == false && FlagManager.Instance.flags[7] == true)
         {
             double looptime = 0.5;
             AudioSource20.PlayScheduled(looptime);

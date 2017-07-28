@@ -27,7 +27,7 @@ public class CPRAudio : MonoBehaviour
     bool isAudio14_2Played = false;
     bool isAudio15Played = false;
     bool isAudio16Played = false;
-    bool isAudioAnnouncePlayed = false;
+ 
 
     public bool isTempoSoundLoop = true;
 
@@ -67,8 +67,6 @@ public class CPRAudio : MonoBehaviour
 
     }
 
-
-    //Todo:AudioSource14_2,15,16が遅延せずほぼ同時に再生されて重なるのを
     void Update()
     {
         AudioDebug();
@@ -77,7 +75,7 @@ public class CPRAudio : MonoBehaviour
         {
             CPRAnnounceLoop();
 
-            if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false)
+            if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
@@ -118,22 +116,27 @@ public class CPRAudio : MonoBehaviour
     {
         double announceTime = 0.0;
 
+        float audioSource7length = 2.282f;
+        float audioSource8Length = 4.324f;
+
+
         if (isAudio12Played == false)
         {
-            AudioSource12.PlayDelayed(AudioClip16.length); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
+            //flags[5]→[7]が連続して処理されるので、AudioSource12の再生時間をAudioSource7,8,16の時間分遅延させる必要がある、最後の4.0fは音声の再生に間をもたせるため
+            AudioSource12.PlayDelayed(audioSource7length + audioSource8Length + AudioClip16.length + 4.0f); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
           
             isAudio12Played = true;
             isTempoSoundLoop = true;
         }
+
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
         {
             AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
             isAudio13Played = true;
         }
 
-        //if (isAudio13Played == true && AudioSource13.isPlaying == false)
-        if (isAudio13Played == true && AudioSource_Debug.isPlaying == false && isAudio14_1Played == false)
+        if (isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == false)
         {
             AudioSource14_1.PlayDelayed(0.0f);//残り5回です
 
