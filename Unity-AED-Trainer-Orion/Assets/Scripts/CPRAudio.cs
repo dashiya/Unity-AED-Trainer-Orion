@@ -102,7 +102,6 @@ public class CPRAudio : MonoBehaviour
                 isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
             }
 
-            //ToDo:AudioSource16の再生よりAudioSource12が先に再生されるので修正
             if (isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)
             {
                 CPRAnnounceLoop();
@@ -113,7 +112,6 @@ public class CPRAudio : MonoBehaviour
     void AudioDebug()
     {
         //Debug用コード書くところ
-        Debug.Log(isTempoSoundLoop + "isTempoSoundLoop");
     }
 
     public void CPRAnnounceLoop()
@@ -130,8 +128,7 @@ public class CPRAudio : MonoBehaviour
         }
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
         {
-            //AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
-            AudioSource_Debug.PlayDelayed(0.0f);//デバッグ用音声だよ
+            AudioSource13.PlayDelayed(0.0f); //胸骨圧迫と人工呼吸を続けてください、2分間、30秒ごとループ
             isAudio13Played = true;
         }
 
