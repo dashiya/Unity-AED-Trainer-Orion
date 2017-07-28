@@ -44,8 +44,8 @@ public class DestroyWear : MonoBehaviour
     {
         if (_destroyWear.isWearDestoroy == true && _openButton.isWearSound == true && isPlay == false)
         {
-            AudioSource4.Play(12800);
-            AudioSource5.Play(138400);
+            AudioSource4.Play(12800);//袋を破いてパッドを取り出してください
+            AudioSource5.Play(138400);//パッドを青いシートから剥がして、図のように右胸と左脇腹に貼ってください　
             isPlay = true;
         }
     }

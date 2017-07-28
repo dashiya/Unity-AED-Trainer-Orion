@@ -33,7 +33,7 @@ public class CPRAudio : MonoBehaviour
 
     //他クラスから継承
     ChestCompression _chestCompression;
-    int _pushCount;
+    uint _pushCount;
     
 
     //ForDebug

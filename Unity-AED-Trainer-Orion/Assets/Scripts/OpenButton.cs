@@ -55,9 +55,9 @@ public class OpenButton : MonoBehaviour
         {
             //Play()の括弧内の時間は一番最初に再生される音声からの経過時間、音声が重複して流れるのを防ぐため
             //Todo:括弧内を数字記入ではなく、それぞれの再生時間取得とか格好いいやり方に修正
-            AudioSource1.Play(12800);
-            AudioSource2.Play(138400);
-            AudioSource3.Play(12800 + 138400 * 2);
+            AudioSource1.Play(12800);//成人モードです
+            AudioSource2.Play(138400);//意識、呼吸を確認してください
+            AudioSource3.Play(12800 + 138400 * 2);//胸を裸にして、AEDのふたから四角い袋を取り出してください
 
             isPlayFlag = false;
         }
