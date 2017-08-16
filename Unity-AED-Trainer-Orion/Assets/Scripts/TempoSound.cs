@@ -9,11 +9,11 @@ public class TempoSound : MonoBehaviour
 
     //他クラスから継承
     public bool _isTempoSoundLoop;
-    CPRAudio _cprAudio;
+    CPRAudio_Scenario4 _cprAudio;
 
     void Start()
     {
-        _cprAudio = GameObject.Find("CPRAudio").GetComponent<CPRAudio>();
+        _cprAudio = GameObject.Find("CPRAudio").GetComponent<CPRAudio_Scenario4>();
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource20 = audioSources[0];

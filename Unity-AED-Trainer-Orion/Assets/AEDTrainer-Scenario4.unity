@@ -1806,8 +1806,14 @@ Prefab:
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010123872382, guid: 95d50a9685272a54aaf3e7fb4a61e72c,
+        type: 2}
+      propertyPath: AudioSource11_Scenario4
+      value: 
+      objectReference: {fileID: 1461565232}
     m_RemovedComponents:
     - {fileID: 114000010327443846, guid: 95d50a9685272a54aaf3e7fb4a61e72c, type: 2}
+    - {fileID: 114000013105856530, guid: 95d50a9685272a54aaf3e7fb4a61e72c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 95d50a9685272a54aaf3e7fb4a61e72c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1001988416 stripped
@@ -2158,7 +2164,8 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0.333
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000010584590516, guid: 2f097720d6aad9f4c8e135163b71dbde, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2f097720d6aad9f4c8e135163b71dbde, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1103448612
@@ -2402,6 +2409,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!82 &1461565232 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013689962646, guid: 95d50a9685272a54aaf3e7fb4a61e72c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001988415}
 --- !u!1 &1477029659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2788,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd03e00992e084c8be61565d44b8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1579535762 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011995280550, guid: 2f097720d6aad9f4c8e135163b71dbde,
+    type: 2}
+  m_PrefabInternal: {fileID: 1100129876}
+--- !u!114 &1579535766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579535762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd58d6cef6830d64babba4cb37c90ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTempoSoundLoop: 1
 --- !u!1001 &1590398869
 Prefab:
   m_ObjectHideFlags: 0
@@ -2926,6 +2955,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &1634691909 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011577140348, guid: 95d50a9685272a54aaf3e7fb4a61e72c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001988415}
+--- !u!82 &1634691911 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013803115438, guid: 95d50a9685272a54aaf3e7fb4a61e72c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001988415}
+--- !u!114 &1634691912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1634691909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1127c2fb7a12bac4eaf495f25bd3b7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource10_Scenario4: {fileID: 1634691911}
 --- !u!1 &1642591442
 GameObject:
   m_ObjectHideFlags: 0
