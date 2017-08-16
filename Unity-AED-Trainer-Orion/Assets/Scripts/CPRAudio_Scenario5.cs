@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class CPRAudio_Scenario05 : MonoBehaviour {
-
-//Todo:音声周り、正しく再生されるように変更する
+//CPRAudio_Scenario5は名前空間に既に存在するため、_Scenario"0"5になってます。
+public class CPRAudio_Scenario5 : MonoBehaviour {
 //具体的にはそれぞれのAudioClipの再生時間を取得してdelayに反映、指定秒数待って再生するやつはタイマー実装してカウント
 // for chest complession and announcemennt
     AudioSource AudioSource12;
@@ -29,7 +27,7 @@ public class CPRAudio_Scenario05 : MonoBehaviour {
     bool isAudio16Played = false;
 
 
-    public bool isTempoSoundLoop = true;
+    public bool isTempoSoundLoop_scenario5 = true;
 
     //他クラスから継承
     ChestCompression _chestCompression;
@@ -79,7 +77,7 @@ public class CPRAudio_Scenario05 : MonoBehaviour {
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
-                isTempoSoundLoop = false;
+                isTempoSoundLoop_scenario5 = false;
 
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
@@ -124,7 +122,7 @@ public class CPRAudio_Scenario05 : MonoBehaviour {
             announceTime = Time.time;
 
             isAudio12Played = true;
-            isTempoSoundLoop = true;
+            isTempoSoundLoop_scenario5 = true;
         }
 
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
