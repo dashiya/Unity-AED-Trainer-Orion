@@ -9,11 +9,11 @@ public class TempoSound : MonoBehaviour
 
     //他クラスから継承
     public bool _isTempoSoundLoop;
-    CPRAudio_Scenario4 _cprAudio;
+    CPRAudio_Scenario5 _cprAudio5;
 
     void Start()
     {
-        _cprAudio = GameObject.Find("CPRAudio").GetComponent<CPRAudio_Scenario4>();
+        _cprAudio5 = GameObject.Find("CPRAudio").GetComponent<CPRAudio_Scenario5>();
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource20 = audioSources[0];
@@ -21,7 +21,7 @@ public class TempoSound : MonoBehaviour
 
     void Update()
     {
-        _isTempoSoundLoop = _cprAudio.isTempoSoundLoop; //_isTempoSoundLoopの中身をCPRAudio.isTempoSoundLoopから参照して更新する用
+        _isTempoSoundLoop = _cprAudio5.isTempoSoundLoop; //_isTempoSoundLoopの中身をCPRAudio.isTempoSoundLoopから参照して更新する用
 
         //電気ショックが終わったら実行される
         if (_isTempoSoundLoop == true && isTempoPlay == false && FlagManager.Instance.flags[7] == true)

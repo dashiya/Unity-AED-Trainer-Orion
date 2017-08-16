@@ -4,7 +4,7 @@ using System.Collections;
 //Todo:音声周り、正しく再生されるように変更する
 //具体的にはそれぞれのAudioClipの再生時間を取得してdelayに反映、指定秒数待って再生するやつはタイマー実装してカウント
 // for chest complession and announcemennt
-public class CPRAudio_Scenario4 : MonoBehaviour
+public class CPRAudio_Scenario5 : MonoBehaviour
 {
     AudioSource AudioSource12;
     AudioSource AudioSource13;

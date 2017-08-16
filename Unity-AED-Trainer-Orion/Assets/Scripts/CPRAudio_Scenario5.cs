@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CPRAudio_Scenario5 : MonoBehaviour {
+public class CPRAudio_Scenario05 : MonoBehaviour {
 
 //Todo:音声周り、正しく再生されるように変更する
 //具体的にはそれぞれのAudioClipの再生時間を取得してdelayに反映、指定秒数待って再生するやつはタイマー実装してカウント
@@ -73,7 +73,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
 
         if (FlagManager.Instance.flags[7] == true)
         {
-            CPRAnnounceLoop();
+            CPRAnnounceLoop_Scenario5();
 
             if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
@@ -102,7 +102,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
 
             if (isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource17_1.isPlaying == false)
             {
-                CPRAnnounceLoop();
+                CPRAnnounceLoop_Scenario5();
             }
         }
     }
@@ -112,7 +112,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
         //Debug用コード書くところ
     }
 
-    public void CPRAnnounceLoop()
+    public void CPRAnnounceLoop_Scenario5()
     {
         double announceTime = 0.0;
 
