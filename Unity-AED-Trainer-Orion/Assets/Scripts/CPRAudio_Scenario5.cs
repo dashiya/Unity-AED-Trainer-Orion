@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-//CPRAudio_Scenario5は名前空間に既に存在するため、_Scenario"0"5になってます。
 public class CPRAudio_Scenario5 : MonoBehaviour {
 //具体的にはそれぞれのAudioClipの再生時間を取得してdelayに反映、指定秒数待って再生するやつはタイマー実装してカウント
 // for chest complession and announcemennt
