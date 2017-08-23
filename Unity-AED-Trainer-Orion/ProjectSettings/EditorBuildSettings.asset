@@ -4,4 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AEDTrainer-StartScene.unity
+  - enabled: 1
+    path: Assets/AEDTrainer-Scenario5.unity
+  - enabled: 1
+    path: Assets/AEDTrainer-Scenario1.unity
+  - enabled: 1
+    path: Assets/AEDTrainer-Scenario4.unity
