@@ -43,8 +43,8 @@ public class ChestCompression : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_hc.IsHand(other)) //For debug 
-        //if (FlagManager.Instance.flags[7] == true && hc.IsHand(other))
+        //if (_hc.IsHand(other)) //For debug 
+        if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other))
         {
             if (_hc.IsHand(other))
             {
