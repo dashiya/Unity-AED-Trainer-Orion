@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestBoxCollider : MonoBehaviour
+public class GetBoxCollider : MonoBehaviour
 {
     LeapHandCollision _hc = new LeapHandCollision();
     // Use this for initialization
     void Start()
     {
-
+         Renderer rend = GetComponent<Renderer>();
+        rend.material.shader = Shader.Find("Specular");
+        rend.material.SetColor("_SpecColor", Color.white);
     }
 
     void OnTriggerStay(Collider other)

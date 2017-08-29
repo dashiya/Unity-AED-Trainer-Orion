@@ -4,12 +4,13 @@ using System;
 
 public class ButtonAudio2 : MonoBehaviour
 {
-   //点滅ボタンを押す動作をシナリオ1では行わないのでAudioSource10を再生するコードを消去
+    bool isflagtrue = false;
+    //点滅ボタンを押す動作をシナリオ1では行わないのでAudioSource10を再生するコードを消去
     void Update()
     {
-        if (FlagManager.Instance.flags[5] == true && FlagManager.Instance.flags[6] == false)
+        if (FlagManager.Instance.flags[5] == true && isflagtrue == false)
         {
-            FlagManager.Instance.flags[6] = true;
+            FlagManager.Instance.flags[7] = true;
         }
     }
 }
