@@ -1237,7 +1237,9 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000012524819796, guid: f552da3bd238315419016c9e43f40bf1, type: 2}
+    - {fileID: 114000013565737426, guid: f552da3bd238315419016c9e43f40bf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f552da3bd238315419016c9e43f40bf1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &715483273 stripped
@@ -1319,6 +1321,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &715483275 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011022601636, guid: f552da3bd238315419016c9e43f40bf1,
+    type: 2}
+  m_PrefabInternal: {fileID: 715483272}
+--- !u!114 &715483276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715483275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489688e50220723488cfecd4b8e00e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTempoPlay: 0
+  _isTempoSoundLoop: 0
+--- !u!114 &715483282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715483273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e720731004a540a1214e168cf62a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTempoSoundLoop_scenario5: 1
 --- !u!1 &723531453
 GameObject:
   m_ObjectHideFlags: 0

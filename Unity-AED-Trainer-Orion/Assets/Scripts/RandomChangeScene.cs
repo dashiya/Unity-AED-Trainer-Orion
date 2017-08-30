@@ -4,37 +4,43 @@ using UnityEngine.SceneManagement;
 
 public class RandomChangeScene : MonoBehaviour
 {
-
     int randomSceneNumber;
 
+    GetBoxCollider _getBoxCollider;
     // Use this for initialization
     void Start()
     {
+        _getBoxCollider = GameObject.Find("GetBoxCollider").GetComponent<GetBoxCollider>();
+
         randomSceneNumber = Random.Range(1, 4);//Random.Range(min(含まれる),max(含まれない))ので、1,2,3のいずれかを返す
         Debug.Log(randomSceneNumber + "randomSceneNumber");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (randomSceneNumber)
+        if (_getBoxCollider.canRandomChangeScene == true)
         {
-            case 1:
-                SceneManager.LoadScene("AEDTrainer-Scenario1");
-                break;
+            switch (randomSceneNumber)
+            {
+                case 1:
+                    SceneManager.LoadScene("AEDTrainer-Scenario1");
+                    break;
 
-            case 2:
-                SceneManager.LoadScene("AEDTrainer-Scenario4");
-                break;
+                case 2:
+                    SceneManager.LoadScene("AEDTrainer-Scenario4");
+                    break;
 
-            case 3:
-                SceneManager.LoadScene("AEDTrainer-Scenario5");
-                break;
+                case 3:
+                    SceneManager.LoadScene("AEDTrainer-Scenario5");
+                    break;
 
-            default:
-                Debug.Log("Load Scene Failed");
-                break;
+                default:
+                    Debug.Log("Failed to Load Scene ");
+                    break;
 
+            }
         }
     }
 }

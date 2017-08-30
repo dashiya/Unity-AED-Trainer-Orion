@@ -37,7 +37,6 @@ public class EnergizationButton_Scenario4 : MonoBehaviour
 
             Invoke("enebuttonblink", 20);
 
-            Debug.Log("点滅中");
         }
 
     }
