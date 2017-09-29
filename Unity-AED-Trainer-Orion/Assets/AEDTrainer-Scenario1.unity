@@ -1849,27 +1849,32 @@ Prefab:
     - target: {fileID: 224000014138662894, guid: f449a71b07b1d1a45bcd3453536237b5,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000014138662894, guid: f449a71b07b1d1a45bcd3453536237b5,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.333
       objectReference: {fileID: 0}
     - target: {fileID: 224000011758733570, guid: f449a71b07b1d1a45bcd3453536237b5,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.333
       objectReference: {fileID: 0}
     - target: {fileID: 224000011758733570, guid: f449a71b07b1d1a45bcd3453536237b5,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011758733570, guid: f449a71b07b1d1a45bcd3453536237b5,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010151177190, guid: f449a71b07b1d1a45bcd3453536237b5,
+        type: 2}
+      propertyPath: BypassListenerEffects
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f449a71b07b1d1a45bcd3453536237b5, type: 2}

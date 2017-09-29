@@ -136,7 +136,7 @@ public class ChestCompression : MonoBehaviour
             if (0.6 < (PushTime - CurrentTime))
             {
                 _tTex.color = new Color(255, 255, 255, 1);
-                _tTex.text = "Late";
+                _tTex.text = "Slow";
             }
             if (0.0 < (PushTime - CurrentTime) && (PushTime - CurrentTime) < 0.5)
             {
