@@ -7,7 +7,7 @@ public class EnergizationButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //正直ButtonAudio2.csでflags[7]にすればEnagizationButton丸々いりませんが、flagsを順番にtrueにしていきたいので記述
+        //ButtonAudio2.csでflags[7]にすればEnagizationButton丸々いりませんが、flagsを順番にtrueにしていきたいので記述
         if(FlagManager.Instance.flags[6] == true)
         {
             FlagManager.Instance.flags[7] = true;

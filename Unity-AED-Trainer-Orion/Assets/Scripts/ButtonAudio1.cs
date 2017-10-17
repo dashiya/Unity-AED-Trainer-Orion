@@ -11,6 +11,10 @@ public class ButtonAudio1 : MonoBehaviour
     AudioClip AudioClip8;
     AudioClip AudioClip16;
 
+    bool isAudioSource7Played = false;
+    bool isAudioSource8Played = false;
+    bool isAudioSource16Played = false;
+
     // Use this for initialization
     void Start()
     {
@@ -35,9 +39,24 @@ public class ButtonAudio1 : MonoBehaviour
             AudioSource8.PlayDelayed(AudioClip7.length + AudioClip8.length);//心電図を調べています、体に触らないでください
             //最後の2.0fは心電図を調べる様子を示すふりをするための間を持たせるため
             AudioSource16.PlayDelayed(AudioClip7.length + AudioClip8.length + AudioClip16.length + 2.0f);//電気ショックは必要ありません 
+        }
 
+        //if(AudioSource7.8.16が再生済みで、16の音声が流れている状態でなければ)flag5 = trueにする
+        if (AudioSource7.isPlaying == true)
+        {
+            isAudioSource7Played = true;
+        }
+        if (AudioSource8.isPlaying == true)
+        {
+            isAudioSource7Played = true;
+        }
+        if (AudioSource16.isPlaying == true)
+        {
+            isAudioSource16Played = true;
+        }
+        if (isAudioSource7Played == true && isAudioSource8Played == true && isAudioSource16Played == true && AudioSource16.isPlaying == false)
+        {
             FlagManager.Instance.flags[5] = true;//flags[5]→[6]→[7]はそれぞれの間に音声を流す等の処理が入らない。flags[5]=trueになるとほぼ同時に[7]=trueになる
-
         }
     }
 }

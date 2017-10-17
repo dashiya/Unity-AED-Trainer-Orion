@@ -27,7 +27,7 @@ public class CPRAudio : MonoBehaviour
     bool isAudio14_2Played = false;
     bool isAudio15Played = false;
     bool isAudio16Played = false;
- 
+
 
     public bool isTempoSoundLoop = true;
 
