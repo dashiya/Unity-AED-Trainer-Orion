@@ -22,7 +22,7 @@ public class DestroyWear : MonoBehaviour
         _openButton = GameObject.Find("開閉ボタン").GetComponent<OpenButton>();
         _wearObj = GameObject.Find("Wear Object");
         _destroyWear = GetComponent<DestroyWear>();
-        
+
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
         AudioSource4 = audioSources[0];
@@ -31,7 +31,7 @@ public class DestroyWear : MonoBehaviour
 
 
     void OnTriggerEnter(Collider obj)
-    { 
+    {
         if (_openButton.isWearSound == true && _hc.IsHand(obj))
         {
             Destroy(_wearObj);

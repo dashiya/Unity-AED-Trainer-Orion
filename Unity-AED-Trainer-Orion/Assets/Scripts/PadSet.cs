@@ -17,7 +17,7 @@ public class PadSet : MonoBehaviour
             FlagManager.Instance.flags[2] = true;
             Destroy(GetComponent<Collider>());
         }
-        else if (humancols.gameObject.tag == "Pad2")
+        if (humancols.gameObject.tag == "Pad2")
         {
             FlagManager.Instance.flags[4] = true;
             Destroy(GetComponent<Collider>());
