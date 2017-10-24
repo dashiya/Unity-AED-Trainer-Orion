@@ -32,8 +32,15 @@ public class ButtonAudio1 : MonoBehaviour
         AudioClip8 = AudioSource8.clip;
         AudioClip16 = AudioSource16.clip;
 
-        delayInvokeTime = AudioClip7.length * 3 + AudioClip8.length * 2 + AudioClip16.length + 2.0f;
+        delayInvokeTime = AudioClip7.length  + AudioClip8.length  + AudioClip16.length + 2.0f; //Invoke第二引数の遅延時間float、AudioClipxx.lengthはそれぞれのAudioClipの再生秒数
     }
+
+
+    void TrueFlagFive()
+    {
+        FlagManager.Instance.flags[5] = true;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -49,14 +56,7 @@ public class ButtonAudio1 : MonoBehaviour
             Invoke("TrueFlagFive", delayInvokeTime);//flags[5]→[6]→[7]はそれぞれの間に音声を流す等の処理が入らない。flags[5]=trueになるとほぼ同時に[7]=trueになる, delayInvokeTimeがないとAudioSource7を再生する最初のフレームで即TempoSoundが再生されるので必要
 
             isAudioPlay = true;
+
         }
-
-        Debug.Log(AudioSource7.isPlaying + "AudioSource7.isPlaying");
     }
-
-    void TrueFlagFive()
-    {
-        FlagManager.Instance.flags[5] = true;
-    }
-    
 }

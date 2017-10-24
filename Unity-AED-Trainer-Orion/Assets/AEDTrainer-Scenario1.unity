@@ -1144,6 +1144,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012526299188, guid: e1f8f51e9dd330548b9bcaba9c62f553, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013173195330, guid: e1f8f51e9dd330548b9bcaba9c62f553,
+        type: 2}
+      propertyPath: flags.Array.data[5]
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1f8f51e9dd330548b9bcaba9c62f553, type: 2}
   m_IsPrefabParent: 0
