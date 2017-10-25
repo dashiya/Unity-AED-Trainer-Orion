@@ -11,7 +11,7 @@ public class DestroyWear_Tutorial : MonoBehaviour {
     public AudioSource AudioSource5;
 
     public bool isWearDestoroy = false;
-    bool isPlay = false;
+   public bool isPlayAudioDestroyWear = false;
 
     //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision _hc = new LeapHandCollision();
@@ -41,11 +41,11 @@ public class DestroyWear_Tutorial : MonoBehaviour {
 
     void Update()
     {
-        if (_destroyWearTutorial.isWearDestoroy == true && _openButtonTutorial.isWearSound == true && isPlay == false)
+        if (_destroyWearTutorial.isWearDestoroy == true && _openButtonTutorial.isWearSound == true && isPlayAudioDestroyWear == false)
         {
             AudioSource4.Play(12800);//袋を破いてパッドを取り出してください
             AudioSource5.Play(138400);//パッドを青いシートから剥がして、図のように右胸と左脇腹に貼ってください　
-            isPlay = true;
+            isPlayAudioDestroyWear = true;
         }
     }
 }
