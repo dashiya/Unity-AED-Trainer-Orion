@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class OpenButton : MonoBehaviour
-{
+public class OpenButton_Tutorial : MonoBehaviour {
+
     Transform _coverTransform;
 
     Vector3 _targetPos;
@@ -17,7 +18,7 @@ public class OpenButton : MonoBehaviour
     public AudioSource AudioSource3;
 
     public bool isWearSound = false;
-  
+
     //LeapHandCollisionは取得した手全体を当たり判定として用いるクラス
     LeapHandCollision _hc = new LeapHandCollision();
 
