@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OpenButton_Tutorial : MonoBehaviour {
 
-    Transform _coverTransform;
+   public Transform _coverTransform;
 
     Vector3 _targetPos;
     Vector3 _rotateAxis;
@@ -44,6 +44,8 @@ public class OpenButton_Tutorial : MonoBehaviour {
 
         if (FlagManager.Instance.flags[0] == false && _hc.IsHand(other))
         {
+            _coverTransform.RotateAround(_targetPos, _rotateAxis, rotateAngle);
+
             //ふたが開いている状態のフラグを立てる
             FlagManager.Instance.flags[0] = true;
 
@@ -51,8 +53,15 @@ public class OpenButton_Tutorial : MonoBehaviour {
         }
     }
 
+    void ForDebug()
+    {
+        Debug.Log(_coverTransform + "_coverTransform");
+    }
+
     void Update()
     {
+        ForDebug();
+
         if (isPlayFlag == true)
         {
             //Play()の括弧内の時間は一番最初に再生される音声からの経過時間、音声が重複して流れるのを防ぐため

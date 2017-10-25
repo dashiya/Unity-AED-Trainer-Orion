@@ -43,6 +43,7 @@ public class OpenButton : MonoBehaviour
 
         if (FlagManager.Instance.flags[0] == false && _hc.IsHand(other))
         {
+            _coverTransform.RotateAround(_targetPos, _rotateAxis, rotateAngle);
             //ふたが開いている状態のフラグを立てる
             FlagManager.Instance.flags[0] = true;
 
