@@ -7,6 +7,12 @@ public class AutoMoveSpotlight : MonoBehaviour
     GameObject spotlightPrefab;
     Transform soptlightPrefabTransform;
 
+    GameObject openButtonTutorialObject;
+    Transform openButtonTutorialTransform;
+
+    GameObject destroyWearObject;
+    Transform destroyWearTransform;
+
 
     // Use this for initialization
     void Start()
@@ -17,8 +23,10 @@ public class AutoMoveSpotlight : MonoBehaviour
         //OpenButton_Tutorial,DestroyWear_Tutorial取得
         //それぞれのTransformにアクセス
         //MoveSpotlightの生成
+        openButtonTutorialTransform = GameObject.Find("開閉ボタン").GetComponent<Transform>();
+        destroyWearTransform = GameObject.Find("Wear").GetComponent<Transform>();
 
-
+        this.gameObject.SetActive(true);
     }
 
     // Update is called once per frame

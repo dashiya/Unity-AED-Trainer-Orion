@@ -109,6 +109,7 @@ MonoBehaviour:
   AudioSource4: {fileID: 0}
   AudioSource5: {fileID: 0}
   isWearDestoroy: 0
+  isPlayAudioDestroyWear: 0
 --- !u!1 &150611682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2547,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010326468076, guid: 839a547d208d7f94dac5c0de66e812fe, type: 2}
+      propertyPath: m_Name
+      value: MoveSoptlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000013339738294, guid: 839a547d208d7f94dac5c0de66e812fe,
+        type: 2}
+      propertyPath: m_SpotAngle
+      value: 46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 839a547d208d7f94dac5c0de66e812fe, type: 2}
   m_IsPrefabParent: 0
@@ -3509,6 +3519,22 @@ MonoBehaviour:
   wristJoint: {fileID: 0}
   elbowJoint: {fileID: 0}
   filtering: 0.5
+--- !u!1 &1872305453 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010326468076, guid: 839a547d208d7f94dac5c0de66e812fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1433530044}
+--- !u!114 &1872305454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872305453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74544413f14fcdd409f5df97211300df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1881987745
 GameObject:
   m_ObjectHideFlags: 0
