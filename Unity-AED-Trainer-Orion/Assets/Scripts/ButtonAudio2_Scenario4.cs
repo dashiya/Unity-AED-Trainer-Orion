@@ -6,7 +6,7 @@ public class ButtonAudio2_Scenario4 : MonoBehaviour
 {
     public AudioSource AudioSource10_Scenario5;
 
-    // Use this for initialization
+    // Use this for initialization  
     void Start()
     {
         //音声とりこみ
@@ -19,7 +19,7 @@ public class ButtonAudio2_Scenario4 : MonoBehaviour
     {
         if (FlagManager.Instance.flags[5] == true && FlagManager.Instance.flags[6] == false)
         {
-            AudioSource10_Scenario5.Play(138400 * 6);
+            AudioSource10_Scenario5.Play(138400 * 6);//体から離れてください 点滅ボタンをしっかりと押してください
             FlagManager.Instance.flags[6] = true;
         }
     }

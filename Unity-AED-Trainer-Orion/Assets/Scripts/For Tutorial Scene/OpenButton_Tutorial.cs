@@ -82,5 +82,5 @@ public class OpenButton_Tutorial : MonoBehaviour {
         {
             isWearSound = true;
         }
-    }
+    }//Update終了
 }
