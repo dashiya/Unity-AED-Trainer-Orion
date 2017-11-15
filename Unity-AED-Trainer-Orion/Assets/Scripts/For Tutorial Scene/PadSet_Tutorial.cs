@@ -3,13 +3,17 @@ using System.Collections;
 
 public class PadSet_Tutorial : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void OnTriggerEnter(Collider humancols)
+    {
+        if (humancols.gameObject.tag == "Pad1")
+        {
+            FlagManager.Instance.flags[2] = true;
+            Destroy(GetComponent<Collider>());
+        }
+        if (humancols.gameObject.tag == "Pad2")
+        {
+            FlagManager.Instance.flags[4] = true;
+            Destroy(GetComponent<Collider>());
+        }
+    }
 }
