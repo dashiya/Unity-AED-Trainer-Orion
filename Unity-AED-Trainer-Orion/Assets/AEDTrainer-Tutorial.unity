@@ -2663,7 +2663,7 @@ Prefab:
     - target: {fileID: 108000013339738294, guid: 839a547d208d7f94dac5c0de66e812fe,
         type: 2}
       propertyPath: m_SpotAngle
-      value: 46
+      value: 38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 839a547d208d7f94dac5c0de66e812fe, type: 2}

@@ -102,7 +102,6 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         //OpenButton_Tutorial,DestroyWear_Tutorial内、flag[0]と、isPlayAudioDestroyWearを監視、それぞれがtrueになったタイミングで上で取得したtransformつかってprefab化したspotlightを移動してチュートリアルを進める
 
-       // spotlightPrefabPos = new Vector3(-1.296f, 4.133f, 0.81f);
         spotlightPrefabPos.x = -1.296f;
         spotlightPrefabPos.z = 0.81f;
 
