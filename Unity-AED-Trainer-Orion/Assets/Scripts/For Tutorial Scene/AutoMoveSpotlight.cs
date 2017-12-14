@@ -43,6 +43,10 @@ public class AutoMoveSpotlight : MonoBehaviour
     Vector3 _tempoSoundPos;
     Transform _tempoSoundTransform;//実行順 11
 
+
+    //ForDebug
+    public int textNumberInt;
+
     // Use this for initialization
     void Start()
     {
@@ -93,7 +97,7 @@ public class AutoMoveSpotlight : MonoBehaviour
 
 
         this.gameObject.SetActive(true);
-    }
+    }//Start()ここまで
 
     // Update is called once per frame
     void Update()
@@ -102,12 +106,7 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         //OpenButton_Tutorial,DestroyWear_Tutorial内、flag[0]と、isPlayAudioDestroyWearを監視、それぞれがtrueになったタイミングで上で取得したtransformつかってprefab化したspotlightを移動してチュートリアルを進める
 
-        spotlightPrefabPos.x = -1.296f;
-        spotlightPrefabPos.z = 0.81f;
-
-        transform.position = spotlightPrefabPos;
-
-           Debug.Log(_destroyWearPos + "_destroyWearPos");
+        Debug.Log(_destroyWearPos + "_destroyWearPos");
 
         /*
                 _pad1Pos = transform.position;
@@ -115,9 +114,107 @@ public class AutoMoveSpotlight : MonoBehaviour
             _pad1Pos.x = _handPos.ConvertPosition.x;
             _pad1Pos.y = _handPos.ConvertPosition.y;
             _pad1Pos.z = _handPos.ConvertPosition.z;
-
+        
             transform.position = _pad1Pos;
             */
 
-    }
+        switch (textNumberInt)
+        {
+
+            case 1:
+                spotlightPrefabPos.x = -1.296f;
+                spotlightPrefabPos.z = 0.81f;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //destroywear2
+
+            case 2:
+                spotlightPrefabPos.x = _openButtonTutorialPos.x;
+                spotlightPrefabPos.z = _openButtonTutorialPos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //openbutton1
+
+            case 3:
+                spotlightPrefabPos.x = _pad1PositionPos.x;
+                spotlightPrefabPos.z = _pad1PositionPos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_pad1PositionPos3
+
+            case 4:
+                spotlightPrefabPos.x = _padSetPosition1Pos.x;
+                spotlightPrefabPos.z = _padSetPosition1Pos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_padSetPosition1Pos4
+
+            case 5:
+                spotlightPrefabPos.x = _pad2PositionPos.x;
+                spotlightPrefabPos.z = _pad2PositionPos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_pad2PositionPos5
+
+
+            case 6:
+                spotlightPrefabPos.x = _padSetPosition2Pos.x;
+                spotlightPrefabPos.z = _padSetPosition2Pos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_pad2PositionPos6
+
+            case 7:
+                spotlightPrefabPos.x = _buttonAudio1Pos.x;
+                spotlightPrefabPos.z = _buttonAudio1Pos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_buttonAudio1Pos7
+
+            case 8: 
+                spotlightPrefabPos.x = _buttonAudio2Pos.x;
+                spotlightPrefabPos.z = _buttonAudio2Pos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_buttonAudio2Pos8
+
+            case 9:
+                spotlightPrefabPos.x = _energiationButtonPos.x;
+                spotlightPrefabPos.z = _energiationButtonPos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_energiationButtonPos9
+
+            case 10:
+                spotlightPrefabPos.x = _CPRAudiopos.x;
+                spotlightPrefabPos.z = _CPRAudiopos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+            //_CPRAudiopos10
+
+
+            case 11:
+                spotlightPrefabPos.x = _tempoSoundPos.x;
+                spotlightPrefabPos.z = _tempoSoundPos.z;
+
+                transform.position = spotlightPrefabPos;
+                break;
+
+            default:
+                break;
+                //_tempoSoundPos11
+        }//switchここまで
+
+
+    }//Update()ここまで
 }
