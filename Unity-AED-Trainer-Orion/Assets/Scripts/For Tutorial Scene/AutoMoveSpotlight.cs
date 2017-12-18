@@ -106,8 +106,7 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         //OpenButton_Tutorial,DestroyWear_Tutorial内、flag[0]と、isPlayAudioDestroyWearを監視、それぞれがtrueになったタイミングで上で取得したtransformつかってprefab化したspotlightを移動してチュートリアルを進める
 
-        Debug.Log(_destroyWearPos + "_destroyWearPos");
-
+     
         /*
                 _pad1Pos = transform.position;
 
