@@ -30,7 +30,7 @@ public class DestroyWear : MonoBehaviour
     }
 
 
-    void OnTriggerEnter(Collider obj)
+    void OnTriggerEnter(Collider obj)//服objに触れたら服を消す
     {
         if (_openButton.isWearSound == true && _hc.IsHand(obj))
         {
@@ -47,6 +47,7 @@ public class DestroyWear : MonoBehaviour
             AudioSource4.Play(12800);//袋を破いてパッドを取り出してください
             AudioSource5.Play(138400);//パッドを青いシートから剥がして、図のように右胸と左脇腹に貼ってください　
             isPlay = true;
+            
         }
     }
 }

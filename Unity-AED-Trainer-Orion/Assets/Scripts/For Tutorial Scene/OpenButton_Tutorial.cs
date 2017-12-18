@@ -48,6 +48,7 @@ public class OpenButton_Tutorial : MonoBehaviour {
 
             //ふたが開いている状態のフラグを立てる
             FlagManager.Instance.flags[0] = true;
+            FlagManager.Instance.flags[20] = true;//AutoMoveSpotlightへ
 
             isPlayFlag = true;
         }

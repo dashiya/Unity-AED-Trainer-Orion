@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class AutoMoveSpotlight : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class AutoMoveSpotlight : MonoBehaviour
     Vector3 _tempoSoundPos;
     Transform _tempoSoundTransform;//実行順 11
 
+    Text _textTutorialText;
+
 
     //ForDebug
     public int textNumberInt;
@@ -53,6 +56,8 @@ public class AutoMoveSpotlight : MonoBehaviour
         spotlightPrefab = GameObject.Find("MoveSoptlight");
         spotlightPrefabTransform = spotlightPrefab.GetComponent<Transform>();
         spotlightPrefabPos = spotlightPrefabTransform.position;
+
+        _textTutorialText = GameObject.Find("TextTutorial").GetComponent<Text>();
 
 
         //OpenButton_Tutorial,DestroyWear_Tutorial取得
@@ -99,120 +104,121 @@ public class AutoMoveSpotlight : MonoBehaviour
         this.gameObject.SetActive(true);
     }//Start()ここまで
 
+
     // Update is called once per frame
     void Update()
     {
+        //それぞれのflagがtrueになったタイミングでprefab化したspotlightを移動してチュートリアルを進める
 
+        //if (FlagManager.Instance.flags[19] == true)//スタートボタンに触れたら（未実装）
+        {
+            spotlightPrefabPos.x = _openButtonTutorialPos.x;
+            spotlightPrefabPos.z = _openButtonTutorialPos.z;
 
-        //OpenButton_Tutorial,DestroyWear_Tutorial内、flag[0]と、isPlayAudioDestroyWearを監視、それぞれがtrueになったタイミングで上で取得したtransformつかってprefab化したspotlightを移動してチュートリアルを進める
+            transform.position = spotlightPrefabPos;
 
-     
-        /*
-                _pad1Pos = transform.position;
+            _textTutorialText.text = ("電源ボタンに触れてAEDの電源を入れてください");
 
-            _pad1Pos.x = _handPos.ConvertPosition.x;
-            _pad1Pos.y = _handPos.ConvertPosition.y;
-            _pad1Pos.z = _handPos.ConvertPosition.z;
-        
-            transform.position = _pad1Pos;
-            */
-
-        switch (textNumberInt)
+            //openbutton1
+        }
+        if (FlagManager.Instance.flags[20] == true)//openbutton_tutorial 開閉ボタンにふれたら
         {
 
-            case 1:
-                spotlightPrefabPos.x = -1.296f;
-                spotlightPrefabPos.z = 0.81f;
+            spotlightPrefabPos.x = -1.296f;
+            spotlightPrefabPos.z = 0.81f;
 
-                transform.position = spotlightPrefabPos;
-                break;
+            transform.position = spotlightPrefabPos;
+
+            _textTutorialText.text = ("音声に従って、服に触れて胸を裸にしてください");
             //destroywear2
 
-            case 2:
-                spotlightPrefabPos.x = _openButtonTutorialPos.x;
-                spotlightPrefabPos.z = _openButtonTutorialPos.z;
+        }
 
-                transform.position = spotlightPrefabPos;
-                break;
-            //openbutton1
+        if (GameObject.Find("Wear Object") == null)//DestroyWear 服にふれたら
+        {
+           
+            spotlightPrefabPos.x = _pad1PositionPos.x;
+            spotlightPrefabPos.z = _pad1PositionPos.z;
 
-            case 3:
-                spotlightPrefabPos.x = _pad1PositionPos.x;
-                spotlightPrefabPos.z = _pad1PositionPos.z;
+            transform.position = spotlightPrefabPos;//todo spotlight位置ずれがあるので修正
 
-                transform.position = spotlightPrefabPos;
-                break;
+            _textTutorialText.text = ("パッドにふれてください");
             //_pad1PositionPos3
+        }
 
-            case 4:
-                spotlightPrefabPos.x = _padSetPosition1Pos.x;
-                spotlightPrefabPos.z = _padSetPosition1Pos.z;
+        if (FlagManager.Instance.flags[22] == true)//Pad1Position_Tutorial パッド1にふれたら
+        {
+            spotlightPrefabPos.x = _padSetPosition1Pos.x;
+            spotlightPrefabPos.z = _padSetPosition1Pos.z;
 
-                transform.position = spotlightPrefabPos;
-                break;
+            transform.position = spotlightPrefabPos;//todo spotlight位置が違うので修正
+            _textTutorialText.text = ("パッドを右胸に貼り付けてください");
             //_padSetPosition1Pos4
+        }
 
-            case 5:
-                spotlightPrefabPos.x = _pad2PositionPos.x;
-                spotlightPrefabPos.z = _pad2PositionPos.z;
+        if (FlagManager.Instance.flags[23] == true)//PadSet_Tutorial
 
-                transform.position = spotlightPrefabPos;
-                break;
+        {
+            spotlightPrefabPos.x = _pad2PositionPos.x;
+            spotlightPrefabPos.z = _pad2PositionPos.z;
+            _textTutorialText.text = ("パッドにふれてください");
+            transform.position = spotlightPrefabPos;
+           
             //_pad2PositionPos5
+        }
+
+        //case 6:
+        //    spotlightPrefabPos.x = _padSetPosition2Pos.x;
+        //    spotlightPrefabPos.z = _padSetPosition2Pos.z;
+
+        //    transform.position = spotlightPrefabPos;
+        //    break;
+        ////_pad2PositionPos6
+
+        //case 7:
+        //    spotlightPrefabPos.x = _buttonAudio1Pos.x;
+        //    spotlightPrefabPos.z = _buttonAudio1Pos.z;
+
+        //    transform.position = spotlightPrefabPos;
+        //    break;
+        ////_buttonAudio1Pos7
+
+        //case 8: 
+        //    spotlightPrefabPos.x = _buttonAudio2Pos.x;
+        //    spotlightPrefabPos.z = _buttonAudio2Pos.z;
+
+        //    transform.position = spotlightPrefabPos;
+        //    break;
+        ////_buttonAudio2Pos8
+
+        //case 9:
+        //    spotlightPrefabPos.x = _energiationButtonPos.x;
+        //    spotlightPrefabPos.z = _energiationButtonPos.z;
+
+        //    transform.position = spotlightPrefabPos;
+        //    break;
+        ////_energiationButtonPos9
+
+        //case 10:
+        //    spotlightPrefabPos.x = _CPRAudiopos.x;
+        //    spotlightPrefabPos.z = _CPRAudiopos.z;
+
+        //    transform.position = spotlightPrefabPos;
+        //    break;
+        ////_CPRAudiopos10
 
 
-            case 6:
-                spotlightPrefabPos.x = _padSetPosition2Pos.x;
-                spotlightPrefabPos.z = _padSetPosition2Pos.z;
+        //case 11:
+        //    spotlightPrefabPos.x = _tempoSoundPos.x;
+        //    spotlightPrefabPos.z = _tempoSoundPos.z;
 
-                transform.position = spotlightPrefabPos;
-                break;
-            //_pad2PositionPos6
+        //    transform.position = spotlightPrefabPos;
+        //    break;
 
-            case 7:
-                spotlightPrefabPos.x = _buttonAudio1Pos.x;
-                spotlightPrefabPos.z = _buttonAudio1Pos.z;
-
-                transform.position = spotlightPrefabPos;
-                break;
-            //_buttonAudio1Pos7
-
-            case 8: 
-                spotlightPrefabPos.x = _buttonAudio2Pos.x;
-                spotlightPrefabPos.z = _buttonAudio2Pos.z;
-
-                transform.position = spotlightPrefabPos;
-                break;
-            //_buttonAudio2Pos8
-
-            case 9:
-                spotlightPrefabPos.x = _energiationButtonPos.x;
-                spotlightPrefabPos.z = _energiationButtonPos.z;
-
-                transform.position = spotlightPrefabPos;
-                break;
-            //_energiationButtonPos9
-
-            case 10:
-                spotlightPrefabPos.x = _CPRAudiopos.x;
-                spotlightPrefabPos.z = _CPRAudiopos.z;
-
-                transform.position = spotlightPrefabPos;
-                break;
-            //_CPRAudiopos10
-
-
-            case 11:
-                spotlightPrefabPos.x = _tempoSoundPos.x;
-                spotlightPrefabPos.z = _tempoSoundPos.z;
-
-                transform.position = spotlightPrefabPos;
-                break;
-
-            default:
-                break;
-                //_tempoSoundPos11
-        }//switchここまで
+        //default:
+        //    break;
+        //    //_tempoSoundPos11
+        // }//switchここまで
 
 
     }//Update()ここまで
