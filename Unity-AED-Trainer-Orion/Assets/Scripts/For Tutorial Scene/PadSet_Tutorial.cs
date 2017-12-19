@@ -14,6 +14,7 @@ public class PadSet_Tutorial : MonoBehaviour {
         if (humancols.gameObject.tag == "Pad2")
         {
             FlagManager.Instance.flags[4] = true;
+            FlagManager.Instance.flags[24] = true;//AutoMoveSpotlightへ
             Destroy(GetComponent<Collider>());
         }
     }
