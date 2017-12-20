@@ -30,7 +30,7 @@ public class CPRAudio_Tutorial : MonoBehaviour {
     public bool isTempoSoundLoop = true;
 
     //他クラスから継承
-    ChestCompression _chestCompression;
+    ChestCompression_Tutorial _chestCompression_Tutorial;
     uint _pushCount;
 
 
@@ -40,7 +40,7 @@ public class CPRAudio_Tutorial : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        _chestCompression = GameObject.Find("ChestComplession").GetComponent<ChestCompression>();
+        _chestCompression_Tutorial = GameObject.Find("ChestComplession").GetComponent<ChestCompression_Tutorial>();
 
 
         //音声とりこみ
@@ -73,7 +73,7 @@ public class CPRAudio_Tutorial : MonoBehaviour {
         {
             CPRAnnounceLoop();
 
-            if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
+            if ((_chestCompression_Tutorial.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
@@ -138,7 +138,7 @@ public class CPRAudio_Tutorial : MonoBehaviour {
         {
             AudioSource14_1.PlayDelayed(0.0f);//残り5回です
 
-            _pushCount = _chestCompression.PushCount;//PushCountが5回押されたか判定する用
+            _pushCount = _chestCompression_Tutorial.PushCount;//PushCountが5回押されたか判定する用
             isAudio14_1Played = true;
         }
     }

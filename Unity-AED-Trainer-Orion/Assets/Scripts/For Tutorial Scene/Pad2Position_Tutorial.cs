@@ -36,6 +36,7 @@ public class Pad2Position_Tutorial : MonoBehaviour {
             _pad2Pos.z = _handPos.ConvertPosition.z;
 
             this.transform.position = _pad2Pos;
+            FlagManager.Instance.flags[24] = true;//AutoMoveSpotlightへ
         }
     }
 }

@@ -37,6 +37,7 @@ public class ButtonAudio1_Tutorial : MonoBehaviour {
             AudioSource9.PlayDelayed(AudioClip7.length + AudioClip8.length + AudioClip9.length + 2.0f);//電気ショックが必要です、充電しています
 
             FlagManager.Instance.flags[5] = true;
+            FlagManager.Instance.flags[25] = true;//AutoMoveSpotlightへ
 
         }
     }

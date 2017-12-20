@@ -167,22 +167,25 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         }
 
-        if (FlagManager.Instance.flags[24] == true)//PadSet_Tutorialから
+        if (FlagManager.Instance.flags[24] == true)//Pad2Position_Tutorialから
         {
             spotlightPrefabPos.x = _padSetPosition2Pos.x;
-            spotlightPrefabPos.z = _padSetPosition2Pos.z;
+            spotlightPrefabPos.z = _padSetPosition2Pos.z;//spotlight位置修正
 
             transform.position = spotlightPrefabPos;
-        
+            _textTutorialText.text = ("パッドを左胸に貼り付けてください");
             //_pad2PositionPos6
         }
-        //case 7:
-        //    spotlightPrefabPos.x = _buttonAudio1Pos.x;
-        //    spotlightPrefabPos.z = _buttonAudio1Pos.z;
 
-        //    transform.position = spotlightPrefabPos;
-        //    break;
-        ////_buttonAudio1Pos7
+        if (FlagManager.Instance.flags[25] == true)//ButtonAudio1_Tutorialから
+        {
+            spotlightPrefabPos.x = _buttonAudio1Pos.x;
+            spotlightPrefabPos.z = _buttonAudio1Pos.z;
+
+            transform.position = spotlightPrefabPos;
+            _textTutorialText.text = ("電気ショックの充電が終わるまで人に触らないでください");
+            //_buttonAudio1Pos7
+        }
 
         //case 8: 
         //    spotlightPrefabPos.x = _buttonAudio2Pos.x;
