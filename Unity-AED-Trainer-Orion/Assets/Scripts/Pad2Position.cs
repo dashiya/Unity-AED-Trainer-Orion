@@ -39,4 +39,3 @@ public class Pad2Position : MonoBehaviour
         }
     }
 }
-
