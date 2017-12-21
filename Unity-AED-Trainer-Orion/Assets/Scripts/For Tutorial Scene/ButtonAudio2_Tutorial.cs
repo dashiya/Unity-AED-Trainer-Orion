@@ -20,6 +20,7 @@ public class ButtonAudio2_Tutorial : MonoBehaviour
         {
             AudioSource10_Scenario5.Play(138400 * 6);//体から離れてください 点滅ボタンをしっかりと押してください
             FlagManager.Instance.flags[6] = true;
+            FlagManager.Instance.flags[26] = true;  //AutoMoveSpotlightへ
         }
     }
 }

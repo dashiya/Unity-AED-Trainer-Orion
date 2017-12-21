@@ -187,41 +187,43 @@ public class AutoMoveSpotlight : MonoBehaviour
             //_buttonAudio1Pos7
         }
 
-        //case 8: 
-        //    spotlightPrefabPos.x = _buttonAudio2Pos.x;
-        //    spotlightPrefabPos.z = _buttonAudio2Pos.z;
+        if (FlagManager.Instance.flags[26] == true)//ButtonAudio1_Tutorialから
+        {
+            spotlightPrefabPos.x = _buttonAudio2Pos.x;
+            spotlightPrefabPos.z = _buttonAudio2Pos.z;
 
-        //    transform.position = spotlightPrefabPos;
-        //    break;
-        ////_buttonAudio2Pos8
+            transform.position = spotlightPrefabPos;
+            _textTutorialText.text = ("充電されました 点滅ボタンを押してください");
+            //_buttonAudio2Pos8
+        }
 
-        //case 9:
+
+      
         //    spotlightPrefabPos.x = _energiationButtonPos.x;
         //    spotlightPrefabPos.z = _energiationButtonPos.z;
 
         //    transform.position = spotlightPrefabPos;
-        //    break;
+     
         ////_energiationButtonPos9
 
-        //case 10:
+
+
         //    spotlightPrefabPos.x = _CPRAudiopos.x;
         //    spotlightPrefabPos.z = _CPRAudiopos.z;
 
         //    transform.position = spotlightPrefabPos;
-        //    break;
+
         ////_CPRAudiopos10
 
 
-        //case 11:
+
         //    spotlightPrefabPos.x = _tempoSoundPos.x;
         //    spotlightPrefabPos.z = _tempoSoundPos.z;
 
         //    transform.position = spotlightPrefabPos;
-        //    break;
 
-        //default:
-        //    break;
-        //    //_tempoSoundPos11
+
+
         // }//switchここまで
 
     }//Update()ここまで
