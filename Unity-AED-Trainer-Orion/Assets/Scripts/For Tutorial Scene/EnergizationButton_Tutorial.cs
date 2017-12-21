@@ -47,8 +47,9 @@ public class EnergizationButton_Tutorial : MonoBehaviour {
         //if(手が触れていてかつ音声がすべて再生すみなら)
         if (hc.IsHand(enecol) && FlagManager.Instance.flags[6] == true && FlagManager.Instance.flags[7] == false)
         {
-            AudioSource11_Scenario4.Play(12800);
+            AudioSource11_Scenario4.Play(12800);//電気ショックを行いました
             FlagManager.Instance.flags[7] = true;
+            FlagManager.Instance.flags[27] = true;//AutoMoveSpotlightへ
         }
     }
 }

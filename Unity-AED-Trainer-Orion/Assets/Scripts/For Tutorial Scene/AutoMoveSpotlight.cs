@@ -46,6 +46,10 @@ public class AutoMoveSpotlight : MonoBehaviour
 
     Text _textTutorialText;
 
+    //指定秒数後にテキストの中身を変える用
+    float changeTextTime = 3.0f;
+    float time = 0.0f;
+
 
     //ForDebug
     public int textNumberInt;
@@ -187,34 +191,41 @@ public class AutoMoveSpotlight : MonoBehaviour
             //_buttonAudio1Pos7
         }
 
-        if (FlagManager.Instance.flags[26] == true)//ButtonAudio1_Tutorialから
+        if (FlagManager.Instance.flags[26] == true)//ButtonAudio2_Tutorialから
         {
             spotlightPrefabPos.x = _buttonAudio2Pos.x;
             spotlightPrefabPos.z = _buttonAudio2Pos.z;
 
             transform.position = spotlightPrefabPos;
-            _textTutorialText.text = ("充電されました 点滅ボタンを押してください");
+            _textTutorialText.text = ("充電されたら 点滅ボタンを押してください");
             //_buttonAudio2Pos8
         }
 
 
-      
-        //    spotlightPrefabPos.x = _energiationButtonPos.x;
-        //    spotlightPrefabPos.z = _energiationButtonPos.z;
+        if (FlagManager.Instance.flags[27] == true)//EnergizationButton_Tutorialから
+        {
+            spotlightPrefabPos.x = _energiationButtonPos.x;
+            spotlightPrefabPos.z = _energiationButtonPos.z;
 
-        //    transform.position = spotlightPrefabPos;
-     
-        ////_energiationButtonPos9
+            transform.position = spotlightPrefabPos;
+            _textTutorialText.text = ("電気ショックが行われました　音に合わせて胸骨圧迫を行ってください");
+
+               
+                //_energiationButtonPos9
+            }
 
 
+        if (FlagManager.Instance.flags[28] == true)//CPRAudio_Tutorialから
+        {
+            spotlightPrefabPos.x = _CPRAudiopos.x;
+            spotlightPrefabPos.z = _CPRAudiopos.z;
 
-        //    spotlightPrefabPos.x = _CPRAudiopos.x;
-        //    spotlightPrefabPos.z = _CPRAudiopos.z;
+            transform.position = spotlightPrefabPos;
+            _textTutorialText.text = ("光っている場所を音に合わせて押し込んでください");
 
-        //    transform.position = spotlightPrefabPos;
 
-        ////_CPRAudiopos10
-
+                //_CPRAudiopos10
+            }
 
 
         //    spotlightPrefabPos.x = _tempoSoundPos.x;

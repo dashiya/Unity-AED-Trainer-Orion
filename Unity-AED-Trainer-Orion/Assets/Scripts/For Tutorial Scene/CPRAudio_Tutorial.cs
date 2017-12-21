@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CPRAudio_Tutorial : MonoBehaviour {
+public class CPRAudio_Tutorial : MonoBehaviour
+{
 
 
     AudioSource AudioSource12;
@@ -121,11 +122,12 @@ public class CPRAudio_Tutorial : MonoBehaviour {
         if (isAudio12Played == false)
         {
             //flags[5]→[7]が連続して処理されるので、AudioSource12の再生時間をAudioSource7,8,16の時間分遅延させる必要がある、最後の4.0fは音声の再生に間をもたせるため
-            AudioSource12.PlayDelayed(audioSource7length + audioSource8Length + AudioClip16.length + 4.0f); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
+            AudioSource12.PlayDelayed(audioSource7length + audioSource8Length + AudioClip16.length + 2.0f); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
 
             isAudio12Played = true;
             isTempoSoundLoop = true;
+            FlagManager.Instance.flags[28] = true; //AutoMoveSpotlightへ
         }
 
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
