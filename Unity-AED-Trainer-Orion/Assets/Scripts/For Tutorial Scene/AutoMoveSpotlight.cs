@@ -208,11 +208,11 @@ public class AutoMoveSpotlight : MonoBehaviour
             spotlightPrefabPos.z = _energiationButtonPos.z;
 
             transform.position = spotlightPrefabPos;
-            _textTutorialText.text = ("電気ショックが行われました　音に合わせて胸骨圧迫を行ってください");
+            _textTutorialText.text = ("電気ショックが行われました");
 
-               
-                //_energiationButtonPos9
-            }
+
+            //_energiationButtonPos9
+        }
 
 
         if (FlagManager.Instance.flags[28] == true)//CPRAudio_Tutorialから
@@ -221,21 +221,18 @@ public class AutoMoveSpotlight : MonoBehaviour
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
             transform.position = spotlightPrefabPos;
-            _textTutorialText.text = ("光っている場所を音に合わせて押し込んでください");
+            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
 
 
-                //_CPRAudiopos10
-            }
+
+            //_CPRAudiopos10
+        }
 
 
         //    spotlightPrefabPos.x = _tempoSoundPos.x;
         //    spotlightPrefabPos.z = _tempoSoundPos.z;
 
         //    transform.position = spotlightPrefabPos;
-
-
-
-        // }//switchここまで
 
     }//Update()ここまで
 }
