@@ -3,8 +3,6 @@ using System.Collections;
 
 public class CPRAudio_Tutorial : MonoBehaviour
 {
-
-
     AudioSource AudioSource12;
     AudioSource AudioSource13;
     AudioSource AudioSource14_1;
@@ -26,6 +24,9 @@ public class CPRAudio_Tutorial : MonoBehaviour
     bool isAudio14_2Played = false;
     bool isAudio15Played = false;
     bool isAudio16Played = false;
+
+    bool isFirstCPRAnnouncePlayed = false;
+    bool isSecondCPRAnnouncePlayed = false;
 
 
     public bool isTempoSoundLoop = true;
@@ -61,51 +62,6 @@ public class CPRAudio_Tutorial : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        AudioDebug();
-
-        if (FlagManager.Instance.flags[7] == true)
-        {
-            CPRAnnounceLoop();
-
-            if ((_chestCompression_Tutorial.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
-            {
-                AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
-                isAudio14_2Played = true;
-                isTempoSoundLoop = false;
-
-            }
-            if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
-            {
-                AudioSource15.PlayDelayed(AudioClip14_2.length);//心電図を調べています、体に触らないでください  
-                isAudio15Played = true;
-            }
-
-            if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio16Played == false)
-            {
-                AudioSource16.PlayDelayed(0.0f);//電気ショックは必要ありません  
-
-                //CPRAnnounceLoopの各種フラグリセット
-                isAudio12Played = false;
-                isAudio13Played = false;
-                isAudio14_1Played = false;
-
-                isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
-            }
-
-            if (isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)
-            {
-                CPRAnnounceLoop();
-            }
-        }
-    }
-
-    void AudioDebug()
-    {
-        //Debug用コード書くところ
-    }
-
     public void CPRAnnounceLoop()
     {
         double announceTime = 0.0;
@@ -136,7 +92,63 @@ public class CPRAudio_Tutorial : MonoBehaviour
             AudioSource14_1.PlayDelayed(0.0f);//残り5回です
 
             _pushCount = _chestCompression_Tutorial.PushCount;//PushCountが5回押されたか判定する用
+            FlagManager.Instance.flags[29] = true; //AutoMoveSpotlightへ
             isAudio14_1Played = true;
         }
-    }
+
+        if(isFirstCPRAnnouncePlayed == true && isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == true)
+        {
+             isSecondCPRAnnouncePlayed = true;
+            isTempoSoundLoop = false;
+            FlagManager.Instance.flags[40] = true;//AutoMoveSpotlightへ
+
+        }
+    }//CPRAnnounceLoopここまで
+
+
+
+    void Update()
+    {
+        if (FlagManager.Instance.flags[7] == true)
+        {
+            if (isFirstCPRAnnouncePlayed == false && isSecondCPRAnnouncePlayed == false) 
+            {
+                CPRAnnounceLoop();//CPRAnnounceLoop一回目
+            }
+
+            if ((_chestCompression_Tutorial.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)//5回圧迫され、音声はすべて再生されていない
+            {
+                AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
+                isAudio14_2Played = true;
+                isTempoSoundLoop = false;
+
+                isFirstCPRAnnouncePlayed = true;
+
+                FlagManager.Instance.flags[30] = true;//AutoMoveSpotlightへ
+
+            }
+            if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
+            {
+                AudioSource15.PlayDelayed(AudioClip14_2.length);//心電図を調べています、体に触らないでください  
+                isAudio15Played = true;
+            }
+
+            if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio16Played == false)
+            {
+                AudioSource16.PlayDelayed(0.0f);//電気ショックは必要ありません  
+
+                //CPRAnnounceLoopの各種フラグリセット
+                isAudio12Played = false;
+                isAudio13Played = false;
+                isAudio14_1Played = false;
+
+                isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
+            }
+
+            if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)
+            {
+                CPRAnnounceLoop();//CPRAnnounceLoop二回目
+            }
+        }
+    }//Updateここまで
 }

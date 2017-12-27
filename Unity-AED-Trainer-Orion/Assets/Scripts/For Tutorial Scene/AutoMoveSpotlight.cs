@@ -224,7 +224,7 @@ public class AutoMoveSpotlight : MonoBehaviour
 
             transform.position = spotlightPrefabPos;
 
-            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");//todo:数秒遅延させて表示されるタイミングと深さの説明
+            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
 
             time += Time.deltaTime;
             if (time > changeTextTime)//3秒経過したら
@@ -233,17 +233,40 @@ public class AutoMoveSpotlight : MonoBehaviour
             }
             if (time > (changeTextTime + 3.0f))//6秒経過したら
             {
-                _textTutorialText.text = ("表示されるのは圧迫深さが正しく-5cmになったときです");
+                _textTutorialText.text = ("表示されるのは圧迫深さが-5cm～-6cmになったときです");
             }
 
             //_CPRAudiopos10
         }
+        if (FlagManager.Instance.flags[29] == true)//CPRAudio_Tutorialから
+        {
+            spotlightPrefabPos.x = _CPRAudiopos.x;
+            spotlightPrefabPos.z = _CPRAudiopos.z;
 
+            transform.position = spotlightPrefabPos;
+
+            _textTutorialText.text = ("5回押し込んでください");
+        }
+        if (FlagManager.Instance.flags[30] == true)//CPRAudio_Tutorialから
+        {
+            spotlightPrefabPos.x = _buttonAudio1Pos.x;
+            spotlightPrefabPos.z = _buttonAudio1Pos.z;
+
+            transform.position = spotlightPrefabPos;
+            _textTutorialText.text = ("心電図の解析が終わるまで人に触らないでください");
+            //_buttonAudio1Pos7
+        }
+
+        if (FlagManager.Instance.flags[40] == true)//CPRAudio_Tutorialから
+        {
+            _textTutorialText.text = ("チュートリアルは終了です");
+        }
 
         //    spotlightPrefabPos.x = _tempoSoundPos.x;
         //    spotlightPrefabPos.z = _tempoSoundPos.z;
 
-        //    transform.position = spotlightPrefabPos;
+            //    transform.position = spotlightPrefabPos;
+
 
     }//Update()ここまで
 }

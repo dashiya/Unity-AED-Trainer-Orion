@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+//スタートシーンから、ボタンに触れたときに訓練用シーン3つに分岐するためのスクリプト
 public class RandomChangeScene : MonoBehaviour
 {
     int randomSceneNumber;

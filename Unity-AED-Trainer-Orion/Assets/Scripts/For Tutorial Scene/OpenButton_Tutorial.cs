@@ -54,14 +54,9 @@ public class OpenButton_Tutorial : MonoBehaviour {
         }
     }
 
-    void ForDebug()
-    {
-        Debug.Log(_coverTransform + "_coverTransform");
-    }
 
     void Update()
     {
-        ForDebug();
 
         if (isPlayFlag == true)
         {
@@ -83,5 +78,5 @@ public class OpenButton_Tutorial : MonoBehaviour {
         {
             isWearSound = true;
         }
-    }//Update終了
+    }//Updateここまで
 }
