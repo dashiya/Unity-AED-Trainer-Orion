@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Todo:音声周り、正しく再生されるように変更する
-//具体的にはそれぞれのAudioClipの再生時間を取得してdelayに反映、指定秒数待って再生するやつはタイマー実装してカウント
-// for chest complession and announcemennt
+
+
 public class CPRAudio : MonoBehaviour
 {
     AudioSource AudioSource12;
@@ -28,6 +27,10 @@ public class CPRAudio : MonoBehaviour
     bool isAudio15Played = false;
     bool isAudio16Played = false;
 
+
+
+    bool isFirstCPRAnnouncePlayed = false;
+    bool isSecondCPRAnnouncePlayed = false;
 
     public bool isTempoSoundLoop = true;
 
@@ -73,7 +76,11 @@ public class CPRAudio : MonoBehaviour
 
         if (FlagManager.Instance.flags[7] == true)
         {
-            CPRAnnounceLoop();
+            if (isFirstCPRAnnouncePlayed == false && isSecondCPRAnnouncePlayed == false)
+            {
+                CPRAnnounceLoop();//CPRAnnounceLoop一回目
+            }
+
 
             if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
@@ -100,10 +107,12 @@ public class CPRAudio : MonoBehaviour
                 isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
             }
 
-            if (isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)
+            if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)
             {
-                CPRAnnounceLoop();
+                CPRAnnounceLoop();//CPRAnnounceLoop二回目
             }
+
+  
         }
     }
 
@@ -143,5 +152,13 @@ public class CPRAudio : MonoBehaviour
             _pushCount = _chestCompression.PushCount;//PushCountが5回押されたか判定する用
             isAudio14_1Played = true;
         }
+
+        if (isFirstCPRAnnouncePlayed == true && isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == true)
+        {
+            isSecondCPRAnnouncePlayed = true;
+            isTempoSoundLoop = false;
+
+        }
+
     }
 }

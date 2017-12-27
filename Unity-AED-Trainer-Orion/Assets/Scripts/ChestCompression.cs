@@ -76,7 +76,7 @@ public class ChestCompression : MonoBehaviour
         }
 
         //2つめ
-        if (isTouch == true && isStart == true && isPush == false && (StartPosition.y - 0.05) >= (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm沈み込んだらフラグをたてる
+        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
         {
             isPush = true;
         }

@@ -26,15 +26,15 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
     bool isAudio16Played = false;
 
 
+    bool isFirstCPRAnnouncePlayed = false;
+    bool isSecondCPRAnnouncePlayed = false;
+
     public bool isTempoSoundLoop_scenario5 = true;
 
     //他クラスから継承
     ChestCompression _chestCompression;
     uint _pushCount;
 
-
-    //ForDebug
-    AudioSource AudioSource_Debug;
 
     // Use this for initialization
     void Start()
@@ -59,18 +59,21 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
         AudioClip15 = AudioSource15.clip;
         AudioClip17_1 = AudioSource17_1.clip;
 
-        //ForDebug
-        AudioSource_Debug = audioSources[6];
+      
 
     }
 
     void Update()
     {
-        AudioDebug();
 
         if (FlagManager.Instance.flags[7] == true)
         {
-            CPRAnnounceLoop_Scenario5();
+            if (isFirstCPRAnnouncePlayed == false && isSecondCPRAnnouncePlayed == false)
+            {
+                CPRAnnounceLoop_Scenario5();//CPRAnnounceLoop一回目
+            }
+
+
 
             if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
@@ -97,7 +100,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
                 isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
             }
 
-            if (isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource17_1.isPlaying == false)
+            if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource17_1.isPlaying == false)
             {
                 CPRAnnounceLoop_Scenario5();
             }
@@ -136,6 +139,14 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
 
             _pushCount = _chestCompression.PushCount;//PushCountが5回押されたか判定する用
             isAudio14_1Played = true;
+        }
+
+        if (isFirstCPRAnnouncePlayed == true && isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == true)
+        {
+            isSecondCPRAnnouncePlayed = true;
+            isTempoSoundLoop_scenario5 = false;
+           
+
         }
     }
 }

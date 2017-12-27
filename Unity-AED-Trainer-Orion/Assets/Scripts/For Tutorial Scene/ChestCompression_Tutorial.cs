@@ -25,8 +25,8 @@ public class ChestCompression_Tutorial : MonoBehaviour {
 
     private int aIndex;
 
-    public float PushTime = 0f;
-    public float CurrentTime = 0f;
+    public float PushTime = 0.0f;
+    public float CurrentTime = 0.0f;
 
     Text _tTex;
     MeshRenderer _tTexMesh;
@@ -74,7 +74,7 @@ public class ChestCompression_Tutorial : MonoBehaviour {
         }
 
         
-        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.05)  &&  (StartPosition.y - 0.06) < (hp.ConvertPosition.y) )//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる
+        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f)  &&  (StartPosition.y - 0.30f) < (hp.ConvertPosition.y) )//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
         {
             isPush = true;
         }
@@ -96,6 +96,7 @@ public class ChestCompression_Tutorial : MonoBehaviour {
         TimeJudge();
 
         Debug.Log(PushCount + "回");
+        Debug.Log(hp.ConvertPosition.y);
     }//Update終了
 
     //胸骨圧迫→胸骨圧迫の間隔の時間を取得するクラス
