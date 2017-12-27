@@ -57,16 +57,17 @@ public class AutoMoveSpotlight : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //SpotlightのGameObject,Transform,Positionを取得
         spotlightPrefab = GameObject.Find("MoveSoptlight");
         spotlightPrefabTransform = spotlightPrefab.GetComponent<Transform>();
         spotlightPrefabPos = spotlightPrefabTransform.position;
 
+        //Tutorial用の文字を表示するためのTextを取得
         _textTutorialText = GameObject.Find("TextTutorial").GetComponent<Text>();
 
 
-        //OpenButton_Tutorial,DestroyWear_Tutorial取得
-        //それぞれのTransformにアクセス
-        //MoveSpotlightの生成
+        
+        //それぞれのTransformにアクセス、Positionを取得
         _openButtonTutorialTransform = GameObject.Find("開閉ボタン").GetComponent<Transform>();//1
         _openButtonTutorialPos = _openButtonTutorialTransform.position;
 
@@ -217,13 +218,23 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         if (FlagManager.Instance.flags[28] == true)//CPRAudio_Tutorialから
         {
+            
             spotlightPrefabPos.x = _CPRAudiopos.x;
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
             transform.position = spotlightPrefabPos;
-            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
 
+            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");//todo:数秒遅延させて表示されるタイミングと深さの説明
 
+            time += Time.deltaTime;
+            if (time > changeTextTime)//3秒経過したら
+            {
+                _textTutorialText.text = ("押し込むタイミングが早い時はFast\n遅い時はSlow、正しい時はGoodと表示されます");
+            }
+            if (time > (changeTextTime + 3.0f))//6秒経過したら
+            {
+                _textTutorialText.text = ("表示されるのは圧迫深さが正しく-5cmになったときです");
+            }
 
             //_CPRAudiopos10
         }

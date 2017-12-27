@@ -35,9 +35,6 @@ public class CPRAudio_Tutorial : MonoBehaviour
     uint _pushCount;
 
 
-    //ForDebug
-    AudioSource AudioSource_Debug;
-
     // Use this for initialization
     void Start()
     {
@@ -61,8 +58,6 @@ public class CPRAudio_Tutorial : MonoBehaviour
         AudioClip15 = AudioSource15.clip;
         AudioClip16 = AudioSource16.clip;
 
-        //ForDebug
-        AudioSource_Debug = audioSources[6];
 
     }
 
@@ -121,8 +116,8 @@ public class CPRAudio_Tutorial : MonoBehaviour
 
         if (isAudio12Played == false)
         {
-            //flags[5]→[7]が連続して処理されるので、AudioSource12の再生時間をAudioSource7,8,16の時間分遅延させる必要がある、最後の4.0fは音声の再生に間をもたせるため
-            AudioSource12.PlayDelayed(audioSource7length + audioSource8Length + AudioClip16.length + 2.0f); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
+            //flags[5]→[7]が連続して処理されるので、AudioSource12の再生時間をAudioSource7,8,16の時間分遅延させる必要がある
+            AudioSource12.PlayDelayed(audioSource7length + audioSource8Length + AudioClip16.length); //体にさわっても大丈夫です、直ちに胸骨圧迫と人工呼吸を始めてください
             announceTime = Time.time;
 
             isAudio12Played = true;
