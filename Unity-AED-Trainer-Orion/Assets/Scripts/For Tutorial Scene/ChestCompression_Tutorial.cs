@@ -12,9 +12,9 @@ public class ChestCompression_Tutorial : MonoBehaviour {
     public uint PushCount = 0;
     private uint CurrentCount = 0;
 
-    private bool isTouch = false;
-    private bool isPush = false;
-    private bool isStart = false;
+    public bool isTouch = false;
+    public bool isPush = false;
+    public bool isStart = false;
     public bool isCount = false;
     public bool isGood = false;
     public bool isLate = false;
@@ -96,7 +96,7 @@ public class ChestCompression_Tutorial : MonoBehaviour {
         TimeJudge();
 
         Debug.Log(PushCount + "回");
-        Debug.Log(hp.ConvertPosition.y);
+
     }//Update終了
 
     //胸骨圧迫→胸骨圧迫の間隔の時間を取得するクラス

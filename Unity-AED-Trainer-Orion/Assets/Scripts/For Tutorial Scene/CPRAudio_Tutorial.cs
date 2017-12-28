@@ -122,15 +122,18 @@ public class CPRAudio_Tutorial : MonoBehaviour
                 isAudio14_2Played = true;
                 isTempoSoundLoop = false;
 
-                isFirstCPRAnnouncePlayed = true;
-
                 FlagManager.Instance.flags[30] = true;//AutoMoveSpotlightへ
+                Debug.Log("flags[30] = true");
+                isFirstCPRAnnouncePlayed = true;
 
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
             {
                 AudioSource15.PlayDelayed(AudioClip14_2.length);//心電図を調べています、体に触らないでください  
                 isAudio15Played = true;
+
+                FlagManager.Instance.flags[31] = true;//AutoMoveSpotlightへ
+                Debug.Log("flags[31] = true");
             }
 
             if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio16Played == false)
@@ -141,8 +144,9 @@ public class CPRAudio_Tutorial : MonoBehaviour
                 isAudio12Played = false;
                 isAudio13Played = false;
                 isAudio14_1Played = false;
-
+            
                 isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
+               
             }
 
             if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource16.isPlaying == false)

@@ -240,13 +240,15 @@ public class AutoMoveSpotlight : MonoBehaviour
         }
         if (FlagManager.Instance.flags[29] == true)//CPRAudio_Tutorialから
         {
+            time = 0.0f;//タイマーリセット
             spotlightPrefabPos.x = _CPRAudiopos.x;
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
             transform.position = spotlightPrefabPos;
 
             _textTutorialText.text = ("5回押し込んでください");
-        }
+        }//11
+
         if (FlagManager.Instance.flags[30] == true)//CPRAudio_Tutorialから
         {
             spotlightPrefabPos.x = _buttonAudio1Pos.x;
@@ -254,19 +256,36 @@ public class AutoMoveSpotlight : MonoBehaviour
 
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("心電図の解析が終わるまで人に触らないでください");
-            //_buttonAudio1Pos7
-        }
+            Debug.Log("flag[30] = true, AutoMoveSpotlight");
+        }//12
+
+        if (FlagManager.Instance.flags[31] == true)//CPRAudio_Tutorialから
+        {
+
+            spotlightPrefabPos.x = _CPRAudiopos.x;
+            spotlightPrefabPos.z = _CPRAudiopos.z;
+
+            transform.position = spotlightPrefabPos;
+
+            _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
+            
+            time += Time.deltaTime;
+            if (time > changeTextTime)//3秒経過したら
+            {
+                _textTutorialText.text = ("押し込むタイミングが早い時はFast\n遅い時はSlow、正しい時はGoodと表示されます");
+            }
+            if (time > (changeTextTime + 3.0f))//6秒経過したら
+            {
+                _textTutorialText.text = ("表示されるのは圧迫深さが-5cm～-6cmになったときです");
+            }
+            Debug.Log("flag[31] = true, AutoMoveSpotlight");
+        }//_CPRAudiopos13
+
 
         if (FlagManager.Instance.flags[40] == true)//CPRAudio_Tutorialから
         {
             _textTutorialText.text = ("チュートリアルは終了です");
         }
-
-        //    spotlightPrefabPos.x = _tempoSoundPos.x;
-        //    spotlightPrefabPos.z = _tempoSoundPos.z;
-
-            //    transform.position = spotlightPrefabPos;
-
 
     }//Update()ここまで
 }
