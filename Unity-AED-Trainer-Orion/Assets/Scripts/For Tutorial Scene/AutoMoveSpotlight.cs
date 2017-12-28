@@ -47,8 +47,8 @@ public class AutoMoveSpotlight : MonoBehaviour
     Text _textTutorialText;
 
     //指定秒数後にテキストの中身を変える用
-    float changeTextTime = 3.0f;
-    float time = 0.0f;
+    float changeTextTime_1, chageTextTime_2 = 3.0f;
+   public float time_1,time_2;
 
 
     //ForDebug
@@ -129,7 +129,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         if (FlagManager.Instance.flags[20] == true)//openbutton_tutorial 開閉ボタンにふれたら
         {
 
-            spotlightPrefabPos.x = -1.296f;
+            spotlightPrefabPos.x = -1.37f;
             spotlightPrefabPos.z = 0.81f;
 
             transform.position = spotlightPrefabPos;
@@ -142,10 +142,10 @@ public class AutoMoveSpotlight : MonoBehaviour
         if (GameObject.Find("Wear Object") == null)//DestroyWear 服にふれたら
         {
 
-            spotlightPrefabPos.x = _pad1PositionPos.x;
-            spotlightPrefabPos.z = _pad1PositionPos.z;
+            spotlightPrefabPos.x = 0.66f;
+            spotlightPrefabPos.z = 2.48f;
 
-            transform.position = spotlightPrefabPos;//todo spotlight位置ずれがあるので修正
+            transform.position = spotlightPrefabPos;
 
             _textTutorialText.text = ("パッドにふれてください");
             //_pad1PositionPos3
@@ -153,18 +153,18 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         if (FlagManager.Instance.flags[22] == true)//Pad1Position_Tutorial パッド1にふれたら
         {
-            spotlightPrefabPos.x = _padSetPosition1Pos.x;
-            spotlightPrefabPos.z = _padSetPosition1Pos.z;
+            spotlightPrefabPos.x = -1.8f;
+            spotlightPrefabPos.z = 1.8f;
 
-            transform.position = spotlightPrefabPos;//todo spotlight位置が違うので修正
+            transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("パッドを右胸に貼り付けてください");
             //_padSetPosition1Pos4
         }
 
         if (FlagManager.Instance.flags[23] == true)//PadSet_Tutorial
         {
-            spotlightPrefabPos.x = _pad2PositionPos.x;
-            spotlightPrefabPos.z = _pad2PositionPos.z;
+            spotlightPrefabPos.x = 0.07f;
+            spotlightPrefabPos.z = 2.48f;
 
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("パッドにふれてください");
@@ -174,8 +174,8 @@ public class AutoMoveSpotlight : MonoBehaviour
 
         if (FlagManager.Instance.flags[24] == true)//Pad2Position_Tutorialから
         {
-            spotlightPrefabPos.x = _padSetPosition2Pos.x;
-            spotlightPrefabPos.z = _padSetPosition2Pos.z;//spotlight位置修正
+            spotlightPrefabPos.x = -1.2f;
+            spotlightPrefabPos.z = 1.25f;
 
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("パッドを左胸に貼り付けてください");
@@ -226,12 +226,12 @@ public class AutoMoveSpotlight : MonoBehaviour
 
             _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
 
-            time += Time.deltaTime;
-            if (time > changeTextTime)//3秒経過したら
+            time_1 += Time.deltaTime;
+            if (time_1 > changeTextTime_1)//3秒経過したら
             {
                 _textTutorialText.text = ("押し込むタイミングが早い時はFast\n遅い時はSlow、正しい時はGoodと表示されます");
             }
-            if (time > (changeTextTime + 3.0f))//6秒経過したら
+            if (changeTextTime_1 > (changeTextTime_1 + 3.0f))//6秒経過したら
             {
                 _textTutorialText.text = ("表示されるのは圧迫深さが-5cm～-6cmになったときです");
             }
@@ -240,7 +240,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         }
         if (FlagManager.Instance.flags[29] == true)//CPRAudio_Tutorialから
         {
-            time = 0.0f;//タイマーリセット
+         
             spotlightPrefabPos.x = _CPRAudiopos.x;
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
@@ -256,7 +256,7 @@ public class AutoMoveSpotlight : MonoBehaviour
 
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("心電図の解析が終わるまで人に触らないでください");
-            Debug.Log("flag[30] = true, AutoMoveSpotlight");
+
         }//12
 
         if (FlagManager.Instance.flags[31] == true)//CPRAudio_Tutorialから
@@ -268,17 +268,17 @@ public class AutoMoveSpotlight : MonoBehaviour
             transform.position = spotlightPrefabPos;
 
             _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
-            
-            time += Time.deltaTime;
-            if (time > changeTextTime)//3秒経過したら
+
+            time_2 += Time.deltaTime;
+            if (time_2 > chageTextTime_2)//3秒経過したら
             {
                 _textTutorialText.text = ("押し込むタイミングが早い時はFast\n遅い時はSlow、正しい時はGoodと表示されます");
             }
-            if (time > (changeTextTime + 3.0f))//6秒経過したら
+            if (time_2 > (chageTextTime_2 + 3.0f))//6秒経過したら
             {
                 _textTutorialText.text = ("表示されるのは圧迫深さが-5cm～-6cmになったときです");
             }
-            Debug.Log("flag[31] = true, AutoMoveSpotlight");
+
         }//_CPRAudiopos13
 
 
