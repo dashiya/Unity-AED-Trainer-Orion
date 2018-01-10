@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-//Cubeに一定時間触れたかどうかの判定をする→RandomChangeSceneへ
+//Cubeに一定時間触れたかどうかの判定をする→RandomChangeScene(訓練),StartTutorialScene(チュートリアル)へ分岐
 public class GetBoxCollider : MonoBehaviour
 {
     float StartTime = 0.0f;
@@ -10,12 +10,13 @@ public class GetBoxCollider : MonoBehaviour
     bool isTouchTimeCount = false;
     bool isTouchStartButton = false;
 
-    public bool canRandomChangeScene = false;
+    public bool canRandomChangeScene,canStartTutorial = false;
+
     LeapHandCollision _hc = new LeapHandCollision();
     // Use this for initialization
     void Start()
     {
-        //Cubeの色変更
+        //Cubeの色変更,Inspector上で変更する方法がわからなかったため
         Renderer rend = GetComponent<Renderer>();
         rend.material.shader = Shader.Find("Specular");
         rend.material.SetColor("_SpecColor", Color.white);
@@ -26,27 +27,32 @@ public class GetBoxCollider : MonoBehaviour
     {
         if (_hc.IsHand(other))
         {
-            isTouchStartButton = true;
+            
+              isTouchStartButton = true;
+  
         }
     }
 
     void OnTriggerEnter(Collider hand)
     {
+        //訓練スタートのためのタイマースタート時間とリセット
         if (_hc.IsHand(hand) && isTouchStartButton == true)
         {
             StartTime = Time.time;
-            Debug.Log("時間計測開始");
+
         }
-        if (_hc.IsHand(hand) && isTouchStartButton == false)
+        if (_hc.IsHand(hand) && isTouchStartButton == false)//GetBoxColliderに触れて離してを繰り返すとタイマーが進む問題を解決するため、離すとタイマーがリセットされる
         {
             StartTime = 0.0f;
         }
+
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        //訓練スタートのためのタイマー
         if (isTouchStartButton == true)
         {
             CurrentTime = Time.time;
@@ -55,8 +61,10 @@ public class GetBoxCollider : MonoBehaviour
         if ((StartTime + 2.0f <= CurrentTime) && isTouchTimeCount == true)
         {
             canRandomChangeScene = true;
-            Debug.Log("2秒こえたよ");
+
         }
-        Debug.Log(canRandomChangeScene);
+
+
+        Debug.Log(CurrentTime + "CurrentTime");
     }
 }
