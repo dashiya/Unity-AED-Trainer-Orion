@@ -7,10 +7,10 @@ public class GetBoxCollider : MonoBehaviour
 {
     float StartTime = 0.0f;
     float CurrentTime = 0.0f;
-    bool isTouchTimeCount = false;
+    bool isStartTimeCount = false;
     bool isTouchStartButton = false;
 
-    public bool canRandomChangeScene, canStartTutorial = false;
+    public bool canRandomChangeScene = false;
 
     LeapHandCollision _hc = new LeapHandCollision();
     // Use this for initialization
@@ -23,51 +23,27 @@ public class GetBoxCollider : MonoBehaviour
 
     }
 
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (_hc.IsHand(other))
-    //    {
-
-    //        isTouchStartButton = true;
-
-    //    } 
-        
-
-    //}
     void OnTriggerExit(Collider exithand)
     {
-        isTouchStartButton = false;
-        StartTime = 0.0f;
-        CurrentTime = 0.0f;
+       
+            isTouchStartButton = false;
+            StartTime = 0.0f;
+            CurrentTime = 0.0f;
+        
 
     }
 
     void OnTriggerEnter(Collider hand)
     {
-        //訓練スタートのためのタイマースタート時間とリセット
-        //if (_hc.IsHand(hand) && isTouchStartButton == true)
-        //{
-        //    StartTime = Time.time;
-
-        //}
-        //if (_hc.IsHand(hand) && isTouchStartButton == false)//GetBoxColliderに触れて離してを繰り返すとタイマーが進む問題を解決するため、離すとタイマーがリセットされる
-        //{
-        //    StartTime = 0.0f;
-        //    CurrentTime = 0.0f;
-
-        //訓練スタートのためのタイマースタート時間とリセット
-        //if (_hc.IsHand(hand) && isTouchStartButton == true)
         if (_hc.IsHand(hand))
          {
             StartTime = Time.time;
             isTouchStartButton = true;
 
         }
-
     }
 
 
-    
 
     // Update is called once per frame
     void Update()
@@ -76,14 +52,14 @@ public class GetBoxCollider : MonoBehaviour
         if (isTouchStartButton == true)
         {
             CurrentTime = Time.time;
-            isTouchTimeCount = true;
+            isStartTimeCount = true;
         } else {
             CurrentTime = 0.0f;
         }
 
-        if ((StartTime + 2.0f <= CurrentTime) && isTouchTimeCount == true && isTouchStartButton == true)
+        if ((StartTime + 2.0f <= CurrentTime) && isStartTimeCount == true && isTouchStartButton == true)
         {
-            canRandomChangeScene = true;
+            canRandomChangeScene = true;//RandomChangeSceneへ
 
         }
 
@@ -93,8 +69,8 @@ public class GetBoxCollider : MonoBehaviour
             CurrentTime = 0.0f;
         }
 
-        Debug.Log(StartTime + "StartTime");
+       // Debug.Log(StartTime + "StartTime");
 
-        Debug.Log(CurrentTime + "CurrentTime");
+        //Debug.Log(CurrentTime + "CurrentTime");
     }
 }

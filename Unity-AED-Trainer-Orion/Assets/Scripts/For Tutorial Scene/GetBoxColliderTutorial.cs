@@ -5,7 +5,8 @@ public class GetBoxColliderTutorial : MonoBehaviour {
 
     float StartTimeTutorial = 0.0f;
     float CurrentTimeTutorial = 0.0f;
-    bool isTouchTimeCountTutorial = false, isTouchTutorialButton = false;
+    bool isStartTimeCountTutorial = false;
+    bool isTouchTutorialButton = false;
 
     public bool canStartTutorial = false;
 
@@ -18,31 +19,20 @@ public class GetBoxColliderTutorial : MonoBehaviour {
         rend.material.SetColor("_SpecColor", Color.black);
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (_hc.IsHand(other))
-        {
-           
-             isTouchTutorialButton = true;
-
-        }
-    }
-     void OnTriggerExit(Collider handmodel)
+    void OnTriggerExit(Collider handmodel)
     {
         isTouchTutorialButton = false;
         StartTimeTutorial = 0.0f;
+        CurrentTimeTutorial = 0.0f;
     }
 
     void OnTriggerEnter(Collider hand)
-    {      //チュートリアルスタートのためのタイマースタート時間とリセット
-        if (_hc.IsHand(hand) && isTouchTutorialButton == true)
+    {     
+        if (_hc.IsHand(hand))
         {
             StartTimeTutorial = Time.time;
+            isTouchTutorialButton = true;
 
-        }
-        if (_hc.IsHand(hand) && isTouchTutorialButton == false)//GetBoxColliderに触れて離してを繰り返すとタイマーが進む問題を解決するため、離すとタイマーがリセットされる
-        {
-            StartTimeTutorial = 0.0f;
         }
     }
 
@@ -53,14 +43,25 @@ public class GetBoxColliderTutorial : MonoBehaviour {
         if (isTouchTutorialButton == true)
         {
             CurrentTimeTutorial = Time.time;
-            isTouchTimeCountTutorial = true;
+            isStartTimeCountTutorial = true;
+        } else
+        {
+            CurrentTimeTutorial = 0.0f;
         }
-        if ((StartTimeTutorial + 2.0f <= CurrentTimeTutorial) && isTouchTimeCountTutorial == true)
+
+        if ((StartTimeTutorial + 2.0f <= CurrentTimeTutorial) && isStartTimeCountTutorial && isTouchTutorialButton == true )
         {
             canStartTutorial = true;
 
         }
 
-        //Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
+        if(isTouchTutorialButton == false)
+        {
+            StartTimeTutorial = 0.0f;
+            CurrentTimeTutorial = 0.0f;
+        }
+
+        Debug.Log(StartTimeTutorial + "StartTimeTutorial");
+        Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
     }
 }
