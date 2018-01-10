@@ -3,8 +3,9 @@ using System.Collections;
 
 public class GetBoxColliderTutorial : MonoBehaviour {
 
-    float  StartTimeTutorial, CurrentTimeTutorial = 0.0f;
-    bool isTouchTimeCountTutorial, isTouchTutorialButton = false;
+    float StartTimeTutorial = 0.0f;
+    float CurrentTimeTutorial = 0.0f;
+    bool isTouchTimeCountTutorial = false, isTouchTutorialButton = false;
 
     public bool canStartTutorial = false;
 
@@ -14,7 +15,7 @@ public class GetBoxColliderTutorial : MonoBehaviour {
         //Cubeの色変更,Inspector上で変更する方法がわからなかったため
         Renderer rend = GetComponent<Renderer>();
         rend.material.shader = Shader.Find("Specular");
-        rend.material.SetColor("_SpecColor", Color.white);
+        rend.material.SetColor("_SpecColor", Color.black);
     }
 
     void OnTriggerStay(Collider other)
@@ -25,6 +26,11 @@ public class GetBoxColliderTutorial : MonoBehaviour {
              isTouchTutorialButton = true;
 
         }
+    }
+     void OnTriggerExit(Collider handmodel)
+    {
+        isTouchTutorialButton = false;
+        StartTimeTutorial = 0.0f;
     }
 
     void OnTriggerEnter(Collider hand)
@@ -55,6 +61,6 @@ public class GetBoxColliderTutorial : MonoBehaviour {
 
         }
 
-        Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
+        //Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
     }
 }

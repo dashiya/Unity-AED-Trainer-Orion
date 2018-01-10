@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/AEDTrainer-Scenario1.unity
   - enabled: 1
     path: Assets/AEDTrainer-Scenario4.unity
+  - enabled: 1
+    path: Assets/AEDTrainer-Tutorial.unity

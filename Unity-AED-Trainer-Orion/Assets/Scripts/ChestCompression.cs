@@ -97,7 +97,7 @@ public class ChestCompression : MonoBehaviour
         TimeCompare();
         TimeJudge();
 
-        Debug.Log(PushCount + "回");
+        //Debug.Log(PushCount + "回");
     }
 
     //胸骨圧迫→胸骨圧迫の間隔の時間を取得するクラス
