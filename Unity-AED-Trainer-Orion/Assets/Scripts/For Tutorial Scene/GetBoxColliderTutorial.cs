@@ -14,9 +14,8 @@ public class GetBoxColliderTutorial : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Cubeの色変更,Inspector上で変更する方法がわからなかったため
-        Renderer rend = GetComponent<Renderer>();
-        rend.material.shader = Shader.Find("Specular");
-        rend.material.SetColor("_SpecColor", Color.black);
+        MeshRenderer meshrend = GetComponent<MeshRenderer>();
+        meshrend.material.color = Color.black;
     }
 
     void OnTriggerExit(Collider handmodel)
@@ -49,7 +48,7 @@ public class GetBoxColliderTutorial : MonoBehaviour {
             CurrentTimeTutorial = 0.0f;
         }
 
-        if ((StartTimeTutorial + 2.0f <= CurrentTimeTutorial) && isStartTimeCountTutorial && isTouchTutorialButton == true )
+        if ((StartTimeTutorial + 1.5f <= CurrentTimeTutorial) && isStartTimeCountTutorial && isTouchTutorialButton == true )
         {
             canStartTutorial = true;
 
@@ -63,5 +62,5 @@ public class GetBoxColliderTutorial : MonoBehaviour {
 
         Debug.Log(StartTimeTutorial + "StartTimeTutorial");
         Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
-    }
+    }//Updateここまで
 }

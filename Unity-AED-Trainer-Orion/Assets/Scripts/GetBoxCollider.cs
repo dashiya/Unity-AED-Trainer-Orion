@@ -17,9 +17,9 @@ public class GetBoxCollider : MonoBehaviour
     void Start()
     {
         //Cubeの色変更,Inspector上で変更する方法がわからなかったため
-        Renderer rend = GetComponent<Renderer>();
-        rend.material.shader = Shader.Find("Specular");
-        rend.material.SetColor("_SpecColor", Color.black);
+        //Renderer rend = GetComponent<Renderer>();
+        //rend.material.shader = Shader.Find("Specular");
+        //rend.material.SetColor("_SpecColor", Color.black);
 
     }
 
@@ -57,7 +57,7 @@ public class GetBoxCollider : MonoBehaviour
             CurrentTime = 0.0f;
         }
 
-        if ((StartTime + 2.0f <= CurrentTime) && isStartTimeCount == true && isTouchStartButton == true)
+        if ((StartTime + 1.5f <= CurrentTime) && isStartTimeCount == true && isTouchStartButton == true)
         {
             canRandomChangeScene = true;//RandomChangeSceneへ
 
@@ -69,8 +69,7 @@ public class GetBoxCollider : MonoBehaviour
             CurrentTime = 0.0f;
         }
 
-       // Debug.Log(StartTime + "StartTime");
-
-        //Debug.Log(CurrentTime + "CurrentTime");
+        Debug.Log(StartTime + "StartTime");
+        Debug.Log(CurrentTime + "CurrentTime");
     }
 }

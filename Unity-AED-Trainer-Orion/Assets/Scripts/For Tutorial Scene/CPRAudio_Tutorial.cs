@@ -87,9 +87,9 @@ public class CPRAudio_Tutorial : MonoBehaviour
             isAudio13Played = true;
         }
 
-        if (isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == false)
+        if (isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == false && isFirstCPRAnnouncePlayed == false)
         {
-            AudioSource14_1.PlayDelayed(0.0f);//残り5回です
+            AudioSource14_1.PlayDelayed(0.0f);//残り5回です,CPRAnnounceLoop二回目は再生されない
 
             _pushCount = _chestCompression_Tutorial.PushCount;//PushCountが5回押されたか判定する用
             FlagManager.Instance.flags[29] = true; //AutoMoveSpotlightへ

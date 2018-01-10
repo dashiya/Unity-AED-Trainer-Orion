@@ -50,6 +50,10 @@ public class AutoMoveSpotlight : MonoBehaviour
     float changeTextTime_1, chageTextTime_2 = 3.0f;
    public float time_1,time_2;
 
+    MeshRenderer _backStartSceneColliderRend;
+    Text _backStartSceneText;
+    BackStartScene _backStartScene;
+    bool _isEndTutorial;
 
     //ForDebug
     public int textNumberInt;
@@ -65,8 +69,15 @@ public class AutoMoveSpotlight : MonoBehaviour
         //Tutorial用の文字を表示するためのTextを取得
         _textTutorialText = GameObject.Find("TextTutorial").GetComponent<Text>();
 
+        //Tutorial終了後のスタートシーンに戻るボタンを表示するためのTextとGameObjectを取得
+        _backStartSceneColliderRend = GameObject.Find("BackStartSceneCollider").GetComponent<MeshRenderer>();
+        _backStartScene = GameObject.Find("BackStartSceneCollider").GetComponent<BackStartScene>();
+        _backStartSceneText = GameObject.Find("BackStartScene").GetComponent<Text>();
+        //スタートシーンに戻るボタンのTextとGameObjectを透明にする
+        _backStartSceneColliderRend.material.color = new Color(0, 0, 0, 0);
+        _backStartSceneText.color = new Color(0, 0, 0, 0);
 
-        
+
         //それぞれのTransformにアクセス、Positionを取得
         _openButtonTutorialTransform = GameObject.Find("開閉ボタン").GetComponent<Transform>();//1
         _openButtonTutorialPos = _openButtonTutorialTransform.position;
@@ -285,6 +296,9 @@ public class AutoMoveSpotlight : MonoBehaviour
         if (FlagManager.Instance.flags[40] == true)//CPRAudio_Tutorialから
         {
             _textTutorialText.text = ("チュートリアルは終了です");
+            _backStartSceneColliderRend.material.color = new Color(1, 1, 1, 1);//BackStartSceneColliderの色を黒、不透明に
+            _backStartSceneText.color = new Color(255, 255, 255, 1);//BackStartSceneのTextの色を白、不透明に
+
         }
 
     }//Update()ここまで

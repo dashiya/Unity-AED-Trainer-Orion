@@ -5,7 +5,8 @@ using Leap.Unity;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class ChestCompression_Tutorial : MonoBehaviour {
+public class ChestCompression_Tutorial : MonoBehaviour
+{
 
     public Vector3 StartPosition;
 
@@ -58,8 +59,8 @@ public class ChestCompression_Tutorial : MonoBehaviour {
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-         if (isTouch == true && isPush == false && isStart == false) // for debug
-        //if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+        //if (isTouch == true && isPush == false && isStart == false) // for debug
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書くループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
             StartPosition = hp.ConvertPosition; //共に単位はメートル
@@ -73,13 +74,13 @@ public class ChestCompression_Tutorial : MonoBehaviour {
             isStart = true;
         }
 
-        
-        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f)  &&  (StartPosition.y - 0.30f) < (hp.ConvertPosition.y) )//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
+
+        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
         {
             isPush = true;
         }
 
-        
+
         if (isTouch == true && isStart == true && isPush == true && isCount == false)  //5cm押し込んでいる、かつスタート位置のCollisionに再び触れたら
         {
             PushCount++;
@@ -94,9 +95,9 @@ public class ChestCompression_Tutorial : MonoBehaviour {
 
         TimeCompare();
         TimeJudge();
-
-        Debug.Log(PushCount + "回");
-
+        if (FlagManager.Instance.flags[7] == true)
+        { // Debug.Log(PushCount + "回");
+        }
     }//Update終了
 
     //胸骨圧迫→胸骨圧迫の間隔の時間を取得するクラス
@@ -129,7 +130,7 @@ public class ChestCompression_Tutorial : MonoBehaviour {
         {
             if (0.5 <= (PushTime - CurrentTime) && (PushTime - CurrentTime) <= 0.6)
             {
-                _tTex.color = new Color(255, 255, 255, 1);
+                _tTex.color = new Color(255, 255, 255, 1);//白、不透明
                 _tTex.text = "Good";
             }
             if (0.6 < (PushTime - CurrentTime))

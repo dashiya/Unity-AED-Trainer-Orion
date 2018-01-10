@@ -60,7 +60,6 @@ public class ChestCompression : MonoBehaviour
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-        // if (isTouch == true && isPush == false && isStart == false) // for debug
         if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
