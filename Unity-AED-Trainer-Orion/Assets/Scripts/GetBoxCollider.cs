@@ -9,24 +9,22 @@ public class GetBoxCollider : MonoBehaviour
     float CurrentTime = 0.0f;
     bool isStartTimeCount = false;
     bool isTouchStartButton = false;
-
+    MeshRenderer meshrend;
     public bool canRandomChangeScene = false;
 
     LeapHandCollision _hc = new LeapHandCollision();
     // Use this for initialization
     void Start()
     {
-        //Cubeの色変更,Inspector上で変更する方法がわからなかったため
-        //Renderer rend = GetComponent<Renderer>();
-        //rend.material.shader = Shader.Find("Specular");
-        //rend.material.SetColor("_SpecColor", Color.black);
+        meshrend = GetComponent<MeshRenderer>();
+        meshrend.material.color = Color.white;
 
     }
 
     void OnTriggerExit(Collider exithand)
     {
-       
-            isTouchStartButton = false;
+        meshrend.material.color = Color.white;
+        isTouchStartButton = false;
             StartTime = 0.0f;
             CurrentTime = 0.0f;
         
@@ -37,6 +35,7 @@ public class GetBoxCollider : MonoBehaviour
     {
         if (_hc.IsHand(hand))
          {
+            meshrend.material.color = Color.black;
             StartTime = Time.time;
             isTouchStartButton = true;
 

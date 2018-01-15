@@ -9,13 +9,14 @@ public class GetBoxColliderTutorial : MonoBehaviour {
     bool isTouchTutorialButton = false;
 
     public bool canStartTutorial = false;
+    MeshRenderer meshrend;
 
     LeapHandCollision _hc = new LeapHandCollision();
     // Use this for initialization
     void Start () {
         //Cubeの色変更,Inspector上で変更する方法がわからなかったため
-        MeshRenderer meshrend = GetComponent<MeshRenderer>();
-        meshrend.material.color = Color.black;
+         meshrend = GetComponent<MeshRenderer>();
+        meshrend.material.color = Color.white;
     }
 
     void OnTriggerExit(Collider handmodel)
@@ -23,12 +24,15 @@ public class GetBoxColliderTutorial : MonoBehaviour {
         isTouchTutorialButton = false;
         StartTimeTutorial = 0.0f;
         CurrentTimeTutorial = 0.0f;
+        meshrend.material.color = Color.white;
     }
+
 
     void OnTriggerEnter(Collider hand)
     {     
         if (_hc.IsHand(hand))
         {
+            meshrend.material.color = Color.black;
             StartTimeTutorial = Time.time;
             isTouchTutorialButton = true;
 
@@ -60,7 +64,5 @@ public class GetBoxColliderTutorial : MonoBehaviour {
             CurrentTimeTutorial = 0.0f;
         }
 
-        Debug.Log(StartTimeTutorial + "StartTimeTutorial");
-        Debug.Log(CurrentTimeTutorial + "CurrentTimeTutorial");
     }//Updateここまで
 }

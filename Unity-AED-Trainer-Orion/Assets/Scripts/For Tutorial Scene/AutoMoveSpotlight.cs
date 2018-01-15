@@ -48,15 +48,16 @@ public class AutoMoveSpotlight : MonoBehaviour
 
     //指定秒数後にテキストの中身を変える用
     float changeTextTime_1, chageTextTime_2 = 3.0f;
-   public float time_1,time_2;
+    public float time_1, time_2;
 
+    //BackStartSceneColliderとBackStartSceneのTextの色を変える用
     MeshRenderer _backStartSceneColliderRend;
     Text _backStartSceneText;
     BackStartScene _backStartScene;
     bool _isEndTutorial;
 
-    //ForDebug
-    public int textNumberInt;
+    //被験者実験用のAEDの使用で止めるためのフラグ
+    public bool isElectroShocked_subject;
 
     // Use this for initialization
     void Start()
@@ -73,6 +74,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         _backStartSceneColliderRend = GameObject.Find("BackStartSceneCollider").GetComponent<MeshRenderer>();
         _backStartScene = GameObject.Find("BackStartSceneCollider").GetComponent<BackStartScene>();
         _backStartSceneText = GameObject.Find("BackStartScene").GetComponent<Text>();
+
         //スタートシーンに戻るボタンのTextとGameObjectを透明にする
         _backStartSceneColliderRend.material.color = new Color(0, 0, 0, 0);
         _backStartSceneText.color = new Color(0, 0, 0, 0);
@@ -222,14 +224,16 @@ public class AutoMoveSpotlight : MonoBehaviour
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("電気ショックが行われました");
 
-
+            //被験者実験
+            isElectroShocked_subject = true;
+            
             //_energiationButtonPos9
         }
 
 
         if (FlagManager.Instance.flags[28] == true)//CPRAudio_Tutorialから
         {
-            
+
             spotlightPrefabPos.x = _CPRAudiopos.x;
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
@@ -251,7 +255,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         }
         if (FlagManager.Instance.flags[29] == true)//CPRAudio_Tutorialから
         {
-         
+
             spotlightPrefabPos.x = _CPRAudiopos.x;
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
@@ -293,11 +297,11 @@ public class AutoMoveSpotlight : MonoBehaviour
         }//_CPRAudiopos13
 
 
-        if (FlagManager.Instance.flags[40] == true)//CPRAudio_Tutorialから
+        if (FlagManager.Instance.flags[40] == true || isElectroShocked_subject == true)//CPRAudio_Tutorialから
         {
             _textTutorialText.text = ("チュートリアルは終了です");
-            _backStartSceneColliderRend.material.color = new Color(1, 1, 1, 1);//BackStartSceneColliderの色を黒、不透明に
-            _backStartSceneText.color = new Color(255, 255, 255, 1);//BackStartSceneのTextの色を白、不透明に
+            _backStartSceneColliderRend.material.color = new Color(1, 1, 1, 1);//BackStartSceneColliderの色を白、不透明に
+            _backStartSceneText.color = new Color(0, 0, 0, 1);//BackStartSceneのTextの色を黒、不透明に
 
         }
 

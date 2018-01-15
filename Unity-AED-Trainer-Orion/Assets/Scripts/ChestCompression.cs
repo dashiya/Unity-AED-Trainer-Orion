@@ -34,7 +34,7 @@ public class ChestCompression : MonoBehaviour
     MeshRenderer _tTexMesh;
 
     LeapHandCollision _hc = new LeapHandCollision();
-    //  HandPosition hp = new HandPosition(); 現状不必要なのでコメントアウト
+   
     void Start()
     {
         _tTex = GameObject.Find("TempoText").GetComponent<Text>();
@@ -43,7 +43,6 @@ public class ChestCompression : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (_hc.IsHand(other)) //For debug 
         if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other))
         {
             if (_hc.IsHand(other))
@@ -57,6 +56,7 @@ public class ChestCompression : MonoBehaviour
     //フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true　が一連の流れ
     void Update()
     {
+
         HandPosition hp = GetComponent<HandPosition>();
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
