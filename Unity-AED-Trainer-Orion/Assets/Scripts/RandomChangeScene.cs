@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 //スタートシーンから、ボタンに触れたときに訓練用シーン3つに分岐するためのスクリプト
 public class RandomChangeScene : MonoBehaviour
 {
-    int randomSceneNumber;
+    int randomSceneNumber = 2;
 
     GetBoxCollider _getBoxCollider;
     // Use this for initialization
@@ -13,7 +13,7 @@ public class RandomChangeScene : MonoBehaviour
     {
         _getBoxCollider = GameObject.Find("GetBoxCollider").GetComponent<GetBoxCollider>();
 
-        randomSceneNumber = Random.Range(1, 4);//Random.Range(min(含まれる),max(含まれない))ので、1,2,3のいずれかを返す
+        //randomSceneNumber = Random.Range(1, 4);//Random.Range(min(含まれる),max(含まれない))ので、1,2,3のいずれかを返す
         Debug.Log(randomSceneNumber + "randomSceneNumber");
         
     }

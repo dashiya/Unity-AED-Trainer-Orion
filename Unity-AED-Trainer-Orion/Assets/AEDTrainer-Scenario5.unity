@@ -1239,7 +1239,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011501647726, guid: f552da3bd238315419016c9e43f40bf1, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012524819796, guid: f552da3bd238315419016c9e43f40bf1, type: 2}
@@ -1635,6 +1635,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &792524825 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012866522110, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1432942685}
+--- !u!82 &792524827 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000010715558446, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1432942685}
+--- !u!114 &792524828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792524825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1127c2fb7a12bac4eaf495f25bd3b7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource10_Scenario5: {fileID: 792524827}
 --- !u!1001 &810766794
 Prefab:
   m_ObjectHideFlags: 0
@@ -1918,6 +1940,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &950000172 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012340438760, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1432942685}
+--- !u!82 &950000176 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000010170686320, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1432942685}
+--- !u!114 &950000177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 950000172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e69959d272bc54f95dc661dcb45c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource7: {fileID: 950000176}
+  AudioSource8: {fileID: 950000176}
+  AudioSource9: {fileID: 950000176}
 --- !u!1 &1000416278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,7 +3071,44 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114000014010484972, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: AudioSource11_Scenario4
+      value: 
+      objectReference: {fileID: 1767947902}
+    - target: {fileID: 82000010170686320, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010170686320, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013835568048, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013835568048, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012411781586, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012411781586, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114000013437450790, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7, type: 2}
+    - {fileID: 114000011346630402, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1505179863
@@ -3458,6 +3541,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 610baa7bf84b3904fb2ad6e6a475a610, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1767947902 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000011252539254, guid: b9da7e2fc1759e049ae6bc02b7bb8cd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1432942685}
 --- !u!1 &1787593020
 GameObject:
   m_ObjectHideFlags: 0

@@ -513,7 +513,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3053\u3053\u306B\n\u624B\u3092\u89E6\u308C\u308B\u3068\n\n\u8A13\u7DF4\u30B7\u30CA\u30EA\u30AA\n(3\u3064\u306E\u30B7\u30CA\u30EA\u30AA\u304B\u3089\n1\u3064\u304C\u9078\u3070\u308C\u307E\u3059)"
+  m_Text: "\u3053\u3053\u306B\n\u624B\u3092\u89E6\u308C\u308B\u3068\n\n\u8A13\u7DF4\u30B7\u30CA\u30EA\u30AA\n"
 --- !u!222 &484943449
 CanvasRenderer:
   m_ObjectHideFlags: 0
