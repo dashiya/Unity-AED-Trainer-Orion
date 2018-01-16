@@ -444,7 +444,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 234235807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62, y: 0.21, z: 2.89}
+  m_LocalPosition: {x: -0.57, y: 0.5, z: 2.89}
   m_LocalScale: {x: -0.1, y: 0.12457621, z: 0.09}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -461,7 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7b7755f6dd5044e80bb60bacab6ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEndTutorial: 0
 --- !u!1 &235821125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,7 +4043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time_1: 0
   time_2: 0
-  textNumberInt: 0
+  isElectroShocked_subject: 0
 --- !u!1 &1881987745
 GameObject:
   m_ObjectHideFlags: 0

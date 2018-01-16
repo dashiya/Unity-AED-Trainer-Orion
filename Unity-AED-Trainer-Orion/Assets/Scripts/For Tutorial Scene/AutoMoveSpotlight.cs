@@ -201,7 +201,7 @@ public class AutoMoveSpotlight : MonoBehaviour
             spotlightPrefabPos.z = _buttonAudio1Pos.z;
 
             transform.position = spotlightPrefabPos;
-            _textTutorialText.text = ("電気ショックの充電が終わるまで人に触らないでください");
+            _textTutorialText.text = ("電気ショックの充電が終わるまで人に触らないでください\n場合によっては電気ショックは行われない場合があります");
             //_buttonAudio1Pos7
         }
 
