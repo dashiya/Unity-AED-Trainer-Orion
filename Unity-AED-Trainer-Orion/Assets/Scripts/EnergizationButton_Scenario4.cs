@@ -56,7 +56,7 @@ public class EnergizationButton_Scenario4 : MonoBehaviour
         if (hc.IsHand(enecol) && FlagManager.Instance.flags[6] == true && FlagManager.Instance.flags[7] == false)
         {
             AudioSource11_Scenario4.Play(12800);
-           // FlagManager.Instance.flags[7] = true;被験者実験用
+            FlagManager.Instance.flags[7] = true;
         }
     }
 }

@@ -56,8 +56,6 @@ public class AutoMoveSpotlight : MonoBehaviour
     BackStartScene _backStartScene;
     bool _isEndTutorial;
 
-    //被験者実験用のAEDの使用で止めるためのフラグ
-    public bool isElectroShocked_subject;
 
     // Use this for initialization
     void Start()
@@ -223,9 +221,6 @@ public class AutoMoveSpotlight : MonoBehaviour
 
             transform.position = spotlightPrefabPos;
             _textTutorialText.text = ("電気ショックが行われました");
-
-            //被験者実験
-            isElectroShocked_subject = true;
             
             //_energiationButtonPos9
         }
@@ -297,7 +292,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         }//_CPRAudiopos13
 
 
-        if (FlagManager.Instance.flags[40] == true || isElectroShocked_subject == true)//CPRAudio_Tutorialから
+        if (FlagManager.Instance.flags[40] == true )//CPRAudio_Tutorialから
         {
             _textTutorialText.text = ("チュートリアルは終了です");
             _backStartSceneColliderRend.material.color = new Color(1, 1, 1, 1);//BackStartSceneColliderの色を白、不透明に

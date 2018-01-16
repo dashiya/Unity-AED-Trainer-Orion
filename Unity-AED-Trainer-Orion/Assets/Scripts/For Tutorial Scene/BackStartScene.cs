@@ -27,22 +27,12 @@ public class BackStartScene : MonoBehaviour
         BackStartSceneColliderMesh = this.GetComponent<MeshRenderer>();
 
         this.GetComponent<BoxCollider>().enabled = false;
-
-        //被験者実験用
-        if (GameObject.Find("MoveSoptlight") == null)
-        {
-            return;
-        } else {
-            _autoMoveSpotlight = GameObject.Find("MoveSoptlight").GetComponent<AutoMoveSpotlight>();
-
-        }
     }
 
     void OnTriggerExit(Collider handmodel)
     {
 
-        // if (FlagManager.Instance.flags[40] == true || _isElectroShocked_subject == true)
-        if (_autoMoveSpotlight.isElectroShocked_subject == true)
+         if (FlagManager.Instance.flags[40] == true )
         {
             //Colliderから手が離れたらフラグ、数値リセット
             isTouchTutorialButtonEnd = false;
@@ -55,8 +45,7 @@ public class BackStartScene : MonoBehaviour
 
     void OnTriggerEnter(Collider hand)
     {
-        //   if (_hc.IsHand(hand) && FlagManager.Instance.flags[40] == true )
-        if (_hc.IsHand(hand) && _autoMoveSpotlight.isElectroShocked_subject == true)
+        if (_hc.IsHand(hand) && FlagManager.Instance.flags[40] == true )
         {
             BackStartSceneColliderMesh.material.color = Color.black;//BackStartSceneのTextの色を黒、不透明に
             StartTimeTutorialEnd = Time.time;
@@ -73,13 +62,7 @@ public class BackStartScene : MonoBehaviour
         Debug.Log(StartTimeTutorialEnd + "StartTimeTutorialEnd" + CurrentTimeTutorialEnd + "CurrentTimeTutorialEnd");
 
 
-        if (_autoMoveSpotlight == null)
-        {
-            return;
-
-        } else {
-            //if (FlagManager.Instance.flags[40] == true || _isElectroShocked_subject == true)//被験者実験用
-            if (_autoMoveSpotlight.isElectroShocked_subject == true)//被験者実験用
+            if (FlagManager.Instance.flags[40] == true)    
             {
 
                 this.GetComponent<BoxCollider>().enabled = true;
@@ -99,7 +82,6 @@ public class BackStartScene : MonoBehaviour
                     SceneManager.LoadScene("AEDTrainer-StartScene");//StartSceneよみこみ
 
                 }
-            }
         }
     }//Updateここまで
 }
