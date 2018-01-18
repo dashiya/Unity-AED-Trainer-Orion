@@ -96,7 +96,7 @@ public class CPRAudio_Tutorial : MonoBehaviour
             isAudio14_1Played = true;
         }
 
-        if (isFirstCPRAnnouncePlayed == true && isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == true)
+        if ( isAudio13Played == true && AudioSource13.isPlaying == false && isAudio14_1Played == false && isFirstCPRAnnouncePlayed == true )
         {
             isSecondCPRAnnouncePlayed = true;
             isTempoSoundLoop = false;

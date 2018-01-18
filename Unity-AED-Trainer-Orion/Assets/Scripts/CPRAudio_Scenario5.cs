@@ -23,7 +23,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
     bool isAudio14_1Played = false;
     bool isAudio14_2Played = false;
     bool isAudio15Played = false;
-    bool isAudio16Played = false;
+    bool isAudio17_1Played = false;
 
 
     bool isFirstCPRAnnouncePlayed = false;
@@ -75,7 +75,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
 
 
 
-            if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio16Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
+            if ((_chestCompression.PushCount == _pushCount + 5) && isAudio14_2Played == false && isAudio17_1Played == false && AudioSource12.isPlaying == false && AudioSource13.isPlaying == false && AudioSource14_1.isPlaying == false)
             {
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
@@ -88,7 +88,7 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
                 isAudio15Played = true;
             }
 
-            if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio16Played == false)
+            if (isAudio15Played == true && AudioSource15.isPlaying == false && isAudio17_1Played == false)
             {
                 AudioSource17_1.PlayDelayed(0.0f);//心電図を調べることができませんでした
 
@@ -97,10 +97,10 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
                 isAudio13Played = false;
                 isAudio14_1Played = false;
 
-                isAudio16Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
+                isAudio17_1Played = true; //Update()内で1フレーム毎に実行されるの防ぐ用、if{}内が実行されるのは一度きりになる
             }
 
-            if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio16Played == true && AudioSource15.isPlaying == false && AudioSource17_1.isPlaying == false)
+            if (isFirstCPRAnnouncePlayed == true && isSecondCPRAnnouncePlayed == false && isAudio15Played == true && isAudio17_1Played == true && AudioSource15.isPlaying == false && AudioSource17_1.isPlaying == false)
             {
                 CPRAnnounceLoop_Scenario5();
             }
