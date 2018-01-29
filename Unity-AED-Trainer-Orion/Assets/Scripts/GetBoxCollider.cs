@@ -68,7 +68,7 @@ public class GetBoxCollider : MonoBehaviour
             CurrentTime = 0.0f;
         }
 
-        Debug.Log(StartTime + "StartTime");
-        Debug.Log(CurrentTime + "CurrentTime");
+        //Debug.Log(StartTime + "StartTime");
+       // Debug.Log(CurrentTime + "CurrentTime");
     }
 }

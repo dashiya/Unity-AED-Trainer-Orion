@@ -4,27 +4,22 @@ using Leap;
 using Leap.Unity;
 using System.Collections.Generic;
 
-
-//Leap.PalmPositionを取得するクラス
-public class HandPosition : MonoBehaviour
+public class CheckLeapHandPalmDirection : MonoBehaviour
 {
 
-    public Vector3 ConvertPosition;
-    public Vector OriginalPosition;
+    LeapHandCollision hc = new LeapHandCollision();
 
+    Vector3 palmDirectionVector3;
     LeapProvider provider;
 
-  public  void PalmDirectonDetectorOnActive()
-    {
-        Debug.Log("ONACTIVE");
-    }
+    Vector handDirection;
 
     void Start()
     {
         provider = FindObjectOfType<LeapProvider>() as LeapProvider;
     }
 
-    // Get Habd objects from a Frame
+    // Update is called once per frame
     void Update()
     {
         {
@@ -36,19 +31,11 @@ public class HandPosition : MonoBehaviour
                 Hand hand = hands[h];
                 if (hand.IsLeft | hand.IsRight)
                 {
-                    OriginalPosition = hand.PalmPosition;
-
-                    ConvertPosition = hand.PalmPosition.ToVector3() +
-                                         hand.PalmNormal.ToVector3() *
-                                        (transform.localScale.y * .5f + .02f);
-
+                
                 }
+
             }
         }
+        //Debug.Log(handDirection + "handDirection");
     }
 }
-
-
-
-
-
