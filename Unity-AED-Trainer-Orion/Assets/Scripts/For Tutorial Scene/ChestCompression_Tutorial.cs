@@ -51,8 +51,8 @@ public class ChestCompression_Tutorial : MonoBehaviour
         {
             if (_hc.IsHand(other))
             {
-                isTouch = true;
-             
+                isTouch = true;   //手がBox Colliderに触れるisTouch=true
+
             }
         }
     }

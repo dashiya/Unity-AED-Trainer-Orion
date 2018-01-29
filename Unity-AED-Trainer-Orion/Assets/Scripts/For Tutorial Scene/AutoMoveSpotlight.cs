@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//スポットライトを音声や動きに合わせて動かし、テキストを表示する
 public class AutoMoveSpotlight : MonoBehaviour
 {
 
@@ -233,7 +234,7 @@ public class AutoMoveSpotlight : MonoBehaviour
             spotlightPrefabPos.z = _CPRAudiopos.z;
 
             transform.position = spotlightPrefabPos;
-
+            //1/20現在テキストの変更は反映されていない
             _textTutorialText.text = ("音に合わせて光っている場所を押し込んでください");
 
             time_1 += Time.deltaTime;
