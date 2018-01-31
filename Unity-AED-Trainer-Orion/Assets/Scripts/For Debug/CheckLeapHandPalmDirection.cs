@@ -14,6 +14,13 @@ public class CheckLeapHandPalmDirection : MonoBehaviour
 
     Vector handDirection;
 
+
+    public void PalmDirectonDetectorOnActive()
+    {
+        Debug.Log("ONACTIVE");
+    }
+
+
     void Start()
     {
         provider = FindObjectOfType<LeapProvider>() as LeapProvider;

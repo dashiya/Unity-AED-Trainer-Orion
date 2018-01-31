@@ -14,10 +14,6 @@ public class HandPosition : MonoBehaviour
 
     LeapProvider provider;
 
-  public  void PalmDirectonDetectorOnActive()
-    {
-        Debug.Log("ONACTIVE");
-    }
 
     void Start()
     {
