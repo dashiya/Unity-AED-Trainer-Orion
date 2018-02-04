@@ -4,6 +4,9 @@ using Leap;
 using Leap.Unity;
 using System.Collections.Generic;
 
+
+//PalmDirectionDetectorで検知した手のひらの向き(90度以上で検知される)から、フラグを立てるクラス
+//立ったフラグは訓練シナリオとチュートリアルのChestCompressionへ
 public class CheckLeapHandPalmDirection : MonoBehaviour
 {
 
