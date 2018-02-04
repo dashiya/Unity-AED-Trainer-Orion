@@ -32,7 +32,7 @@ public class BackStartScene : MonoBehaviour
     void OnTriggerExit(Collider handmodel)
     {
 
-         if (FlagManager.Instance.flags[40] == true )
+        if (FlagManager.Instance.flags[40] == true)
         {
             //Colliderから手が離れたらフラグ、数値リセット
             isTouchTutorialButtonEnd = false;
@@ -45,7 +45,7 @@ public class BackStartScene : MonoBehaviour
 
     void OnTriggerEnter(Collider hand)
     {
-        if (_hc.IsHand(hand) && FlagManager.Instance.flags[40] == true )
+        if (_hc.IsHand(hand) && FlagManager.Instance.flags[40] == true)
         {
             BackStartSceneColliderMesh.material.color = Color.black;//BackStartSceneのTextの色を黒、不透明に
             StartTimeTutorialEnd = Time.time;
@@ -59,29 +59,26 @@ public class BackStartScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(StartTimeTutorialEnd + "StartTimeTutorialEnd" + CurrentTimeTutorialEnd + "CurrentTimeTutorialEnd");
+        if (FlagManager.Instance.flags[40] == true)
+        {
 
-
-            if (FlagManager.Instance.flags[40] == true)    
+            this.GetComponent<BoxCollider>().enabled = true;
+            //訓練スタートのためのタイマー
+            if (isTouchTutorialButtonEnd == true)
             {
+                CurrentTimeTutorialEnd = Time.time;//タイマースタート
+                isStartTimeCountTutorialEnd = true;
+            } else
+            {
+                StartTimeTutorialEnd = 0.0f;
+                CurrentTimeTutorialEnd = 0.0f;//条件を満たさなければタイマーリセット
+            }
 
-                this.GetComponent<BoxCollider>().enabled = true;
-                //訓練スタートのためのタイマー
-                if (isTouchTutorialButtonEnd == true)
-                {
-                    CurrentTimeTutorialEnd = Time.time;//タイマースタート
-                    isStartTimeCountTutorialEnd = true;
-                } else
-                {
-                    StartTimeTutorialEnd = 0.0f;
-                    CurrentTimeTutorialEnd = 0.0f;//条件を満たさなければタイマーリセット
-                }
+            if ((StartTimeTutorialEnd + 1.5f <= CurrentTimeTutorialEnd) && isStartTimeCountTutorialEnd == true && isTouchTutorialButtonEnd == true)//1.5秒以上経過してかつBackStartSceneに触れている
+            {
+                SceneManager.LoadScene("AEDTrainer-StartScene");//StartSceneよみこみ
 
-                if ((StartTimeTutorialEnd + 1.5f <= CurrentTimeTutorialEnd) && isStartTimeCountTutorialEnd == true && isTouchTutorialButtonEnd == true)//1.5秒以上経過してかつBackStartSceneに触れている
-                {
-                    SceneManager.LoadScene("AEDTrainer-StartScene");//StartSceneよみこみ
-
-                }
+            }
         }
     }//Updateここまで
 }

@@ -36,10 +36,14 @@ public class ChestCompression_Tutorial : MonoBehaviour
     Text _tTex;
     MeshRenderer _tTexMesh;
 
+    //Leap MotionのHandのPalmの向き判定用
+    CheckLeapHandPalmDirection _checkLeapHandPalmDirection;
+
     LeapHandCollision _hc = new LeapHandCollision();
-    //  HandPosition hp = new HandPosition(); 現状不必要なのでコメントアウト
+    
     void Start()
     {
+        _checkLeapHandPalmDirection = GameObject.Find("PalmDirectionDetector").GetComponent<CheckLeapHandPalmDirection>();
         _tTex = GameObject.Find("TempoText").GetComponent<Text>();
     }
 
@@ -47,7 +51,7 @@ public class ChestCompression_Tutorial : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //if (_hc.IsHand(other)) //For debug 
-        if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other))
+        if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other) && _checkLeapHandPalmDirection.isPalmDirectionTrue == true)
         {
             if (_hc.IsHand(other))
             {
@@ -62,24 +66,7 @@ public class ChestCompression_Tutorial : MonoBehaviour
     void Update()
     {
         HandPosition hp = GetComponent<HandPosition>();
-        //if (FlagManager.Instance.flags[7] == true && isTouch == true && isStart == true && isPush == false)
-        //{
-        //    TrackingTime = Time.time;
-        //    CountCheck = PushCount;
-
-        //}
-        //if (TrackingTime >= 5.0f && CountCheck == PushCount )
-        //{
-        //    isCount = false;
-        //    isGood = false;
-        //    isLate = false;
-        //    isFast = false;
-
-        //    isTouch = false;
-        //    isPush = false;
-        //    isStart = false;
-        //}
-
+       
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
         //if (isTouch == true && isPush == false && isStart == false) // for debug
         if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)

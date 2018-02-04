@@ -14,15 +14,15 @@ public class CheckLeapHandPalmDirection : MonoBehaviour
 
     Vector handDirection;
 
-    public bool isPalmDirectionTrue = true;
+    public bool isPalmDirectionTrue;
 
-    //PalmDirectionDetectorのSendMessageに呼ばれる
+    //PalmDirectionDetectorに呼ばれる
     public void ReceiveMessageDirectionTrue()
     {
         isPalmDirectionTrue = true;
         Debug.Log("isPalmDirectionTrue" + isPalmDirectionTrue);
     }
-
+    //PalmDirectionDetectorに呼ばれる
     public void ReceiveMessageDirectionFalse()
     {
         isPalmDirectionTrue = false;
