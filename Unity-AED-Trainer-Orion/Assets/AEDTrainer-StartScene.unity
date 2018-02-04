@@ -1631,7 +1631,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &1423808148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1911,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1689514533}
   - 114: {fileID: 1689514532}
+  - 114: {fileID: 1689514534}
   m_Layer: 0
   m_Name: PalmDirectionDetector
   m_TagString: Untagged
@@ -1933,25 +1934,25 @@ MonoBehaviour:
   OnActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 257534290}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1689514534}
+        m_MethodName: ReceiveMessageDirectionFalse
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: '"ReceiveMessage"'
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnDeactivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 257534290}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1689514534}
+        m_MethodName: ReceiveMessageDirectionTrue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1959,7 +1960,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   Period: 0.1
@@ -1982,6 +1983,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!114 &1689514534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689514531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ccb167b6deb00449d8c5d16fdfc1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPalmDirectionTrue: 1
 --- !u!1001 &1714495504
 Prefab:
   m_ObjectHideFlags: 0
@@ -2834,6 +2847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ccb167b6deb00449d8c5d16fdfc1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPalmDirectionTrue: 0
 --- !u!4 &2004275695
 Transform:
   m_ObjectHideFlags: 0
@@ -2846,7 +2860,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &2096736708
 GameObject:
   m_ObjectHideFlags: 0

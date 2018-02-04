@@ -14,35 +14,18 @@ public class CheckLeapHandPalmDirection : MonoBehaviour
 
     Vector handDirection;
 
+    public bool isPalmDirectionTrue = true;
 
-    public void PalmDirectonDetectorOnActive()
+    //PalmDirectionDetectorのSendMessageに呼ばれる
+    public void ReceiveMessageDirectionTrue()
     {
-        Debug.Log("ONACTIVE");
+        isPalmDirectionTrue = true;
+        Debug.Log("isPalmDirectionTrue" + isPalmDirectionTrue);
     }
 
-
-    void Start()
+    public void ReceiveMessageDirectionFalse()
     {
-        provider = FindObjectOfType<LeapProvider>() as LeapProvider;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        {
-            Frame frame = provider.CurrentFrame;
-            List<Hand> hands = frame.Hands;
-            for (int h = 0; h < hands.Count; h++)
-
-            {
-                Hand hand = hands[h];
-                if (hand.IsLeft | hand.IsRight)
-                {
-                
-                }
-
-            }
-        }
-        //Debug.Log(handDirection + "handDirection");
+        isPalmDirectionTrue = false;
+        Debug.Log("isPalmDirectionTrue" + isPalmDirectionTrue);
     }
 }
