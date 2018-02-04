@@ -13,19 +13,20 @@ public class CheckLeapHandPalmDirection : MonoBehaviour
     LeapProvider provider;
 
     Vector handDirection;
-
+    
     public bool isPalmDirectionTrue;
 
     //PalmDirectionDetectorに呼ばれる
     public void ReceiveMessageDirectionTrue()
     {
         isPalmDirectionTrue = true;
-        Debug.Log("isPalmDirectionTrue" + isPalmDirectionTrue);
     }
+
+        
     //PalmDirectionDetectorに呼ばれる
     public void ReceiveMessageDirectionFalse()
     {
         isPalmDirectionTrue = false;
-        Debug.Log("isPalmDirectionTrue" + isPalmDirectionTrue);
     }
-}
+
+   }
