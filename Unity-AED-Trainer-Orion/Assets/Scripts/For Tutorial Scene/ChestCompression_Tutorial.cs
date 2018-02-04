@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class ChestCompression_Tutorial : MonoBehaviour
 {
-
     public Vector3 StartPosition;
 
     public uint PushCount = 0;
@@ -40,11 +39,13 @@ public class ChestCompression_Tutorial : MonoBehaviour
     CheckLeapHandPalmDirection _checkLeapHandPalmDirection;
 
     LeapHandCollision _hc = new LeapHandCollision();
+    HandPosition _hp;
 
     void Start()
     {
         _checkLeapHandPalmDirection = GameObject.Find("PalmDirectionDetector").GetComponent<CheckLeapHandPalmDirection>();
         _tTex = GameObject.Find("TempoText").GetComponent<Text>();
+        _hp = GetComponent<HandPosition>();
     }
 
 
@@ -65,13 +66,13 @@ public class ChestCompression_Tutorial : MonoBehaviour
     //フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true　が一連の流れ
     void Update()
     {
-        HandPosition hp = GetComponent<HandPosition>();
+       
 
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false && (-0.4f < _hp.ConvertPosition.y) && (_hp.ConvertPosition.y < 0.0f))
         {
             CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書くループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
-            StartPosition = hp.ConvertPosition; //共に単位はメートル
+            StartPosition = _hp.ConvertPosition; //共に単位はメートル
 
             //各種フラグリセット
             isCount = false;
@@ -83,7 +84,7 @@ public class ChestCompression_Tutorial : MonoBehaviour
         }
 
 
-        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
+        if (isTouch == true && isStart == true && isPush == false && (_hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (_hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
         {
             isPush = true;
         }

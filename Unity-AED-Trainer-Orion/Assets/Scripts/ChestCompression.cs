@@ -14,10 +14,11 @@ public class ChestCompression : MonoBehaviour
     public uint PushCount = 0;
     private uint CurrentCount = 0;
 
-    private bool isTouch = false;
-    private bool isPush = false;
-    private bool isStart = false;
+    public bool isTouch = false;
+    public bool isStart = false;
+    public bool isPush = false;
     public bool isCount = false;
+
     public bool isGood = false;
     public bool isLate = false;
     public bool isFast = false;
@@ -33,17 +34,24 @@ public class ChestCompression : MonoBehaviour
     Text _tTex;
     MeshRenderer _tTexMesh;
 
+
+    //Leap MotionのHandのPalmの向き判定用
+    CheckLeapHandPalmDirection _checkLeapHandPalmDirection;
+
     LeapHandCollision _hc = new LeapHandCollision();
-   
+    HandPosition _hp;
     void Start()
     {
+        _checkLeapHandPalmDirection = GameObject.Find("PalmDirectionDetector").GetComponent<CheckLeapHandPalmDirection>();
+        _hp = GetComponent<HandPosition>();
         _tTex = GameObject.Find("TempoText").GetComponent<Text>();
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other))
+        //flags[7](電気ショックが行われて)_hc.ISHand(other)(Colliderに触れているのがLeapのHandで)_checkLeapHandPalmDirectionTrue(PalmDirectionDetectorで手のひらが下向きである)StartPosition.yが-0.4以下
+        if (FlagManager.Instance.flags[7] == true && _hc.IsHand(other) && _checkLeapHandPalmDirection.isPalmDirectionTrue == true)
         {
             if (_hc.IsHand(other))
             {
@@ -56,14 +64,12 @@ public class ChestCompression : MonoBehaviour
     //フラグが立った状態でBox Colliderにふれたら圧迫回数+1にするisCount = true　が一連の流れ
     void Update()
     {
-
-        HandPosition hp = GetComponent<HandPosition>();
-
         //flags[7]は電気ショックが終わったらtrueになる、胸骨圧迫と人工呼吸の音声と同時 1つめ　最終的にisStart=falseかtrueか判断する
-        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false)
+        if (FlagManager.Instance.flags[7] == true && isTouch == true && isPush == false && isStart == false && (-0.4f < _hp.ConvertPosition.y) && (_hp.ConvertPosition.y < 0.0f))
         {
-            CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く、場所があってるか不明 ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
-            StartPosition = hp.ConvertPosition; //共に単位はメートル
+            CurrentCount = PushCount;//PushCountとCurrentCountを比較する必要があるのでここに書く ループ一周目はCurrentCountは0、isCount =true のところでPushCountは1
+
+            StartPosition = _hp.ConvertPosition; //共に単位はメートル
 
             //各種フラグリセット
             isCount = false;
@@ -75,7 +81,7 @@ public class ChestCompression : MonoBehaviour
         }
 
         //2つめ
-        if (isTouch == true && isStart == true && isPush == false && (hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
+        if (isTouch == true && isStart == true && isPush == false && (_hp.ConvertPosition.y) <= (StartPosition.y - 0.25f) && (StartPosition.y - 0.30f) < (_hp.ConvertPosition.y))//スタート位置のCollisionにふれていて、5cm-6cm沈み込んだらフラグをたてる、-0.25=-0.05*5,-0.30=-0.06*5なのはLeapHandControllerのScaleが5なため
         {
             isPush = true;
         }
