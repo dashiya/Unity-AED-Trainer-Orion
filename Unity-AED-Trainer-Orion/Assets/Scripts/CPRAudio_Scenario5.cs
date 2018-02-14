@@ -81,6 +81,8 @@ public class CPRAudio_Scenario5 : MonoBehaviour {
                 isAudio14_2Played = true;
                 isTempoSoundLoop_scenario5 = false;
 
+                isFirstCPRAnnouncePlayed = true;
+
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
             {

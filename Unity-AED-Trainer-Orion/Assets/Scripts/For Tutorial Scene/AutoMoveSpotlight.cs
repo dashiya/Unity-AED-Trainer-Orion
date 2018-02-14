@@ -293,7 +293,7 @@ public class AutoMoveSpotlight : MonoBehaviour
         }//_CPRAudiopos13
 
 
-        if (FlagManager.Instance.flags[40] == true )//CPRAudio_Tutorialから
+        if (FlagManager.Instance.flags[40] == true)//CPRAudio_Tutorialから
         {
             _textTutorialText.text = ("チュートリアルは終了です");
             _backStartSceneColliderRend.material.color = new Color(1, 1, 1, 1);//BackStartSceneColliderの色を白、不透明に

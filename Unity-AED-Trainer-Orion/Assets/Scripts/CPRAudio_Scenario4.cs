@@ -83,7 +83,9 @@ public class CPRAudio_Scenario4 : MonoBehaviour
                 AudioSource14_2.PlayDelayed(AudioClip14_1.length); //体から離れてください     
                 isAudio14_2Played = true;
                 isTempoSoundLoop = false;
-               
+
+                isFirstCPRAnnouncePlayed = true;
+
             }
             if (isAudio14_2Played == true && AudioSource14_2.isPlaying == false && isAudio15Played == false)
             {
@@ -129,6 +131,7 @@ public class CPRAudio_Scenario4 : MonoBehaviour
           
             isAudio12Played = true;
             isTempoSoundLoop = true;
+        
         }
 
         if (isAudio12Played == true && AudioSource12.isPlaying == false && isAudio13Played == false)
